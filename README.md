@@ -1,6 +1,6 @@
 # Low-Fidelity-Design
 
-Contains the code neccessary to carry out low-fidelty design, as described in paper: 
+Contains the code neccessary for stochastic model reduction, as described in paper: 
 
 # Code common to each numerical example
 %1. mat_id_files
