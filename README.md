@@ -1,4 +1,4 @@
-# Low-Fidelity-Design
+# Basis Reduction
 
 Contains the code neccessary for stochastic model reduction, as described in paper: 
 
