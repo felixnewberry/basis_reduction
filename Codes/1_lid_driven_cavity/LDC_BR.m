@@ -45,15 +45,14 @@ x_h = 0.5*(cos(pi*(x_h-1)/2)+1);
 %%% Key Parameters 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
 p = 4;                          % PCE order
 d = 2;                          % Stochastic dimension
 
 N_hi = [10, 15, 20, 25];      % Number high-fidelity samples
-N_hi = [10]; 
+% N_hi = [10]; 
 
 r = [1 3 6];                  % KL order
-r = 3; 
+% r = 3; 
 
 % tolerance on residual used in spgl1 solver
 sigma = .001;
@@ -117,7 +116,7 @@ var_low_err = norm(var_low_int - var_ref)/norm(var_ref);
     = my_br_study(r, N_hi, n_reps, u_ref, xi_ref, psi_ref, sigma, c_low, c_ref);
 
 % Save results: 
-save('Results/LDC_results','bi_stats', 'mean_lam_hi', 'mean_lam_ref', ...
+save('Results/LDC_results_par','bi_stats', 'mean_lam_hi', 'mean_lam_ref', ...
     'mean_lam_low','N_hi',...
     'var_low_err','mean_low_err', 'r')
 

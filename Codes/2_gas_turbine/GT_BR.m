@@ -5,13 +5,13 @@ clc
 %%% Gas Turbine
 % Have to verify that low_20 is right not low_50... 
 
-tic
+t_start = tic;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Chose QoI
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% QoI = 0; % u mid
-QoI = 1; % cylinder
+QoI = 0; % u mid
+% QoI = 1; % cylinder
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Load data
@@ -48,7 +48,8 @@ elseif QoI == 1
     lowFiResults = importdata('assembledRunCylinder_40_1'); 
 %     lowFiResults = importdata('assembledRunCylinder_40_2'); 
     lowFiResults = lowFiResults';
-    
+    tic
+
     highFiResults = importdata('assembledRunCylinder_110_high'); 
     highFiResults = highFiResults';
     
@@ -76,6 +77,8 @@ xi_ref = y_samp.uniform_data;
 gridpt_l = 1:length(x_l); 
 gridpt_h = 1:length(x_h); 
 
+% gridpt_h = 1:4; 
+
 u_ref = highFiResults(gridpt_h,:)';
 u_low = lowFiResults(gridpt_l,:)';
 
@@ -85,21 +88,21 @@ u_low = lowFiResults(gridpt_l,:)';
 
 p = 6;                          % PCE order
 
-% N_hi = [10 30 50 70 90 110];    % Number high-fidelity samples
-N_hi = [30]; 
+N_hi = [10 30 50 70 90 110];    % Number high-fidelity samples
+% N_hi = [30]; 
 
-% r = [3 8 10];                  % KL order
-r = 3; 
+r = [3 8 10];                  % KL order
+% r = 3; 
 
 % tolerance on residual used in spgl1 solver
 sigma = .007;
 
 % Number of repetitions
-n_reps = 100; 
+n_reps = 4; 
 
 pc_solver = 2;  %0 is LS, 1 is mmv and 2 is individual spg
 
-t_setup = toc; 
+t_setup = toc(t_start); 
 fprintf('Setup with time : %d s.\n', t_setup);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -109,15 +112,17 @@ fprintf('Setup with time : %d s.\n', t_setup);
 %%% reference solution
 [c_ref, psi_ref] = my_pce(xi_ref, p, u_ref, sigma, pc_solver); 
 
-t_ref = toc - t_setup; 
+t_ref = toc(t_start) - t_setup; 
 fprintf('Reference solution : %d s.\n', t_ref);
+% norm(psi_ref*c_ref'-u_ref)/norm(u_ref);
 
+1; 
 
 %%% Low-fidelity solution
 
 [c_low, psi_low] = my_pce(xi_low, p, u_low, sigma, pc_solver); 
 
-t_low = toc - t_ref; 
+t_low = toc(t_start) - t_ref; 
 fprintf('Low fidelity solution : %d s.\n', t_low);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

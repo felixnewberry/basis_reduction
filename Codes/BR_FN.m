@@ -1,4 +1,4 @@
-function[mean_bi, var_bi, c_bi, lam_ref,lam_hi,lam_low, psi_bi, alpha2]= BR_FN(u_hi,psi_hi,c_hi,c_low, c_ref,r,sigma)
+function[mean_bi, var_bi, c_bi, lam_hi, psi_bi, alpha2]= BR_FN(u_hi,psi_hi,c_hi,c_low,r,sigma)
 % Performs basis rotation of a polynomial chaos expansion to determine it's
 % compact representation
 % 
@@ -92,11 +92,11 @@ var_bi = sum(c_bi(:,2:end).^2, 2);
 % Eigenvalues of the reference model - from this you can get an
 % interesting, though not entirely necessary comparison
 
-% Nodal covariance of the reference model
-cov_ref = c_ref(:, 2:end)*c_ref(:,2:end)';
+% % Nodal covariance of the reference model
+% cov_ref = c_ref(:, 2:end)*c_ref(:,2:end)';
 
-% Eigenvalue decomposition of nodal covariance
-[~,lam_ref] = eigs(cov_ref,r);
+% % Eigenvalue decomposition of nodal covariance
+% [~,lam_ref] = eigs(cov_ref,r);
 
 % Nodal covariance of the high fidelity model
 cov_hi = c_hi(:,2:end)*c_hi(:,2:end)'; 
@@ -106,9 +106,9 @@ cov_hi = c_hi(:,2:end)*c_hi(:,2:end)';
 
 % eigenvalues for hi, reference, and low fidelity
 lam_hi = diag(lam_hi);
-lam_ref = diag(lam_ref);
-lam_low = diag(lam_low); 
-lam_low = lam_low(1:r); 
+% lam_ref = diag(lam_ref);
+% lam_low = diag(lam_low); 
+% lam_low = lam_low(1:r); 
 
 end
 
