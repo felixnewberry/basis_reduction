@@ -69,8 +69,11 @@ fprintf('Setup with time : %d s.\n', t_setup);
 %%% PCE - choose mmv or individual spg
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% Don't compute validation error. (Used for PC calibration)
+pc_val = 0; 
+
 %%% reference solution
-[c_ref, psi_ref] = my_pce(xi_ref, p, u_ref, sigma, pc_solver); 
+[c_ref, psi_ref, ~] = my_pce(xi_ref, p, u_ref, sigma, pc_solver, pc_val); 
 
 t_ref = toc - t_setup; 
 fprintf('Reference solution : %d s.\n', t_ref);
@@ -78,7 +81,7 @@ fprintf('Reference solution : %d s.\n', t_ref);
 
 %%% Low-fidelity solution
 
-[c_low, psi_low] = my_pce(xi_low, p, u_low, sigma, pc_solver); 
+[c_low, psi_low, ~] = my_pce(xi_low, p, u_low, sigma, pc_solver, pc_val); 
 
 t_low = toc - t_ref; 
 fprintf('Low fidelity solution : %d s.\n', t_low);

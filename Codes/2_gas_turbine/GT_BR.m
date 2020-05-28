@@ -109,58 +109,20 @@ fprintf('Setup with time : %d s.\n', t_setup);
 %%% PCE - choose mmv or individual spg
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% Don't compute validation error. (Used for PC calibration)
+pc_val = 0; 
+
 %%% reference solution
-[c_ref, psi_ref] = my_pce(xi_ref, p, u_ref, sigma, 2); 
+[c_ref, psi_ref, ~] = my_pce(xi_ref, p, u_ref, sigma, 2, pc_val); 
 
 t_ref = toc(t_start) - t_setup; 
 fprintf('Reference solution : %d s.\n', t_ref);
 % norm(psi_ref*c_ref'-u_ref)/norm(u_ref);
 
-1; 
-
-%%% Low-fidelity solution - changing this to spg may bungle results..???
-%%% Need to make it consistent - fix soon. 
-
-%%% More important that it is honest - mean is easy to estimate for the
-%%% temperature across the midplane. No biggie if bi- and hi are bad. 
-% Variance more useful. Different for cylinder. 
-[c_low, psi_low] = my_pce(xi_low, p, u_low, sigma, 1); 
+[c_low, psi_low, ~] = my_pce(xi_low, p, u_low, sigma, 1, pc_val); 
 
 t_low = toc(t_start) - t_ref; 
 fprintf('Low fidelity solution : %d s.\n', t_low);
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% PCE - Test mmv vs spg
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% [c_ref_mmv, psi_ref] = my_pce(xi_ref, p, u_ref, sigma, 1); 
-% [c_ref_spg, psi_ref] = my_pce(xi_ref, p, u_ref, sigma, 2); 
-% 
-% [c_low_mmv, psi_low] = my_pce(xi_low, p, u_low, sigma, 1); 
-% [c_low_spg, psi_low] = my_pce(xi_low, p, u_low, sigma, 2); 
-% 
-% mean_ref_mmv = c_ref_mmv(:,1); 
-% mean_ref_spg = c_ref_spg(:,1); 
-% 
-% mean_low_mmv = c_low_mmv(:,1);
-% mean_low_mmv_int = interp1q(x_l', mean_low_mmv, x_h');
-% mean_low_spg = c_low_spg(:,1);
-% mean_low_spg_int = interp1q(x_l', mean_low_spg, x_h');
-% 
-% % For the cylinder these appear to be the same. 
-% % Likewise for the mid. 
-% 
-% % what about on mac?? 
-% 1; 
-% figure
-% plot(mean_ref_spg,'k')
-% hold on
-% plot(mean_ref_mmv,'r')
-% plot(mean_low_mmv_int,'b')
-% plot(mean_low_spg_int,'g')
-% 
-% 1; 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Relative errors reference and low
@@ -230,35 +192,3 @@ error_mean_hi = bi_stats(1,1,2);
 
 error_var_bi = bi_stats(1,1,5);
 error__var_hi = bi_stats(1,1,6);
-
-% res = [mean_low_err, error_mean_hi, error_mean_bi; var_low_err, error__var_hi, error_var_bi]
-% r= 3 n = 30
-
-% I anticipate results for mid as 
-% 2.7e-3, 3.1e-3, 2.3e-3
-% 0.8e-1, 1.15e-1 1.15e-1
-
-% I anticipate results for cylinder as 
-% 1e-2, 1.3e-3, 1.05e-3
-% 1e-1, 1.1e-1, 0.8e-1
-
-
-% u mid using
-%     0.0016    0.0130    0.0057
-%     0.0813    0.5634    0.3606
-   
-
-% % % I think cylinder 50 (whatever that means, p = 6) is a goer. 
-
-% I should print out the values that were plotted, then try match them - at least the low-fidelity error! 
-% A worry that it doesn't already... 
-
-% Test: 
-% % % saves everything
-% save('BR_FN_GT_Mid_low2_p6','mean_mean_bi_err' , 'mean_mean_hi_err' ,...
-%     'var_mean_bi_err', 'var_mean_hi_err', ...
-%     'mean_var_bi_err' , 'mean_var_hi_err' ,...
-%     'var_var_bi_err', 'var_var_hi_err', ...
-%     'mean_lam_hi', 'mean_lam_ref', 'mean_lam_low','N_hi',...
-%     'var_low_err','mean_low_err','r', 'pol')
-

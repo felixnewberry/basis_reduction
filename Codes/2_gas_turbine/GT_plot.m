@@ -32,7 +32,7 @@ c6 = [0.3010, 0.7450, 0.9330];
 
 save_on = 0; 
 
-QoI = 0; % u mid
+QoI = 1; % u mid
 % QoI = 1; % cylinder
 
 
@@ -64,31 +64,6 @@ r_string_variance = r_string([1,3:end]);
 % r_plot = [1 2 3];
 i_eigen = length(r);
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%% Eigenvalues             
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% Remove abs once many samples are run
-
-% eigenvalues recorded for for each r N_hi combination.
-figure
-p1 = semilogy(abs(mean_lam_low)./max(mean_lam_low),'-o','Color',c1,'LineWidth',LW,'MarkerSize',MS);
-hold on
-p2 = semilogy(abs(mean_lam_ref)./max(mean_lam_ref),'--x','Color',c2,'LineWidth',LW,'MarkerSize',MS);
-hold off
-axis tight
-xlabel('index $i$', 'interpreter', 'latex', 'fontsize', FS)
-ylabel('$\lambda_i$', 'interpreter', 'latex', 'fontsize', FS)
-axis tight
-set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis);box on
-grid on
-set(gcf,'Position',size_1)
-
-legend([p1,p2],{'L','Ref'},'interpreter', 'latex', 'fontsize', FS_leg,'Location','NorthEast')
-
-if save_on == 1
-    saveas(gcf,strcat('Plots/',results_name,'eigen'),'epsc')
-end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%% Mean and Variance            
@@ -153,8 +128,39 @@ if save_on == 1
 end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%% LDC QoI
+%%%% Eigenvalues             
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Should I make a note of the variance?? 
-% 100 repetitions
+%%% Plot both QoI on one figure
+
+% QoI 0
+load('Results/GT_u_mid_results.mat')
+mean_lam_low_0 = mean_lam_low; 
+mean_lam_ref_0 = mean_lam_ref; 
+
+% QoI 1
+load('Results/GT_cylinder_results.mat')
+mean_lam_low_1 = mean_lam_low; 
+mean_lam_ref_1 = mean_lam_ref; 
+
+% eigenvalues recorded for for each r N_hi combination.
+figure
+p1 = semilogy(abs(mean_lam_low_0)./max(mean_lam_low_0),'-o','Color',c1,'LineWidth',LW,'MarkerSize',MS);
+hold on
+p2 = semilogy(abs(mean_lam_ref_0)./max(mean_lam_ref_0),'--x','Color',c2,'LineWidth',LW,'MarkerSize',MS);
+p3 = semilogy(abs(mean_lam_low_1)./max(mean_lam_low_1),'-s','Color',c3,'LineWidth',LW,'MarkerSize',MS);
+p4 = semilogy(abs(mean_lam_ref_1)./max(mean_lam_ref_1),'-->','Color',c4,'LineWidth',LW,'MarkerSize',MS);
+hold off
+axis tight
+xlabel('index $i$', 'interpreter', 'latex', 'fontsize', FS)
+ylabel('$\lambda_i$', 'interpreter', 'latex', 'fontsize', FS)
+axis tight
+set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis);box on
+grid on
+set(gcf,'Position',size_1)
+
+legend([p1,p2, p3, p4],{'L QoI 1','Ref QoI 1', 'L QoI 2','Ref QoI 2'},'interpreter', 'latex', 'fontsize', FS_leg,'Location','NorthEast')
+
+if save_on == 1
+    saveas(gcf,strcat('Plots/',results_name,'eigen'),'epsc')
+end
