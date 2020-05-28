@@ -106,6 +106,8 @@ mean_low_err = norm(mean_low_int - mean_ref)/norm(mean_ref);
 var_low_int = interp1q(x_l', var_low, x_h');
 var_low_err = norm(var_low_int - var_ref)/norm(var_ref); 
 
+1; 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Bi-fidelity and High fidelity r and N_hi study 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -114,6 +116,7 @@ var_low_err = norm(var_low_int - var_ref)/norm(var_ref);
 
 [bi_stats, mean_lam_hi, mean_lam_ref, mean_lam_low]...
     = my_br_study(r, N_hi, n_reps, u_ref, xi_ref, psi_ref, sigma, c_low, c_ref);
+1; 
 
 % Save results: 
 save('Results/LDC_results_par','bi_stats', 'mean_lam_hi', 'mean_lam_ref', ...

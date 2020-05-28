@@ -3,6 +3,8 @@
 % p is the maximum order of the PC (total order)
 
 function Legendre = my_legendre_1d_reg(p,x)
+1; 
+
 
 Legendre = zeros(p+1,size(x,2));
 
