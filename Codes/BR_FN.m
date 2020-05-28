@@ -50,6 +50,8 @@ cov_low = c_low(:, 2:end) * c_low(:, 2:end)';
 % Eigenvalue decomposition to get the eigenvalues and eigenvectors of the
 % nodal covariance of the low-fidelity model
 
+1; 
+
 % compute r + 1 here, truncate after having identified sigma_k+1 for errro
 % bound. 
 [v_low, lam_low] = eigs(cov_low, r+1); 
@@ -109,6 +111,7 @@ lam_hi = diag(lam_hi);
 % lam_ref = diag(lam_ref);
 % lam_low = diag(lam_low); 
 % lam_low = lam_low(1:r); 
+1; 
 
 end
 

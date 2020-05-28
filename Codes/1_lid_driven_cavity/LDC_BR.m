@@ -106,6 +106,8 @@ mean_low_err = norm(mean_low_int - mean_ref)/norm(mean_ref);
 var_low_int = interp1q(x_l', var_low, x_h');
 var_low_err = norm(var_low_int - var_ref)/norm(var_ref); 
 
+1; 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Bi-fidelity and High fidelity r and N_hi study 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

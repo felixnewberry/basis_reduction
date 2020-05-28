@@ -13,17 +13,18 @@ for CurrentOrder = 1 : OrderPol
     FirstThisOrder = 0;
     
     while (EndGenere == 0)
-        n = n +1 ;
+        n = n + 1 ;
         % First list t for order CurrentOrder
         if ( FirstThisOrder == 0)
             for i=1 : MM
                 t(i) = i;
             end;
-            FirstThisOrder =1 ;
+            FirstThisOrder = 1 ;
         else
             % Regular incrementation
             if (t(MM) < (MM + CurrentOrder))
                 t(MM) = t(MM) + 1;
+                %(MM + CurrentOrder)
             else  % t(MM) = tmax = MM +CurrentOrder
                 j = MM;
                 while (t(j) == j + CurrentOrder )
@@ -35,6 +36,7 @@ for CurrentOrder = 1 : OrderPol
                 end;
             end;
         end;
+%         t
         
         % Direct Translating t into PsiBasis{n}
         PsiBasis(n,1) = t(1) - 1;
@@ -50,10 +52,11 @@ for CurrentOrder = 1 : OrderPol
     end;
 end;
 
-
 for i=1:floor(NbRva/2)
     swap = PsiBasis(:,i);
     PsiBasis(:,i) = PsiBasis(:,NbRva-i+1);
     PsiBasis(:,NbRva-i+1) = swap;
 end
+
+
 
