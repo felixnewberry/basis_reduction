@@ -37,7 +37,6 @@ opts = spgSetParms('iterations',10000,'verbosity',0);
 
 if pc_solver == 0
     c = psi\u; 
-    c = c';
 elseif pc_solver == 1
     % Solve PCE coefficents via l_1 minimization
     c = spg_mmv(psi,u,sigma*norm(u),opts);

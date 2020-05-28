@@ -48,20 +48,17 @@ r_string(3:end) = cellstr(num2str(r', 'B(r=%-d)'));
 r_string_variance = r_string([1,3:end]); 
 
 % r_plot = [1 2 3];
-i_eigen = length(r);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%% Eigenvalues             
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Remove abs once many samples are run
-
-% eigenvalues recorded for for each r N_hi combination.
+% abs to account for machine error close to 0.
 figure
-p1 = semilogy(abs(cell2mat(mean_lam_low{3,i_eigen})./max(cell2mat...
-    (mean_lam_low{3,i_eigen}))),'-o','Color',c1,'LineWidth',LW,'MarkerSize',MS);
+p1 = semilogy(abs(mean_lam_low)./max(mean_lam_low),'-o','Color',c1,...
+    'LineWidth',LW,'MarkerSize',MS);
 hold on
-p2 = semilogy(abs(cell2mat(mean_lam_ref{3,i_eigen})./max(cell2mat...
-    (mean_lam_ref{3,i_eigen}))),'--x','Color',c2,'LineWidth',LW,'MarkerSize',MS);
+p2 = semilogy(abs(mean_lam_ref)./max(mean_lam_ref),'--x','Color',c2,...
+    'LineWidth',LW,'MarkerSize',MS);
 hold off
 axis tight
 xlabel('index $i$', 'interpreter', 'latex', 'fontsize', FS)
@@ -70,7 +67,7 @@ axis tight
 set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis);box on
 % grid on
 set(gcf,'Position',size_1)
-
+xlim([1,5])
 legend([p1,p2],{'L','Ref'},'interpreter', 'latex', 'fontsize', FS_leg,'Location','NorthEast')
 
 if save_on == 1

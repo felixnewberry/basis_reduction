@@ -30,13 +30,27 @@ c4 = [0.4940, 0.1840, 0.5560];
 c5 = [0.4660, 0.6740, 0.1880]; 
 c6 = [0.3010, 0.7450, 0.9330]; 
 
-save_on = 1; 
+save_on = 0; 
+
+QoI = 0; % u mid
+% QoI = 1; % cylinder
+
+
+if QoI == 0
+    results_name = 'GT_u_mid_';
+elseif QoI == 1
+    results_name = 'GT_cylinder_'; 
+end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%% Load data                  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-load('Results/GT_cylinder_results.mat')
+if QoI == 0
+    load('Results/GT_u_mid_results.mat')
+elseif QoI == 1
+    load('Results/GT_cylinder_results.mat')
+end
 
 % Vector of strings for r plots
 r_symbol = {'-.+','-.*','-.s','-.d'}; 
@@ -58,24 +72,22 @@ i_eigen = length(r);
 
 % eigenvalues recorded for for each r N_hi combination.
 figure
-p1 = semilogy(abs(cell2mat(mean_lam_low{3,i_eigen})./max(cell2mat...
-    (mean_lam_low{3,i_eigen}))),'-o','Color',c1,'LineWidth',LW,'MarkerSize',MS);
+p1 = semilogy(abs(mean_lam_low)./max(mean_lam_low),'-o','Color',c1,'LineWidth',LW,'MarkerSize',MS);
 hold on
-p2 = semilogy(abs(cell2mat(mean_lam_ref{3,i_eigen})./max(cell2mat...
-    (mean_lam_ref{3,i_eigen}))),'--x','Color',c2,'LineWidth',LW,'MarkerSize',MS);
+p2 = semilogy(abs(mean_lam_ref)./max(mean_lam_ref),'--x','Color',c2,'LineWidth',LW,'MarkerSize',MS);
 hold off
 axis tight
 xlabel('index $i$', 'interpreter', 'latex', 'fontsize', FS)
 ylabel('$\lambda_i$', 'interpreter', 'latex', 'fontsize', FS)
 axis tight
 set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis);box on
-% grid on
+grid on
 set(gcf,'Position',size_1)
 
 legend([p1,p2],{'L','Ref'},'interpreter', 'latex', 'fontsize', FS_leg,'Location','NorthEast')
 
 if save_on == 1
-    saveas(gcf,'Plots/GT_eigen','epsc')
+    saveas(gcf,strcat('Plots/',results_name,'eigen'),'epsc')
 end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -114,7 +126,7 @@ xlabel('$n$','interpreter','latex','Fontsize',FS)
 axis tight
 set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis);box on
 set(gcf, 'Position', size_1)
-% grid on
+grid on
 set(gcf, 'Position', size_1)
 
 subplot(1,2,2)
@@ -133,11 +145,11 @@ ylabel('Average relative errors in variance','Fontsize',FS)
 axis tight
 set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis);box on
 legend(r_string,'interpreter', 'latex', 'fontsize', FS_leg)
-% grid on 
+grid on 
 set(gcf, 'Position', size_2)
 
 if save_on == 1
-    saveas(gcf,'Plots/GT_N_r','epsc')
+    saveas(gcf,strcat('Plots/',results_name,'N_r'),'epsc')
 end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

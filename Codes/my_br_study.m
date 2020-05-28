@@ -66,7 +66,7 @@ disp('about to start r and N loop')
 %%% Data
 N_r_stats{n_reps} = [];
         
-parfor i_rep = 1:n_reps    %index number of repetitions
+for i_rep = 1:n_reps    %index number of repetitions
     
 %     % statistics        
 %     N_r_stats.mean_bi_n = zeros(n_points, n_reps); 
@@ -99,7 +99,7 @@ parfor i_rep = 1:n_reps    %index number of repetitions
         for i_hi = 1:length_N_hi   % index range of number of high fidelity simulations
 
             sample = datasample(1:n_samps, N_hi(i_hi), 'Replace', false); 
-%             sample = 1:N_hi; 
+%             sample = 1:N_hi(i_hi); 
 
             %%% High fidelity model - limited samples N_hi
             xi_hi = xi_ref(sample,:); 
@@ -141,6 +141,8 @@ parfor i_rep = 1:n_reps    %index number of repetitions
             % eigenvalues for high
 %             N_r_stats{i_rep}.lam_hi{i_rank, i_hi} = num2cell(lam_hi);
             N_r_stats{i_rep}.lam_hi{i_rank, i_hi} = lam_hi;
+            1;
+            
             
        end
         

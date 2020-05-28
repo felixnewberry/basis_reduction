@@ -112,11 +112,14 @@ var_low_err = norm(var_low_int - var_ref)/norm(var_ref);
 
 %%% Write a function
 
+1;
+
 [bi_stats, mean_lam_hi, mean_lam_ref, mean_lam_low]...
     = my_br_study(r, N_hi, n_reps, u_ref, xi_ref, psi_ref, sigma, c_low, c_ref);
+1; 
 
 % Save results: 
-save('Results/LDC_results_par','bi_stats', 'mean_lam_hi', 'mean_lam_ref', ...
+save('Results/LDC_results','bi_stats', 'mean_lam_hi', 'mean_lam_ref', ...
     'mean_lam_low','N_hi',...
     'var_low_err','mean_low_err', 'r')
 
