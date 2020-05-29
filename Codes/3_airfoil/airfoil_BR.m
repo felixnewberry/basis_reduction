@@ -31,6 +31,27 @@ load Inputs_6d2.mat;
 xi_ref =[(1/3)*alpha',(4*c-4)',(50*m-1)',(10*(mach-.2)-2)',(10*p -4)',((t - .1)*50 - 1)'];
 xi_low = xi_ref; % number of low fidelity samples X stochastic dimension d
 
+
+%%% Interpolate data to be evenly distributed
+% Adjust coordinates to go from -1 to 1. 
+% clockwise from trailing edge: positive is pressure surface (lower)
+
+x_order = [1-x_h(65:end);x_h(1:64)-1];
+u_low_order = [u_low(:,65:end), u_low(:,1:64)];
+u_ref_order = [u_ref(:,65:end), u_ref(:,1:64)];
+
+% u_low and u_ref
+n_points = 100; 
+n_sim = length(u_ref); 
+
+x_int = linspace(-1,1,n_points); 
+u_low = zeros(n_sim, n_points); 
+u_ref = zeros(n_sim, n_points); 
+for i_sim = 1:n_sim
+    u_low(i_sim,:) = interp1(x_order, u_low_order(i_sim,:), x_int);
+    u_ref(i_sim,:) = interp1(x_order, u_ref_order(i_sim,:), x_int);
+end
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Key Parameters 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -104,9 +125,17 @@ var_low_err = norm(var_low - var_ref)/norm(var_ref);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 [bi_stats, mean_lam_hi, mean_lam_ref, mean_lam_low]...
-    = my_br_study(r, N_hi, n_reps, u_ref, xi_ref, psi_ref, sigma, c_low, c_ref);
-
-% Save results: 
-save('Results/Airfoil_results','bi_stats', 'mean_lam_hi', 'mean_lam_ref', ...
+    = my_br_study(r, N_hi, n_reps, u_ref, xi_ref, psi_ref, sigma, c_low, c_ref, pc_solver);
+% 
+% % Save results: 
+save('Results/Airfoil_results_int','bi_stats', 'mean_lam_hi', 'mean_lam_ref', ...
     'mean_lam_low','N_hi',...
     'var_low_err','mean_low_err', 'r')
+% 
+% save('Results/Airfoil_results_spg','bi_stats', 'mean_lam_hi', 'mean_lam_ref', ...
+%     'mean_lam_low','N_hi',...
+%     'var_low_err','mean_low_err', 'r')
+% 
+% save('Results/Airfoil_results_spg_int','bi_stats', 'mean_lam_hi', 'mean_lam_ref', ...
+%     'mean_lam_low','N_hi',...
+%     'var_low_err','mean_low_err', 'r')

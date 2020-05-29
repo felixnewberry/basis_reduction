@@ -1,5 +1,5 @@
 clear all 
-close all 
+% close all 
 clc
 
 % Plot LDC
@@ -36,7 +36,7 @@ save_on = 0;
 %%%% Load data                  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-load('Results/LDC_results.mat')
+load('Results/LDC_results_spg.mat')
 
 % Vector of strings for r plots
 r_symbol = {'-.+','-.*','-.s','-.d'}; 

@@ -98,7 +98,7 @@ else
     for i_points=1:n_points
         c(i_points,:) = c_data{i_points}.c_vec; 
     end
-end
+end 
 
 if pc_val == 1
     psi_val = zeros(n_val,P);

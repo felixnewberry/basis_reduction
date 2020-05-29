@@ -10,8 +10,8 @@ t_start = tic;
 %%% Chose QoI
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% QoI = 0; % u mid
-QoI = 1; % cylinder
+QoI = 0; % u mid
+% QoI = 1; % cylinder
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Load data
@@ -113,13 +113,13 @@ fprintf('Setup with time : %d s.\n', t_setup);
 pc_val = 0; 
 
 %%% reference solution
-[c_ref, psi_ref, ~] = my_pce(xi_ref, p, u_ref, sigma, 2, pc_val); 
+[c_ref, psi_ref, ~] = my_pce(xi_ref, p, u_ref, sigma, pc_solver, pc_val); 
 
 t_ref = toc(t_start) - t_setup; 
 fprintf('Reference solution : %d s.\n', t_ref);
 % norm(psi_ref*c_ref'-u_ref)/norm(u_ref);
 
-[c_low, psi_low, ~] = my_pce(xi_low, p, u_low, sigma, 1, pc_val); 
+[c_low, psi_low, ~] = my_pce(xi_low, p, u_low, sigma, pc_solver, pc_val); 
 
 t_low = toc(t_start) - t_ref; 
 fprintf('Low fidelity solution : %d s.\n', t_low);
@@ -166,7 +166,7 @@ mean_low_err
 %%% Write a function
 
 [bi_stats, mean_lam_hi, mean_lam_ref, mean_lam_low]...
-    = my_br_study(r, N_hi, n_reps, u_ref, xi_ref, psi_ref, sigma, c_low, c_ref);
+    = my_br_study(r, N_hi, n_reps, u_ref, xi_ref, psi_ref, sigma, c_low, c_ref, pc_solver);
 
 % Save results: 
 if QoI == 0
@@ -176,6 +176,15 @@ elseif QoI == 1
 end
 
 mean_low_err
-save(strcat('Results/',results_name),'bi_stats', 'mean_lam_hi', 'mean_lam_ref', ...
+
+save(strcat('Results/',results_name, '_spg'),'bi_stats', 'mean_lam_hi', 'mean_lam_ref', ...
     'mean_lam_low','N_hi',...
     'var_low_err','mean_low_err', 'r')
+
+t_total = toc(t_start); 
+fprintf('Total run time : %d s.\n', t_total);
+
+% 80 seconds for cylinder standard. 
+% for u_mid standard (pc_solver = 1) 41s
+% cylinder spg: 1.96 e3 seconds - 32 minutes. 
+% u spg: 7.26 e2 seconds - 12 minutes. 

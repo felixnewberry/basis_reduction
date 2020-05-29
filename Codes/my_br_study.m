@@ -1,5 +1,5 @@
 function [bi_stats, mean_lam_hi, lam_ref, lam_low]...
-    = my_br_study(r,N_hi, n_reps, u_ref, xi_ref, psi_ref, sigma, c_low, c_ref)
+    = my_br_study(r,N_hi, n_reps, u_ref, xi_ref, psi_ref, sigma, c_low, c_ref,pc_solver)
 
 %Loop over r and N_hi and construct bi-fidelty estimate and reference
 %solution
@@ -18,8 +18,10 @@ function [bi_stats, mean_lam_hi, lam_ref, lam_low]...
 length_r = length(r);	
 length_N_hi = length(N_hi); 	
 
- % n_points = size(u_ref,2); 	
+n_points = size(u_ref,2); 	
 n_samps = size(u_ref,1); 
+
+P = size(c_ref,2); 
 
 % reference statistics
 mean_ref = c_ref(:,1); 
@@ -67,17 +69,41 @@ parfor i_rep = 1:n_reps    %index number of repetitions
             
             opts = spgSetParms('iterations',10000,'verbosity',0);
             
-%             Hi fid PCE solved for via ell_1 minimization
-            c_hi = spg_mmv(psi_hi,u_hi,sigma*norm(u_hi),opts);            
-%             c_hi = psi_hi\u_hi; 
-            c_hi = c_hi';
-            
+%             Hi fid PCE solved for via pc_solver choice
+            if pc_solver == 0
+                c_hi = psi_hi\u_hi; 
+                c_hi = c_hi';
+            elseif pc_solver == 1    
+                % Solve PCE coefficents via l_1 minimization
+                c_hi = spg_mmv(psi_hi,u_hi,sigma*norm(u_hi),opts);            
+                c_hi = c_hi';
+            else
+                    weights = get_matrix_weights(psi_hi);
+                    Psiweights = psi_hi*weights;
+                    
+                    norm_u_vec = vecnorm(u_hi,2); 
+%                     c_data{n_points} = []; 
+                    
+                    c_hi = zeros(n_points, P);
+                    for i_points=1:n_points
+                        opts = spgSetParms('iterations',8000,'verbosity',0,'optTol',1e-9,'bpTol',1e-9);
+                        
+                        delta = sigma*norm_u_vec(i_points);
+                        c_hi(i_points,:)  = weights*spg_bpdn(Psiweights,u_hi(:,i_points),delta,opts);
+                    end
+                    
+% %                     c_hi = zeros(n_points, P);
+%                     for i_points=1:n_points
+%                         c_hi(i_points,:) = c_data{i_points}.c_vec; 
+%                     end
+            end  
+                        
             mean_hi_n = c_hi(:,1);
             var_hi_n = (sum(c_hi(:,2:end).^2,2));
 %             std_hi = sqrt((sum(c_hi(:,2:end).^2,2))); 
 
-            [mean_bi_n,var_bi_n,c_bi1,...
-                lam_hi, psi_bi_low,alpha2]= ...
+            [mean_bi_n,var_bi_n,~,...
+                lam_hi, ~,~]= ...
                 BR_FN(u_hi,psi_hi,c_hi,c_low,r(i_rank),sigma); 
             
             N_r_stats{i_rep}.mean_bi_err(i_rank, i_hi) = norm(mean_bi_n - mean_ref)/norm(mean_ref); 

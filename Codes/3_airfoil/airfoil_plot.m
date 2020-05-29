@@ -36,7 +36,8 @@ save_on = 0;
 %%%% Load data                  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-load('Results/Airfoil_results.mat')
+% load('Results/Airfoil_results.mat')
+load('Results/Airfoil_results_spg.mat')
 
 % Vector of strings for r plots
 r_symbol = {'-.+','-.*','-.s','-.d'}; 
