@@ -30,14 +30,12 @@ var_ref = sum(c_ref(:,2:end).^2,2);
 % Nodal covariance of the reference model
 cov_ref = c_ref(:, 2:end)*c_ref(:,2:end)';
 % Eigenvalue decomposition of nodal covariance
-[~,lam_ref] = eigs(cov_ref);
-lam_ref = diag(lam_ref);
+lam_ref = eigs(cov_ref, length(cov_ref));
 
 % Nodal covariance of the low fidelity model
 cov_low = c_low(:, 2:end)*c_low(:,2:end)';
 % Eigenvalue decomposition of nodal covariance
-[~,lam_low] = eigs(cov_low);
-lam_low = diag(lam_low);
+lam_low = eigs(cov_low, length(cov_low)); 
 
 disp('about to start r and N loop') 
 
@@ -131,5 +129,6 @@ end
 bi_stats = cat(3,mean_mean_bi_err , mean_mean_hi_err, var_mean_bi_err, ...
     var_mean_hi_err, mean_var_bi_err , mean_var_hi_err ,...
     var_var_bi_err, var_var_hi_err);
+
 end
 

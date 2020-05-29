@@ -10,8 +10,8 @@ t_start = tic;
 %%% Chose QoI
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-QoI = 0; % u mid
-% QoI = 1; % cylinder
+% QoI = 0; % u mid
+QoI = 1; % cylinder
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Load data
@@ -179,16 +179,3 @@ mean_low_err
 save(strcat('Results/',results_name),'bi_stats', 'mean_lam_hi', 'mean_lam_ref', ...
     'mean_lam_low','N_hi',...
     'var_low_err','mean_low_err', 'r')
-
-
-
-% Have to adjust for time snapshot. and likely many other things. 
-
-
-% GT n = 30, r = 3,8, 10 
-
-error_mean_bi = bi_stats(1,1,1);
-error_mean_hi = bi_stats(1,1,2);
-
-error_var_bi = bi_stats(1,1,5);
-error__var_hi = bi_stats(1,1,6);

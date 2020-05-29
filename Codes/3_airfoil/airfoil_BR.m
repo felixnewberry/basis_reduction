@@ -48,7 +48,7 @@ r = [3 8 10];               % KL order
 sigma = .001;
 
 % Number of repetitions
-n_reps = 2; 
+n_reps = 100; 
 
 pc_solver = 1;  %0 is LS, 1 is mmv and 2 is individual spg
 
@@ -59,8 +59,11 @@ fprintf('Setup with time : %d s.\n', t_setup);
 %%% PCE - choose mmv or individual spg
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% Don't compute validation error. (Used for PC calibration)
+pc_val = 0; 
+
 %%% reference solution
-[c_ref, psi_ref] = my_pce(xi_ref, p, u_ref, sigma, pc_solver); 
+[c_ref, psi_ref, ~] = my_pce(xi_ref, p, u_ref, sigma, pc_solver, pc_val); 
 
 t_ref = toc - t_setup; 
 fprintf('Reference solution : %d s.\n', t_ref);
@@ -68,7 +71,7 @@ fprintf('Reference solution : %d s.\n', t_ref);
 
 %%% Low-fidelity solution
 
-[c_low, psi_low] = my_pce(xi_low, p, u_low, sigma, pc_solver); 
+[c_low, psi_low, ~] = my_pce(xi_low, p, u_low, sigma, pc_solver, pc_val); 
 
 t_low = toc - t_ref; 
 fprintf('Low fidelity solution : %d s.\n', t_low);
@@ -107,5 +110,3 @@ var_low_err = norm(var_low - var_ref)/norm(var_ref);
 save('Results/Airfoil_results','bi_stats', 'mean_lam_hi', 'mean_lam_ref', ...
     'mean_lam_low','N_hi',...
     'var_low_err','mean_low_err', 'r')
-
-% Have to adjust for time snapshot. and likely many other things. 
