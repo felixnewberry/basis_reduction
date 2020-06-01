@@ -38,7 +38,8 @@ save_on = 1;
 
 % load('Results/Airfoil_results.mat')
 % load('Results/Airfoil_results_spg.mat')
-load('Results/Airfoil_results_spg_int.mat')
+% load('Results/Airfoil_results_spg_int.mat')
+load('Results/Airfoil_results_spg_int_2.mat')
 
 % load('Results/Airfoil_results_int.mat')
 
