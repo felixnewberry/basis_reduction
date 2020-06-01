@@ -30,14 +30,15 @@ c4 = [0.4940, 0.1840, 0.5560];
 c5 = [0.4660, 0.6740, 0.1880]; 
 c6 = [0.3010, 0.7450, 0.9330]; 
 
-save_on = 0; 
+save_on = 1; 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%% Load data                  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % load('Results/Airfoil_results.mat')
-load('Results/Airfoil_results_spg.mat')
+% load('Results/Airfoil_results_spg.mat')
+load('Results/Airfoil_results_spg_int.mat')
 
 % load('Results/Airfoil_results_int.mat')
 

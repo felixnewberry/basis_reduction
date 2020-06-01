@@ -14,14 +14,19 @@ tic
 
 results_file_name = 'LDC_results'; 
 
-load lowFiResults_LDC
-load xi_low_LDC
+load('u_64_f_2.mat')
+highFiResults = u_matrix_0'; 
 
-load highFiResults_LDC.mat
-load xi_high_LDC.mat
+Uc_nom_u = load('Nom_u_mid.mat', 'Uc','Ub','sb');
+lowFiResults = Uc_nom_u.Uc; 
 
-xi_ref = xi_high; 
+load 'x_64.mat'
+x_h = x_64(:,1); 
+x_l = x_h; 
 
+load('xi_mat_2.mat')
+xi_ref = xi_2; 
+xi_low = xi_ref; 
 
 % Grid points of interest
 gridpt_l = 1:size(lowFiResults(:,1)); 
@@ -31,15 +36,6 @@ gridpt_h = 1:size(highFiResults(:,1));
 % problem. size: n_samples x n_gridpoints
 u_ref = highFiResults(gridpt_h,:)';
 u_low = lowFiResults(gridpt_l,:)';
-
-%%% Low and high coordinates
-n_cell_l = 8;
-x_l = linspace(0,1,n_cell_l+1);
-x_l = 0.5*(cos(pi*(x_l-1)/2)+1);
-
-n_cell_h = 32;
-x_h = linspace(0,1,n_cell_h+1);
-x_h = 0.5*(cos(pi*(x_h-1)/2)+1);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Key Parameters 
@@ -103,20 +99,17 @@ std_ref = sqrt(sum(c_ref(:,2:end).^2,2));
 var_low = sum(c_low(:,2:end).^2,2); 
 std_low = sqrt(sum(c_low(:,2:end).^2,2)); 
 
-mean_low_int = interp1q(x_l', mean_low, x_h');
-mean_low_err = norm(mean_low_int - mean_ref)/norm(mean_ref); 
+% mean_low_int = interp1q(x_l', mean_low, x_h');
+mean_low_err = norm(mean_low - mean_ref)/norm(mean_ref); 
 
-var_low_int = interp1q(x_l', var_low, x_h');
-var_low_err = norm(var_low_int - var_ref)/norm(var_ref); 
+% var_low_int = interp1q(x_l', var_low, x_h');
+var_low_err = norm(mean_low - var_ref)/norm(var_ref); 
 
 1; 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Bi-fidelity and High fidelity r and N_hi study 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%% Write a function
-
 1;
 
 [bi_stats, mean_lam_hi, mean_lam_ref, mean_lam_low]...
@@ -129,7 +122,7 @@ var_low_err = norm(var_low_int - var_ref)/norm(var_ref);
 %     'var_low_err','mean_low_err', 'r')
 
 % Save results: 
-save('Results/LDC_results_spg','bi_stats', 'mean_lam_hi', 'mean_lam_ref', ...
+save('Results/LDC_results_spg_2','bi_stats', 'mean_lam_hi', 'mean_lam_ref', ...
     'mean_lam_low','N_hi',...
     'var_low_err','mean_low_err', 'r')
 

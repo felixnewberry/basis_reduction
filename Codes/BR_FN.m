@@ -52,9 +52,7 @@ cov_low = c_low(:, 2:end) * c_low(:, 2:end)';
 
 1; 
 
-% compute r + 1 here, truncate after having identified sigma_k+1 for errro
-% bound. 
-[v_low, lam_low] = eigs(cov_low, r+1); 
+[v_low, lam_low] = eigs(cov_low, r); 
 
 % Projection of low-fid PC solution onto the eigenvectors of covariance
 % yields size r (approximation rank) by P -1 
@@ -67,14 +65,6 @@ psi_bi = psi_hi(:,2:end)*alpha2';
 
 % New reduced basis including column of ones
 psi_bi = [ones(size(u_hi, 1), 1) psi_bi]; 
-
-% Calculate svd for error bound, can I use eigenvalue? 
-% S = svd(psi_bi);
-% sv_rp1 = S(r+1); 
-% sv_rp0 = S(r); 
-
-% remove r+1 column before solving for coefficients.
-psi_bi = psi_bi(:,1:end-1); 
 
 % Necessary paramters for spgl1 toolbox
 opts = spgSetParms('iterations', 10000, 'verbosity', 0); 
