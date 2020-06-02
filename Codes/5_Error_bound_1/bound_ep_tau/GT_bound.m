@@ -47,8 +47,8 @@ c6 = [0.3010, 0.7450, 0.9330];
 %%% Chose QoI
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% QoI = 0; % u mid
-QoI = 1; % cylinder
+QoI = 0; % u mid
+% QoI = 1; % cylinder
 
     
 if QoI == 0
@@ -110,32 +110,6 @@ u_ref = highFiResults(gridpt_h,:)';
 u_low = lowFiResults(gridpt_l,:)';
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% Chose QoI
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-QoI = 0; % u mid
-% QoI = 1; % cylinder
-
-
-% load('u_64_f_2.mat')
-% % 200 samples. 65 points
-% highFiResults = u_matrix_0'; 
-% 
-% Uc_nom_u = load('Nom_u_mid.mat', 'Uc','Ub','sb');
-% lowFiResults = Uc_nom_u.Uc; 
-% 
-% load 'x_64.mat'
-% x_h = x_64(:,1); 
-% x_l = x_h; 
-% 
-% load('xi_mat_2.mat')
-% xi_ref = xi_2; 
-% xi_low = xi_ref; 
-% 
-% u_ref = highFiResults';
-% u_low = lowFiResults';
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Key Parameters 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -195,7 +169,7 @@ fprintf('Low fidelity solution : %d s.\n', t_low);
 
 
 % n_vec = N_hi-10:N_hi+10;
-n_vec = 3:4:50; 
+N_hi_vec = 3:4:50; 
 % n_vec = 3:50; 
 
 
@@ -207,9 +181,9 @@ n_vec = 3:4:50;
 % N_hi_vec = 3:4; 
 % r = 3; 
 r_vec = 3:4:20; 
-N_hi_vec = r_vec+10; 
+n_vec = r_vec+10; 
 
-length_n = length(n_vec);
+length_n = length(N_hi_vec);
 length_r = length(r_vec); 
 
 n_reps =  1;
@@ -226,7 +200,7 @@ for i_rep = 1:n_reps
     for i_n = 1:length_n
         for i_r = 1:length_r
         [n_r_results{i_rep}.err_bi_vec(i_r, i_n), n_r_results{i_rep}.err_ep_tau_bound_vec(i_r, i_n), ~] = ...
-            br_ep_tau_error(B, A, N_hi_vec(i_r), n_vec(i_n), psi_ref, psi_low, c_low, sigma, ...
+            br_ep_tau_error(B, A, N_hi_vec(i_n), n_vec(i_r), psi_ref, psi_low, c_low, sigma, ...
             r_vec(i_r), p, xi_low, pc_solver); 
         end
     end
@@ -246,10 +220,10 @@ efficacy = mean_ep_tau_bound./mean_bi_err;
 %%% Plot results
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-save('bound_ep_tau/GT_efficacy_cy', 'n_vec', 'r_vec', 'efficacy', 'n_reps')
+save('bound_ep_tau/GT_efficacy_mid', 'n_vec', 'r_vec', 'efficacy', 'n_reps', 'N_hi_vec')
 
 figure
-h = pcolor(n_vec, r_vec, efficacy);
+h = pcolor(N_hi_vec, r_vec, efficacy);
 set(h, 'EdgeColor', 'none');
 axis tight
 xlabel('$n$ samples', 'interpreter', 'latex', 'fontsize', FS)
