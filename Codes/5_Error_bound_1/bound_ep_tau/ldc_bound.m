@@ -115,11 +115,7 @@ err_low = norm(B-A)/norm(A);
 
 
 
-% n_vec = N_hi-10:N_hi+10;
-N_hi_vec = 3:4:30; 
-% n_vec = 3:50; 
-
-
+N_hi_vec = 3:50; 
 
 %%% Check that q > 0 
 % works for 33 for LDC - Bound is very loose at this point. 
@@ -127,13 +123,13 @@ N_hi_vec = 3:4:30;
 
 % N_hi_vec = 3:4; 
 % r = 3; 
-r_vec = 3:4:20; 
+r_vec = 3:20; 
 n_vec = r_vec+10; 
 
 length_n = length(N_hi_vec);
 length_r = length(r_vec); 
 
-n_reps =  1;
+n_reps =  30;
 
 
 n_r_results{n_reps} = [];
