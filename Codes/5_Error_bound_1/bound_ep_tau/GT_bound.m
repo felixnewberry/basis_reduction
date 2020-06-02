@@ -47,8 +47,8 @@ c6 = [0.3010, 0.7450, 0.9330];
 %%% Chose QoI
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-QoI = 0; % u mid
-% QoI = 1; % cylinder
+% QoI = 0; % u mid
+QoI = 1; % cylinder
 
     
 if QoI == 0
@@ -169,7 +169,7 @@ fprintf('Low fidelity solution : %d s.\n', t_low);
 
 
 % n_vec = N_hi-10:N_hi+10;
-N_hi_vec = 3:4:50; 
+N_hi_vec = 3:50; 
 % n_vec = 3:50; 
 
 
@@ -180,20 +180,20 @@ N_hi_vec = 3:4:50;
 
 % N_hi_vec = 3:4; 
 % r = 3; 
-r_vec = 3:4:20; 
+r_vec = 3:20; 
 n_vec = r_vec+10; 
 
 length_n = length(N_hi_vec);
 length_r = length(r_vec); 
 
-n_reps =  1;
+n_reps =  30;
 
 
 n_r_results{n_reps} = [];
 
 % Repeat
 for i_rep = 1:n_reps
-    
+    i_rep
     n_r_results{i_rep}.err_bi_vec = zeros(length_r,length_n); 
     n_r_results{i_rep}.err_ep_tau_bound_vec = zeros(length_r,length_n); 
     
@@ -220,7 +220,7 @@ efficacy = mean_ep_tau_bound./mean_bi_err;
 %%% Plot results
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-save('bound_ep_tau/GT_efficacy_mid', 'n_vec', 'r_vec', 'efficacy', 'n_reps', 'N_hi_vec')
+save('bound_ep_tau/GT_efficacy_cyl', 'n_vec', 'r_vec', 'efficacy', 'n_reps', 'N_hi_vec')
 
 figure
 h = pcolor(N_hi_vec, r_vec, efficacy);
