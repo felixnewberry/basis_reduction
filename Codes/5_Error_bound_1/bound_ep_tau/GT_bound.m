@@ -33,37 +33,116 @@ c5 = [0.4660, 0.6740, 0.1880];
 c6 = [0.3010, 0.7450, 0.9330]; 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% Load Data
+%%% Load data
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% LDC 
-load('u_64_f_2.mat')
-% 200 samples. 65 points
-highFiResults = u_matrix_0'; 
+% two options for now, 1/21 cost (assembledRunMid_40_2) or 1/51 (assembledRunMid_40) cost. 
+% Checking using spg on each point for cylinder rather than mmv. Doing this
+% for the reference and low, but not the hi within the bi-fidelity. Maybe
+% it should  be there too. 
+% Test each. 
+% First with cylinder. 
 
-Uc_nom_u = load('Nom_u_mid.mat', 'Uc','Ub','sb');
-lowFiResults = Uc_nom_u.Uc; 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Chose QoI
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-load 'x_64.mat'
-x_h = x_64(:,1); 
-x_l = x_h; 
+% QoI = 0; % u mid
+QoI = 1; % cylinder
 
-load('xi_mat_2.mat')
-xi_ref = xi_2; 
-xi_low = xi_ref; 
+    
+if QoI == 0
+    lowFiResults = importdata('assembledRunMid_40_1');   
+    % I think _2 may have been used in earlier results?? 
+%     lowFiResults = importdata('assembledRunMid_40_2'); 
+    lowFiResults = lowFiResults';
 
-u_ref = highFiResults';
-u_low = lowFiResults';
+    highFiResults = importdata('assembledRunMid_110_high'); 
+    highFiResults = highFiResults';
+
+    x_h = importdata('assembledCoordsMid_110_high');
+    [~,idx_h] = sort(x_h(2,:));
+    x_h = x_h(2,idx_h); 
+    highFiResults = highFiResults(idx_h,:); 
+  
+    x_l = importdata('assembledCoordsMid_40_1');
+%     x_l = importdata('assembledCoordsMid_40_2');
+    [~,idx_l] = sort(x_l(2,:));
+    x_l = x_l(2,idx_l);
+    lowFiResults = lowFiResults(idx_l,:); 
+    
+elseif QoI == 1
+    lowFiResults = importdata('assembledRunCylinder_40_1'); 
+%     lowFiResults = importdata('assembledRunCylinder_40_2'); 
+    lowFiResults = lowFiResults';
+    tic
+
+    highFiResults = importdata('assembledRunCylinder_110_high'); 
+    highFiResults = highFiResults';
+    
+    x_h = importdata('assembledCoordsCylinder_110_high');
+    x_h = atan2(x_h(2,:),-x_h(1,:));
+    [~,idx_h] = unique(x_h);
+    x_h = x_h(idx_h); 
+    highFiResults = highFiResults(idx_h,:); 
+  
+    x_l = importdata('assembledCoordsCylinder_40_1');
+%     x_l = importdata('assembledCoordsMid_40_2');
+    x_l = atan2(x_l(2,:),-x_l(1,:));    
+    [~,idx_l] = unique(x_l);
+    x_l = x_l(idx_l);
+    lowFiResults = lowFiResults(idx_l,:);  
+end
+
+y_samp = load('uniform_40_low.mat');
+xi_low = y_samp.uniform_data;
+
+y_samp = load('uniform_110_high.mat');
+xi_ref = y_samp.uniform_data;
+   
+
+gridpt_l = 1:length(x_l); 
+gridpt_h = 1:length(x_h); 
+
+% gridpt_h = 1:4; 
+
+u_ref = highFiResults(gridpt_h,:)';
+u_low = lowFiResults(gridpt_l,:)';
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Chose QoI
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+QoI = 0; % u mid
+% QoI = 1; % cylinder
+
+
+% load('u_64_f_2.mat')
+% % 200 samples. 65 points
+% highFiResults = u_matrix_0'; 
+% 
+% Uc_nom_u = load('Nom_u_mid.mat', 'Uc','Ub','sb');
+% lowFiResults = Uc_nom_u.Uc; 
+% 
+% load 'x_64.mat'
+% x_h = x_64(:,1); 
+% x_l = x_h; 
+% 
+% load('xi_mat_2.mat')
+% xi_ref = xi_2; 
+% xi_low = xi_ref; 
+% 
+% u_ref = highFiResults';
+% u_low = lowFiResults';
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Key Parameters 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-p = 5;                          % PCE order
-d = 6;                          % Stochastic dimension
+p = 6;                          % PCE order
 
 % tolerance on residual used in spgl1 solver
-sigma = .001;
+sigma = .007;
 
 pc_solver = 2;  %0 is LS, 1 is mmv and 2 is individual spg
 pc_val = 0; 
@@ -102,7 +181,7 @@ fprintf('Low fidelity solution : %d s.\n', t_low);
 
 %%% Low_fidelity 
 % u_low_int = interp1(x_l, B, x_h);  
-err_low = norm(B-A)/norm(A); 
+% err_low = norm(B-A)/norm(A); 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Loop over N_hi, or n to compute epsilon tau, or r for reduced basis... 
@@ -116,7 +195,7 @@ err_low = norm(B-A)/norm(A);
 
 
 % n_vec = N_hi-10:N_hi+10;
-n_vec = 3:4:30; 
+n_vec = 3:4:50; 
 % n_vec = 3:50; 
 
 
@@ -167,7 +246,7 @@ efficacy = mean_ep_tau_bound./mean_bi_err;
 %%% Plot results
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-save('bound_ep_tau/LDC_efficacy', 'n_vec', 'r_vec', 'efficacy', 'n_reps')
+save('bound_ep_tau/GT_efficacy_cy', 'n_vec', 'r_vec', 'efficacy', 'n_reps')
 
 figure
 h = pcolor(n_vec, r_vec, efficacy);
