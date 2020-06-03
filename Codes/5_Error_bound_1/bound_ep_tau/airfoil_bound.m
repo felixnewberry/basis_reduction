@@ -125,7 +125,7 @@ err_low = norm(B-A)/norm(A);
 
 % n_vec = N_hi-10:N_hi+10;
 % n_vec = 3:4:20; 
-N_hi_vec = 3:4:50; 
+N_hi_vec = 3:50; 
 
 
 
@@ -135,13 +135,13 @@ N_hi_vec = 3:4:50;
 
 % N_hi_vec = 3:4; 
 % r = 3; 
-r_vec = 3:3:20; 
+r_vec = 3:20; 
 n_vec = r_vec+10; 
 
 length_n = length(N_hi_vec);
 length_r = length(r_vec); 
 
-n_reps =  1;
+n_reps =  30;
 
 
 n_r_results{n_reps} = [];
@@ -175,7 +175,7 @@ efficacy = mean_ep_tau_bound./mean_bi_err;
 %%% Plot results
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-save('bound_ep_tau/airfoil_efficacy_2', 'n_vec', 'r_vec', 'efficacy', 'n_reps', 'N_hi_vec')
+save('bound_ep_tau/airfoil_efficacy', 'n_vec', 'r_vec', 'efficacy', 'n_reps', 'N_hi_vec')
 
 figure
 h = pcolor(N_hi_vec, r_vec, efficacy);
