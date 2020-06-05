@@ -44,6 +44,7 @@ QoI = 0; % u mid
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 if QoI == 0
+    results_name = 'GT_mid_'; 
     lowFiResults = importdata('assembledRunMid_40_1');   
     % I think _2 may have been used in earlier results?? 
 %     lowFiResults = importdata('assembledRunMid_40_2'); 
@@ -64,6 +65,7 @@ if QoI == 0
     lowFiResults = lowFiResults(idx_l,:); 
     
 elseif QoI == 1
+    results_name = 'GT_cylinder_'; 
     lowFiResults = importdata('assembledRunCylinder_40_1'); 
 %     lowFiResults = importdata('assembledRunCylinder_40_2'); 
     lowFiResults = lowFiResults';
@@ -108,7 +110,7 @@ u_low = lowFiResults(gridpt_l,:)';
 p = 6;                          % PCE order
 d = 4;                          % Stochastic dimension
 
-N_hi = 70;      % Number high-fidelity samples
+N_hi = 50;      % Number high-fidelity samples
 % N_hi = [30]; 
 
 r = 8;           % KL order
@@ -243,71 +245,4 @@ psi_bi_est = [ones(size(u_ref, 1), 1) psi_bi_est];
 
 u_bi = psi_bi_est*c_bi';
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% Plot
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% % biggest improvement
-% [~, i_plot] = max(vecnorm(u_ref- u_low,2,2)-vecnorm(u_ref- u_bi,2,2));
-
-i_plot = 100;
-
-% also reverse axis 
-figure
-p1 = plot(x_h, u_ref(i_plot,:),'-','color',c1,'LineWidth',LW);
-hold on
-% p2 = plot(x_l, u_low(i_plot,:),'-','color',c2,'LineWidth',LW);
-p3 = plot(x_h, u_bi(i_plot,:),'--','color',c3,'LineWidth',LW);
-% xlabel('Location on Cylinder $\theta$','interpreter', 'latex', 'fontsize', FS)
-% xticks([-pi -pi/2 0 pi/2 pi])
-% xticklabels({'-\pi','-\pi/2','0','\pi/2','\pi'})
-% xlim([-pi pi])
-xlabel('y','interpreter', 'latex', 'fontsize', FS)
-
-ylabel('Temperature K','interpreter', 'latex', 'fontsize', FS)
-set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis);box on
-set(gcf, 'Position', size_1)
-% legend([p1,p2,p3],{'Ref','L', 'B'},'interpreter', 'latex', 'fontsize', FS_leg)
-
-if save_on == 1
-    saveas(gcf,'Plots/GT_mid_realization','png')
-%     saveas(gcf,'Plots/GT_cylinder_realization','png')
-end
-
-% Mean and variance
-
-figure
-subplot(1,2,1)
-p1 = plot(x_h, mean(u_ref),'-','color',c1,'LineWidth',LW);
-hold on
-p2 = plot(x_l, mean(u_low),'-','color',c2,'LineWidth',LW);
-p3 = plot(x_h, mean(u_bi),'--','color',c3,'LineWidth',LW);
-% xlabel('Location on Cylinder $\theta$','interpreter', 'latex', 'fontsize', FS)
-% xticks([-pi -pi/2 0 pi/2 pi])
-% xticklabels({'-\pi','-\pi/2','0','\pi/2','\pi'})
-% xlim([-pi pi])
-xlabel('y','interpreter', 'latex', 'fontsize', FS)
-
-ylabel('Temp mean','interpreter', 'latex', 'fontsize', FS)
-set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis);box on
-
-subplot(1,2,2)
-p1 = plot(x_h, var(u_ref),'-','color',c1,'LineWidth',LW);
-hold on
-p2 = plot(x_l, var(u_low),'-','color',c2,'LineWidth',LW);
-p3 = plot(x_h, var(u_bi),'--','color',c3,'LineWidth',LW);
-% xlabel('Location on Cylinder $\theta$','interpreter', 'latex', 'fontsize', FS)
-% xticks([-pi -pi/2 0 pi/2 pi])
-% xticklabels({'-\pi','-\pi/2','0','\pi/2','\pi'})
-% xlim([-pi pi])
-xlabel('y','interpreter', 'latex', 'fontsize', FS)
-ylabel('Temp variance','interpreter', 'latex', 'fontsize', FS)
-set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis);box on
-legend([p1,p2,p3],{'Ref','L', 'B'},'interpreter', 'latex', 'fontsize', FS_leg)
-
-set(gcf, 'Position', size_2)
-
-if save_on == 1
-    saveas(gcf,'Plots/GT_mid_mean_var','png')
-%     saveas(gcf,'Plots/GT_cylinder_mean_var','png')
-end
+save(strcat('Results/', results_name, 'mean_var'), 'x_h', 'x_l', 'u_ref', 'u_low', 'u_bi', 'u_hi')

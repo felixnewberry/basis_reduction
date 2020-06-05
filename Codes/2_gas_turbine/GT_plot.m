@@ -12,8 +12,13 @@ LW = 2;     % Line width
 MS = 8;     % Marker Size
 FS_leg = 16; % Font size legend
 
-size_1 = [0,0,445,345]; 
-size_2 = [0,0,1340,515]; 
+% Presentation size
+% size_1 = [0,0,445,345]; 
+% size_2 = [0,0,890,345]; 
+
+% Paper size
+size_1 = [0,0,575,445]; 
+size_2 = [0,0,1150,445]; 
 
 size_square = [0,0,445,445]; 
 size_large = [0,0,668,518]; 
@@ -32,14 +37,16 @@ c6 = [0.3010, 0.7450, 0.9330];
 
 save_on = 1; 
 
-% QoI = 0; % u mid
-QoI = 1; % cylinder
+QoI = 0; % u mid
+% QoI = 1; % cylinder
 
 
 if QoI == 0
-    results_name = 'GT_u_mid_';
+    results_name = 'GT_mid_';
+    label_name = 'Vertical Line';
 elseif QoI == 1
     results_name = 'GT_cylinder_'; 
+    label_name = 'Cylinder Surface';
 end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -91,7 +98,7 @@ for i_r = 1:length(r)
         r_symbol{i_r},'Color',c3, 'LineWidth',LW,'MarkerSize',MS)
 end
 
-ylabel('Average relative errors in mean','Fontsize',FS)
+ylabel('Average Relative Error in Mean','interpreter','latex','Fontsize',FS)
 xlabel('$n$','interpreter','latex','Fontsize',FS)
 axis tight
 set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis);box on
@@ -111,7 +118,7 @@ for i_r = 1:length(r)
         'Color',c3, 'LineWidth',LW,'MarkerSize',MS)
 end
 xlabel('$n$','interpreter','latex','Fontsize',FS)
-ylabel('Average relative errors in variance','Fontsize',FS)
+ylabel('Average Relative Error in Variance','interpreter','latex','Fontsize',FS)
 axis tight
 set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis);box on
 legend(r_string,'interpreter', 'latex', 'fontsize', FS_leg)
@@ -147,8 +154,8 @@ p3 = semilogy(abs(mean_lam_low_1)./max(mean_lam_low_1),'-s','Color',c3,'LineWidt
 p4 = semilogy(abs(mean_lam_ref_1)./max(mean_lam_ref_1),'-->','Color',c4,'LineWidth',LW,'MarkerSize',MS);
 hold off
 axis tight
-xlabel('index $i$', 'interpreter', 'latex', 'fontsize', FS)
-ylabel('$\lambda_i$', 'interpreter', 'latex', 'fontsize', FS)
+xlabel('Index $i$', 'interpreter', 'latex', 'fontsize', FS)
+ylabel('Normalized Eigenvalue', 'interpreter', 'latex', 'fontsize', FS)
 axis tight
 xlim([1,10])
 set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis);box on
@@ -159,4 +166,98 @@ legend([p1,p2, p3, p4],{'L QoI 1','Ref QoI 1', 'L QoI 2','Ref QoI 2'},'interpret
 
 if save_on == 1
     saveas(gcf,strcat('Plots/',results_name,'eigen'),'epsc')
+end
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% QoI mean and variance
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+load(strcat('Results/',results_name, 'mean_var'));
+
+figure
+subplot(1,2,1)
+p0 = plot(x_h, mean(u_ref),'k:+','LineWidth',LW);
+hold on
+p1 = plot(x_h, mean(u_hi),'-','color',c1,'LineWidth',LW);
+p2 = plot(x_l, mean(u_low),'--','color',c2,'LineWidth',LW);
+p3 = plot(x_h, mean(u_bi),'-.','color',c3,'LineWidth',LW);
+if QoI == 0
+    xlabel('$y$','interpreter', 'latex', 'fontsize', FS)
+else
+    xlabel('$\theta$','interpreter', 'latex', 'fontsize', FS)
+    xticks([-pi -pi/2 0 pi/2 pi])
+    xticklabels({'-\pi','-\pi/2','0','\pi/2','\pi'})
+    xlim([-pi, pi])
+end
+ylabel(strcat(label_name, ' Temperature Mean'),'interpreter', 'latex', 'fontsize', FS)
+set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis);box on
+% title('Mean','interpreter', 'latex', 'fontsize', FS_axis)
+
+subplot(1,2,2)
+p0 = plot(x_h, var(u_ref),'k:+','LineWidth',LW);
+hold on
+p1 = plot(x_h, var(u_hi),'-','color',c1,'LineWidth',LW);
+p2 = plot(x_l, var(u_low),'--','color',c2,'LineWidth',LW);
+p3 = plot(x_h, var(u_bi),'-.','color',c3,'LineWidth',LW);
+if QoI == 0
+    xlabel('$y$','interpreter', 'latex', 'fontsize', FS)
+else
+    xlabel('$\theta$','interpreter', 'latex', 'fontsize', FS)
+    xticks([-pi -pi/2 0 pi/2 pi])
+    xticklabels({'-\pi','-\pi/2','0','\pi/2','\pi'})
+    xlim([-pi, pi])
+end
+ylabel(strcat(label_name, ' Temperature Variance'),'interpreter', 'latex', 'fontsize', FS)
+set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis);box on
+legend([p0,p1,p2,p3],{'Ref','H','L', 'B'},'interpreter', 'latex', 'fontsize', FS_leg)
+% title('Variance','interpreter', 'latex', 'fontsize', FS_axis)
+
+set(gcf, 'Position', size_2)
+
+if save_on == 1
+    saveas(gcf,strcat('Plots/',results_name,'mean_var'),'epsc')
+end
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Bound efficacy 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+load('Results/GT_efficacy_cyl');
+efficacy_cy = efficacy; 
+% efficacy_cy = efficacy_mid; % Until fixed
+
+load('Results/GT_efficacy_mid');
+efficacy_mid = efficacy; 
+
+% Set common limits 
+lim_min = min([efficacy_cy(:); efficacy_mid(:)]);
+lim_max = max([efficacy_cy(:); efficacy_mid(:)]);
+
+
+figure
+subplot(1,2,1)
+h = pcolor(N_hi_vec, r_vec, efficacy_mid);
+set(h, 'EdgeColor', 'none');
+axis tight
+xlabel('$n$', 'interpreter', 'latex', 'fontsize', FS)
+ylabel('Approximation rank $r$', 'interpreter', 'latex', 'fontsize', FS)
+colorbar
+set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis);box on
+title('Error Bound Efficacy: Vertical Line','interpreter', 'latex', 'fontsize', FS_axis)
+caxis([lim_min, lim_max]); 
+
+subplot(1,2,2)
+h = pcolor(N_hi_vec, r_vec, efficacy_cy);
+set(h, 'EdgeColor', 'none');
+axis tight
+xlabel('$n$', 'interpreter', 'latex', 'fontsize', FS)
+ylabel('Approximation rank $r$', 'interpreter', 'latex', 'fontsize', FS)
+colorbar
+set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis);box on
+caxis([lim_min, lim_max]); 
+title('Error Bound Efficacy: Cylinder Surface','interpreter', 'latex', 'fontsize', FS_axis)
+
+set(gcf, 'Position', size_2)
+
+if save_on == 1
+    saveas(gcf,'Plots/GT_efficacy','epsc')
 end

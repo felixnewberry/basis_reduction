@@ -9,9 +9,6 @@ tic
 %%% Load data
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% I should re-run this with 64x64 grid as high, and try 8x8 as well as 4x4
-% as low. 
-
 results_file_name = 'LDC_results'; 
 
 load('u_64_f_2.mat')

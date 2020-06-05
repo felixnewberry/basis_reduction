@@ -12,8 +12,13 @@ LW = 2;     % Line width
 MS = 8;     % Marker Size
 FS_leg = 16; % Font size legend
 
-size_1 = [0,0,445,345]; 
-size_2 = [0,0,1340,515]; 
+% % Presentation size
+% size_1 = [0,0,445,345]; 
+% size_2 = [0,0,890,345]; 
+
+% Paper size
+size_1 = [0,0,575,445]; 
+size_2 = [0,0,1150,445]; 
 
 size_square = [0,0,445,445]; 
 size_large = [0,0,668,518]; 
@@ -65,8 +70,8 @@ p2 = semilogy(abs(mean_lam_ref)./max(mean_lam_ref),'--x','Color',c2,...
     'LineWidth',LW,'MarkerSize',MS);
 hold off
 axis tight
-xlabel('index $i$', 'interpreter', 'latex', 'fontsize', FS)
-ylabel('$\lambda_i$', 'interpreter', 'latex', 'fontsize', FS)
+xlabel('Index $i$', 'interpreter', 'latex', 'fontsize', FS)
+ylabel('Normalized Eigenvalue', 'interpreter', 'latex', 'fontsize', FS)
 axis tight
 xlim([1,10])
 yticks([1e-4, 1e-2,1e0])
@@ -106,7 +111,7 @@ for i_r = 1:length(r)
         r_symbol{i_r},'Color',c3, 'LineWidth',LW,'MarkerSize',MS)
 end
 
-ylabel('Average relative errors in mean','Fontsize',FS)
+ylabel('Average Relative Error in Mean','interpreter','latex','Fontsize',FS)
 xlabel('$n$','interpreter','latex','Fontsize',FS)
 axis tight
 set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis);box on
@@ -126,7 +131,7 @@ for i_r = 1:length(r)
         'Color',c3, 'LineWidth',LW,'MarkerSize',MS)
 end
 xlabel('$n$','interpreter','latex','Fontsize',FS)
-ylabel('Average relative errors in variance','Fontsize',FS)
+ylabel('Average Relative Error in Variance','interpreter','latex','Fontsize',FS)
 axis tight
 set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis);box on
 legend(r_string,'interpreter', 'latex', 'fontsize', FS_leg)
@@ -138,9 +143,60 @@ if save_on == 1
 end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%% Airfoil QoI
+%%%% Airfoil QoI Mean and Variance
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% I could normalize things... 
+load('Results/Airfoil_qoi_mean_var')
 
-%%% Plot contour and then streamlines
+figure
+subplot(1,2,1)
+p0 = plot(x_int, mean(u_ref),'k:+','LineWidth',LW);
+hold on
+p1 = plot(x_int, mean(u_hi),'-','color',c1,'LineWidth',LW);
+p2 = plot(x_int, mean(u_low),'--','color',c2,'LineWidth',LW);
+p3 = plot(x_int, mean(u_bi),'-.','color',c3,'LineWidth',LW);
+xlabel('Location on Airfoil','interpreter', 'latex', 'fontsize', FS)
+ylabel('$C_p$ mean','interpreter', 'latex', 'fontsize', FS)
+set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis);box on
+
+subplot(1,2,2)
+p0 = plot(x_int, var(u_ref),'k:+','LineWidth',LW);
+hold on
+p1 = plot(x_int, var(u_hi),'-','color',c1,'LineWidth',LW);
+p2 = plot(x_int, var(u_low),'--','color',c2,'LineWidth',LW);
+p3 = plot(x_int, var(u_bi),'-.','color',c3,'LineWidth',LW);
+xlabel('Location on Airfoil','interpreter', 'latex', 'fontsize', FS)
+ylabel('$C_p$ variance','interpreter', 'latex', 'fontsize', FS)
+set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis);box on
+legend([p0,p1,p2,p3],{'Ref','H', 'L', 'B'}, 'interpreter', 'latex', 'fontsize', FS_leg)
+
+set(gcf, 'Position', size_2)
+
+if save_on == 1
+    saveas(gcf,'Plots/Airfoil_mean_var','epsc')
+end
+
+% I could reverse the axis with  'YDir', 'reverse' in set(gca.. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%% Airfoil Efficacy 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+load('Results/Airfoil_efficacy');
+
+figure
+h = pcolor(N_hi_vec, r_vec, efficacy);
+set(h, 'EdgeColor', 'none');
+axis tight
+xlabel('$n$', 'interpreter', 'latex', 'fontsize', FS)
+ylabel('Approximation rank $r$', 'interpreter', 'latex', 'fontsize', FS)
+colorbar
+set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis);box on
+% title('Efficacy','interpreter', 'latex', 'fontsize', FS_leg)
+set(gcf, 'Position', size_1)
+
+if save_on == 1
+    saveas(gcf,'Plots/Airfoil_efficacy','epsc')
+end
+

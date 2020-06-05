@@ -236,64 +236,66 @@ psi_bi_est = [ones(size(u_ref, 1), 1) psi_bi_est];
 
 u_bi = psi_bi_est*c_bi';
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% Plot
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+save('Results/LDC_qoi_mean_var', 'x_h', 'x_l', 'u_ref', 'u_low', 'u_bi', 'u_hi')
 
-% Change axes, but first update low-fidelity data... 
-% Then put everthing in slides to determine what to include. 
-% Then do low-fidelity bound check. 
-
-
-% biggest improvement
-[~, i_plot] = max(vecnorm(u_ref- u_low,2,2)-vecnorm(u_ref- u_bi,2,2));
-
-
-figure
-p1 = plot(x_h, u_ref(i_plot,:),'-','color',c1,'LineWidth',LW);
-hold on
-p2 = plot(x_l, u_low(i_plot,:),'-','color',c2,'LineWidth',LW);
-p3 = plot(x_h, u_bi(i_plot,:),'--','color',c3,'LineWidth',LW);
-xlabel('$x$','interpreter', 'latex', 'fontsize', FS)
-ylabel('$u$','interpreter', 'latex', 'fontsize', FS)
-set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis);box on
-set(gcf, 'Position', size_1)
-legend([p1,p2,p3],{'Ref','L', 'B'},'interpreter', 'latex', 'fontsize', FS_leg)
-
-if save_on == 1
-    saveas(gcf,'Plots/LDC_realization','png')
-end
-
-% I need to check these coordinates... 
-
-% Better to plot a realization, or the mean and the variance? 
-
-% plot both for each and then decide. 
-
-figure
-subplot(1,2,1)
-p1 = plot(x_h, mean(u_ref),'-','color',c1,'LineWidth',LW);
-hold on
-p2 = plot(x_h, mean(u_low),'-','color',c2,'LineWidth',LW);
-p3 = plot(x_h, mean(u_bi),'--','color',c3,'LineWidth',LW);
-xlabel('$x$','interpreter', 'latex', 'fontsize', FS)
-ylabel('$u$ mean','interpreter', 'latex', 'fontsize', FS)
-set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis);box on
-
-subplot(1,2,2)
-p1 = plot(x_h, var(u_ref),'-','color',c1,'LineWidth',LW);
-hold on
-p2 = plot(x_h, var(u_low),'-','color',c2,'LineWidth',LW);
-p3 = plot(x_h, var(u_bi),'--','color',c3,'LineWidth',LW);
-xlabel('$x$','interpreter', 'latex', 'fontsize', FS)
-ylabel('$u$ variance','interpreter', 'latex', 'fontsize', FS)
-set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis);box on
-legend([p1,p2,p3],{'Ref','L', 'B'},'interpreter', 'latex', 'fontsize', FS_leg)
-
-set(gcf, 'Position', size_2)
-
-if save_on == 1
-    saveas(gcf,'Plots/LDC_mean_var','png')
-end
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%% Plot
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+% % Change axes, but first update low-fidelity data... 
+% % Then put everthing in slides to determine what to include. 
+% % Then do low-fidelity bound check. 
+% 
+% 
+% % biggest improvement
+% [~, i_plot] = max(vecnorm(u_ref- u_low,2,2)-vecnorm(u_ref- u_bi,2,2));
+% 
+% 
+% figure
+% p1 = plot(x_h, u_ref(i_plot,:),'-','color',c1,'LineWidth',LW);
+% hold on
+% p2 = plot(x_l, u_low(i_plot,:),'-','color',c2,'LineWidth',LW);
+% p3 = plot(x_h, u_bi(i_plot,:),'--','color',c3,'LineWidth',LW);
+% xlabel('$x$','interpreter', 'latex', 'fontsize', FS)
+% ylabel('$u$','interpreter', 'latex', 'fontsize', FS)
+% set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis);box on
+% set(gcf, 'Position', size_1)
+% legend([p1,p2,p3],{'Ref','L', 'B'},'interpreter', 'latex', 'fontsize', FS_leg)
+% 
+% if save_on == 1
+%     saveas(gcf,'Plots/LDC_realization','png')
+% end
+% 
+% % I need to check these coordinates... 
+% 
+% % Better to plot a realization, or the mean and the variance? 
+% 
+% % plot both for each and then decide. 
+% 
+% figure
+% subplot(1,2,1)
+% p1 = plot(x_h, mean(u_ref),'-','color',c1,'LineWidth',LW);
+% hold on
+% p2 = plot(x_h, mean(u_low),'-','color',c2,'LineWidth',LW);
+% p3 = plot(x_h, mean(u_bi),'--','color',c3,'LineWidth',LW);
+% xlabel('$x$','interpreter', 'latex', 'fontsize', FS)
+% ylabel('$u$ mean','interpreter', 'latex', 'fontsize', FS)
+% set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis);box on
+% 
+% subplot(1,2,2)
+% p1 = plot(x_h, var(u_ref),'-','color',c1,'LineWidth',LW);
+% hold on
+% p2 = plot(x_h, var(u_low),'-','color',c2,'LineWidth',LW);
+% p3 = plot(x_h, var(u_bi),'--','color',c3,'LineWidth',LW);
+% xlabel('$x$','interpreter', 'latex', 'fontsize', FS)
+% ylabel('$u$ variance','interpreter', 'latex', 'fontsize', FS)
+% set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis);box on
+% legend([p1,p2,p3],{'Ref','L', 'B'},'interpreter', 'latex', 'fontsize', FS_leg)
+% 
+% set(gcf, 'Position', size_2)
+% 
+% if save_on == 1
+%     saveas(gcf,'Plots/LDC_mean_var','png')
+% end
 
 

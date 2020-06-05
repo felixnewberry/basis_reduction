@@ -1,5 +1,5 @@
 clear all 
-close all
+% close all
 clc
 
 tic
@@ -12,8 +12,13 @@ LW = 2;     % Line width
 MS = 8;     % Marker Size
 FS_leg = 16; % Font size legend
 
-size_1 = [0,0,445,345]; 
-size_2 = [0,0,1340,515]; 
+% % Presentation size
+% size_1 = [0,0,445,345]; 
+% size_2 = [0,0,890,345]; 
+
+% Paper size
+size_1 = [0,0,575,445]; 
+size_2 = [0,0,1150,445]; 
 
 size_square = [0,0,445,445]; 
 size_large = [0,0,668,518]; 
@@ -112,7 +117,7 @@ x_int = linspace(-1,1,n_points);
 p = 5;                          % PCE order
 d = 6;                          % Stochastic dimension
 
-N_hi = 50;      % Number high-fidelity samples
+N_hi = 30;      % Number high-fidelity samples
 % N_hi = [30]; 
 
 r = 8;           % KL order
@@ -247,60 +252,40 @@ psi_bi_est = [ones(size(u_ref, 1), 1) psi_bi_est];
 
 u_bi = psi_bi_est*c_bi';
 
+% save('Results/Airfoil_qoi_mean_var', 'x_int', 'u_ref', 'u_low', 'u_bi', 'u_hi')
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Plot
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-i_plot = 104; 
-
-% biggest improvement
-[~, i_plot] = max(vecnorm(u_ref- u_low,2,2)-vecnorm(u_ref- u_bi,2,2));
-
-% also reverse axis 
-figure
-p1 = plot(x_int, u_ref(i_plot,:),'-','color',c1,'LineWidth',LW);
-hold on
-p2 = plot(x_int, u_low(i_plot,:),'-','color',c2,'LineWidth',LW);
-p3 = plot(x_int, u_bi(i_plot,:),'--','color',c3,'LineWidth',LW);
-xlabel('Location on Airfoil','interpreter', 'latex', 'fontsize', FS)
-ylabel('$C_p$','interpreter', 'latex', 'fontsize', FS)
-set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis);box on
-set(gcf, 'Position', size_1)
-legend([p1,p2,p3],{'Ref','L', 'B'},'interpreter', 'latex', 'fontsize', FS_leg)
-
-if save_on == 1
-    saveas(gcf,'Plots/Airfoil_realization2','png')
-end
-
-% Mean and variance
+% % Mean and variance
 
 figure
 subplot(1,2,1)
-p1 = plot(x_int, mean(u_ref),'-','color',c1,'LineWidth',LW);
+p0 = plot(x_int, mean(u_ref),'k:+','LineWidth',LW);
 hold on
-p2 = plot(x_int, mean(u_low),'-','color',c2,'LineWidth',LW);
-p3 = plot(x_int, mean(u_bi),'--','color',c3,'LineWidth',LW);
+p1 = plot(x_int, mean(u_hi),'-','color',c1,'LineWidth',LW);
+p2 = plot(x_int, mean(u_low),'--','color',c2,'LineWidth',LW);
+p3 = plot(x_int, mean(u_bi),'-.','color',c3,'LineWidth',LW);
 xlabel('Location on Airfoil','interpreter', 'latex', 'fontsize', FS)
 ylabel('$C_p$ mean','interpreter', 'latex', 'fontsize', FS)
 set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis);box on
 
 subplot(1,2,2)
-p1 = plot(x_int, var(u_ref),'-','color',c1,'LineWidth',LW);
+p0 = plot(x_int, var(u_ref),'k:+','LineWidth',LW);
 hold on
-p2 = plot(x_int, var(u_low),'-','color',c2,'LineWidth',LW);
-p3 = plot(x_int, var(u_bi),'--','color',c3,'LineWidth',LW);
+p1 = plot(x_int, var(u_hi),'-','color',c1,'LineWidth',LW);
+p2 = plot(x_int, var(u_low),'--','color',c2,'LineWidth',LW);
+p3 = plot(x_int, var(u_bi),'-.','color',c3,'LineWidth',LW);
 xlabel('Location on Airfoil','interpreter', 'latex', 'fontsize', FS)
 ylabel('$C_p$ variance','interpreter', 'latex', 'fontsize', FS)
 set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis);box on
-legend([p1,p2,p3],{'Ref','L', 'B'},'interpreter', 'latex', 'fontsize', FS_leg)
+legend([p0,p1,p2,p3],{'Ref','H', 'L', 'B'}, 'interpreter', 'latex', 'fontsize', FS_leg)
 
 set(gcf, 'Position', size_2)
 
 if save_on == 1
-    saveas(gcf,'Plots/Airfoil_mean_var2','png')
+    saveas(gcf,'Plots/Airfoil_mean_var','epsc')
 end
-% Jesus, no good. See what happens if I change the airfoil data too... 
-% Check this on Monday. 
 
-% Now do this plot for the GT. 
 
