@@ -30,14 +30,22 @@ c4 = [0.4940, 0.1840, 0.5560];
 c5 = [0.4660, 0.6740, 0.1880]; 
 c6 = [0.3010, 0.7450, 0.9330]; 
 
-save_on = 0; 
+save_on = 1; 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Chose QoI
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-QoI = 0; % u mid
-% QoI = 1; % cylinder
+% QoI = 0; % u mid
+QoI = 1; % cylinder
+
+if QoI == 0
+    results_name = 'GT_mid_';
+    label_name = 'Vertical Line';
+elseif QoI == 1
+    results_name = 'GT_cylinder_'; 
+    label_name = 'Cylinder Surface';
+end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Load data
@@ -108,7 +116,7 @@ u_low = lowFiResults(gridpt_l,:)';
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 p = 6;                          % PCE order
-d = 4;                          % Stochastic dimension
+% d = 4;                          % Stochastic dimension
 
 N_hi = 50;      % Number high-fidelity samples
 % N_hi = [30]; 
@@ -245,4 +253,60 @@ psi_bi_est = [ones(size(u_ref, 1), 1) psi_bi_est];
 
 u_bi = psi_bi_est*c_bi';
 
-save(strcat('Results/', results_name, 'mean_var'), 'x_h', 'x_l', 'u_ref', 'u_low', 'u_bi', 'u_hi')
+% Check errors: 
+
+
+mean_low = c_low(:,1);
+mean_low_int = interp1q(x_l', mean_low, x_h');
+mean_low_err = norm(mean_low_int - mean_ref)/norm(mean_ref); 
+
+
+% The coefficients are way different. Why? 
+% Intuition says they're better (the mean is centered with makes
+% theoretical sense. But why different?? Because Psi is limited?? 
+
+
+% Makes an assumption about hte basis psi_bi_est that... 
+% I think I should use the statistics from u. This accounts for psi? 
+
+save(strcat('Results/', results_name, 'mean_var'), 'x_h', 'x_l', 'c_ref', 'c_low', 'c_bi', 'c_hi')
+
+figure
+subplot(1,2,1)
+p0 = plot(x_h, c_ref(:,1),'k:+','LineWidth',LW);
+hold on
+p1 = plot(x_h, c_hi(:,1),'-','color',c1,'LineWidth',LW);
+p2 = plot(x_l, c_low(:,1),'--','color',c2,'LineWidth',LW);
+p3 = plot(x_h, c_bi(:,1),'-.','color',c3,'LineWidth',LW);
+if QoI == 0
+    xlabel('$y$','interpreter', 'latex', 'fontsize', FS)
+else
+    xlabel('$\theta$','interpreter', 'latex', 'fontsize', FS)
+    xticks([-pi -pi/2 0 pi/2 pi])
+    xticklabels({'-\pi','-\pi/2','0','\pi/2','\pi'})
+    xlim([-pi, pi])
+end
+ylabel(strcat(label_name, ' Temperature Mean'),'interpreter', 'latex', 'fontsize', FS)
+set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis);box on
+% title('Mean','interpreter', 'latex', 'fontsize', FS_axis)
+
+subplot(1,2,2)
+p0 = plot(x_h, sum(c_ref(:,2:end).^2,2),'k:+','LineWidth',LW);
+hold on
+p1 = plot(x_h, sum(c_hi(:,2:end).^2,2),'-','color',c1,'LineWidth',LW);
+p2 = plot(x_l, sum(c_low(:,2:end).^2,2),'--','color',c2,'LineWidth',LW);
+p3 = plot(x_h, sum(c_bi(:,2:end).^2,2),'-.','color',c3,'LineWidth',LW);
+if QoI == 0
+    xlabel('$y$','interpreter', 'latex', 'fontsize', FS)
+else
+    xlabel('$\theta$','interpreter', 'latex', 'fontsize', FS)
+    xticks([-pi -pi/2 0 pi/2 pi])
+    xticklabels({'-\pi','-\pi/2','0','\pi/2','\pi'})
+    xlim([-pi, pi])
+end
+ylabel(strcat(label_name, ' Temperature Variance'),'interpreter', 'latex', 'fontsize', FS)
+set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis);box on
+legend([p0,p1,p2,p3],{'Ref','$H$','$L$', '$B$'},'interpreter', 'latex', 'fontsize', FS_leg)
+% title('Variance','interpreter', 'latex', 'fontsize', FS_axis)
+
+set(gcf, 'Position', size_2)

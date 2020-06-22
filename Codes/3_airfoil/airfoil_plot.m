@@ -35,7 +35,7 @@ c4 = [0.4940, 0.1840, 0.5560];
 c5 = [0.4660, 0.6740, 0.1880]; 
 c6 = [0.3010, 0.7450, 0.9330]; 
 
-save_on = 1; 
+save_on = 0; 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%% Load data                  
@@ -53,7 +53,7 @@ r_symbol = {'-.+','-.*','-.s','-.d'};
 
 r_string = cell(length(r)+2,1);
 r_string(1:2,:) = {'$H$'; '$L$'};
-r_string(3:end) = cellstr(num2str(r', 'B(r=%-d)')); 
+r_string(3:end) = cellstr(num2str(r', '$B(r=%-d)$')); 
 
 r_string_variance = r_string([1,3:end]); 
 
@@ -75,11 +75,11 @@ ylabel('Normalized Eigenvalue', 'interpreter', 'latex', 'fontsize', FS)
 axis tight
 xlim([1,10])
 yticks([1e-4, 1e-2,1e0])
-set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis);box on
+set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis,'TickLabelInterpreter','latex'); box on
 % grid on
 set(gcf,'Position',size_1)
 
-legend([p1,p2],{'L','Ref'},'interpreter', 'latex', 'fontsize', FS_leg,'Location','NorthEast')
+legend([p1,p2],{'$L$','Ref'},'interpreter', 'latex', 'fontsize', FS_leg,'Location','NorthEast')
 
 if save_on == 1
     saveas(gcf,'Plots/Airfoil_eigen','epsc')
@@ -114,10 +114,9 @@ end
 ylabel('Average Relative Error in Mean','interpreter','latex','Fontsize',FS)
 xlabel('$n$','interpreter','latex','Fontsize',FS)
 axis tight
-set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis);box on
-set(gcf, 'Position', size_1)
-% grid on
-set(gcf, 'Position', size_1)
+set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis,'TickLabelInterpreter','latex'); box on
+legend(r_string,'interpreter', 'latex', 'fontsize', FS_leg)
+
 
 subplot(1,2,2)
 semilogy(N_hi,(mean_var_hi_err(1,:)'),'-o','Color',c1, ...
@@ -133,7 +132,10 @@ end
 xlabel('$n$','interpreter','latex','Fontsize',FS)
 ylabel('Average Relative Error in Variance','interpreter','latex','Fontsize',FS)
 axis tight
-set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis);box on
+yl = ylim; 
+ylim([yl(1),1])
+new_labels = [1e-1, 1];
+set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis,'TickLabelInterpreter','latex'); box on
 legend(r_string,'interpreter', 'latex', 'fontsize', FS_leg)
 % grid on 
 set(gcf, 'Position', size_2)
@@ -150,25 +152,29 @@ load('Results/Airfoil_qoi_mean_var')
 
 figure
 subplot(1,2,1)
-p0 = plot(x_int, mean(u_ref),'k:+','LineWidth',LW);
+p0 = plot(x_int, c_ref(:,1),'k:+','LineWidth',LW);
 hold on
-p1 = plot(x_int, mean(u_hi),'-','color',c1,'LineWidth',LW);
-p2 = plot(x_int, mean(u_low),'--','color',c2,'LineWidth',LW);
-p3 = plot(x_int, mean(u_bi),'-.','color',c3,'LineWidth',LW);
+p1 = plot(x_int, c_hi(:,1),'-','color',c1,'LineWidth',LW);
+p2 = plot(x_int, c_low(:,1),'--','color',c2,'LineWidth',LW);
+p3 = plot(x_int, c_bi(:,1),'-.','color',c3,'LineWidth',LW);
 xlabel('Location on Airfoil','interpreter', 'latex', 'fontsize', FS)
-ylabel('$C_p$ mean','interpreter', 'latex', 'fontsize', FS)
-set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis);box on
+ylabel('$C_p$ Mean','interpreter', 'latex', 'fontsize', FS)
+set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis,'TickLabelInterpreter','latex'); box on
+legend([p0,p1,p2,p3],{'Ref','$H$', '$L$', '$B$'}, 'interpreter', 'latex', 'fontsize', FS_leg)
 
 subplot(1,2,2)
-p0 = plot(x_int, var(u_ref),'k:+','LineWidth',LW);
+p0 = plot(x_int, sum(c_ref(:,2:end).^2,2),'k:+','LineWidth',LW);
 hold on
-p1 = plot(x_int, var(u_hi),'-','color',c1,'LineWidth',LW);
-p2 = plot(x_int, var(u_low),'--','color',c2,'LineWidth',LW);
-p3 = plot(x_int, var(u_bi),'-.','color',c3,'LineWidth',LW);
+p1 = plot(x_int, sum(c_hi(:,2:end).^2,2),'-','color',c1,'LineWidth',LW);
+p2 = plot(x_int, sum(c_low(:,2:end).^2,2),'--','color',c2,'LineWidth',LW);
+p3 = plot(x_int, sum(c_bi(:,2:end).^2,2),'-.','color',c3,'LineWidth',LW);
 xlabel('Location on Airfoil','interpreter', 'latex', 'fontsize', FS)
-ylabel('$C_p$ variance','interpreter', 'latex', 'fontsize', FS)
-set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis);box on
-legend([p0,p1,p2,p3],{'Ref','H', 'L', 'B'}, 'interpreter', 'latex', 'fontsize', FS_leg)
+ylabel('$C_p$ Variance','interpreter', 'latex', 'fontsize', FS)
+
+new_labels = linspace(0,0.4,5);
+set(gca,'YTick', new_labels);
+set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis,'TickLabelInterpreter','latex'); box on
+legend([p0,p1,p2,p3],{'Ref','$H$', '$L$', '$B$'}, 'interpreter', 'latex', 'fontsize', FS_leg)
 
 set(gcf, 'Position', size_2)
 
@@ -190,9 +196,10 @@ h = pcolor(N_hi_vec, r_vec, efficacy);
 set(h, 'EdgeColor', 'none');
 axis tight
 xlabel('$n$', 'interpreter', 'latex', 'fontsize', FS)
-ylabel('Approximation rank $r$', 'interpreter', 'latex', 'fontsize', FS)
-colorbar
-set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis);box on
+ylabel('Approximation Rank $r$', 'interpreter', 'latex', 'fontsize', FS)
+c =colorbar;
+c.TickLabelInterpreter = 'latex'; 
+set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis,'TickLabelInterpreter','latex'); box on
 % title('Efficacy','interpreter', 'latex', 'fontsize', FS_leg)
 set(gcf, 'Position', size_1)
 

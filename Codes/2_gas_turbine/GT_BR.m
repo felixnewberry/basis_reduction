@@ -89,16 +89,17 @@ u_low = lowFiResults(gridpt_l,:)';
 p = 6;                          % PCE order
 
 N_hi = [10 30 50 70 90 110];    % Number high-fidelity samples
-% N_hi = [30]; 
+% N_hi = [50]; 
 
 r = [3 8 10];                  % KL order
-% r = 3; 
+% r = 8; 
 
 % tolerance on residual used in spgl1 solver
 sigma = .007;
 
 % Number of repetitions
 n_reps = 100; 
+
 
 pc_solver = 2;  %0 is LS, 1 is mmv and 2 is individual spg
 
@@ -175,11 +176,9 @@ elseif QoI == 1
     results_name = 'GT_cylinder_results'; 
 end
 
-mean_low_err
-
-save(strcat('Results/',results_name, '_spg'),'bi_stats', 'mean_lam_hi', 'mean_lam_ref', ...
-    'mean_lam_low','N_hi',...
-    'var_low_err','mean_low_err', 'r')
+% save(strcat('Results/',results_name, '_spg'),'bi_stats', 'mean_lam_hi', 'mean_lam_ref', ...
+%     'mean_lam_low','N_hi',...
+%     'var_low_err','mean_low_err', 'r')
 
 t_total = toc(t_start); 
 fprintf('Total run time : %d s.\n', t_total);
@@ -188,3 +187,4 @@ fprintf('Total run time : %d s.\n', t_total);
 % for u_mid standard (pc_solver = 1) 41s
 % cylinder spg: 1.96 e3 seconds - 32 minutes. 
 % u spg: 7.26 e2 seconds - 12 minutes. 
+

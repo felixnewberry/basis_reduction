@@ -1,5 +1,5 @@
 clear all 
-% close all
+close all
 clc
 
 tic
@@ -245,47 +245,30 @@ c_bi = c_bi';
 
 % Compute mean, variance or bi-fid estimate
 
-% psi_ref and psi_low are the same. 
 
-psi_bi_est = psi_ref(:,2:end)*alpha2';
-psi_bi_est = [ones(size(u_ref, 1), 1) psi_bi_est]; 
+% save('Results/Airfoil_qoi_mean_var', 'x_int', 'c_ref', 'c_low', 'c_bi', 'c_hi')
 
-u_bi = psi_bi_est*c_bi';
-
-% save('Results/Airfoil_qoi_mean_var', 'x_int', 'u_ref', 'u_low', 'u_bi', 'u_hi')
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% Plot
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% % Mean and variance
 
 figure
 subplot(1,2,1)
-p0 = plot(x_int, mean(u_ref),'k:+','LineWidth',LW);
+p0 = plot(x_int, c_ref(:,1),'k:+','LineWidth',LW);
 hold on
-p1 = plot(x_int, mean(u_hi),'-','color',c1,'LineWidth',LW);
-p2 = plot(x_int, mean(u_low),'--','color',c2,'LineWidth',LW);
-p3 = plot(x_int, mean(u_bi),'-.','color',c3,'LineWidth',LW);
+p1 = plot(x_int, c_hi(:,1),'-','color',c1,'LineWidth',LW);
+p2 = plot(x_int, c_low(:,1),'--','color',c2,'LineWidth',LW);
+p3 = plot(x_int, c_bi(:,1),'-.','color',c3,'LineWidth',LW);
 xlabel('Location on Airfoil','interpreter', 'latex', 'fontsize', FS)
-ylabel('$C_p$ mean','interpreter', 'latex', 'fontsize', FS)
+ylabel('$C_p$ Mean','interpreter', 'latex', 'fontsize', FS)
 set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis);box on
 
 subplot(1,2,2)
-p0 = plot(x_int, var(u_ref),'k:+','LineWidth',LW);
+p0 = plot(x_int, sum(c_ref(:,2:end).^2,2),'k:+','LineWidth',LW);
 hold on
-p1 = plot(x_int, var(u_hi),'-','color',c1,'LineWidth',LW);
-p2 = plot(x_int, var(u_low),'--','color',c2,'LineWidth',LW);
-p3 = plot(x_int, var(u_bi),'-.','color',c3,'LineWidth',LW);
+p1 = plot(x_int, sum(c_hi(:,2:end).^2,2),'-','color',c1,'LineWidth',LW);
+p2 = plot(x_int, sum(c_low(:,2:end).^2,2),'--','color',c2,'LineWidth',LW);
+p3 = plot(x_int, sum(c_bi(:,2:end).^2,2),'-.','color',c3,'LineWidth',LW);
 xlabel('Location on Airfoil','interpreter', 'latex', 'fontsize', FS)
-ylabel('$C_p$ variance','interpreter', 'latex', 'fontsize', FS)
+ylabel('$C_p$ Variance','interpreter', 'latex', 'fontsize', FS)
 set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis);box on
-legend([p0,p1,p2,p3],{'Ref','H', 'L', 'B'}, 'interpreter', 'latex', 'fontsize', FS_leg)
+legend([p0,p1,p2,p3],{'Ref','$H$', '$L$', '$B$'}, 'interpreter', 'latex', 'fontsize', FS_leg)
 
 set(gcf, 'Position', size_2)
-
-if save_on == 1
-    saveas(gcf,'Plots/Airfoil_mean_var','epsc')
-end
-
-

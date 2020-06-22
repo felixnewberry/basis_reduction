@@ -35,7 +35,7 @@ c4 = [0.4940, 0.1840, 0.5560];
 c5 = [0.4660, 0.6740, 0.1880]; 
 c6 = [0.3010, 0.7450, 0.9330]; 
 
-save_on = 1; 
+save_on = 0; 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%% Load data                  
@@ -48,7 +48,7 @@ r_symbol = {'-.+','-.*','-.s','-.d'};
 
 r_string = cell(length(r)+2,1);
 r_string(1:2,:) = {'$H$'; '$L$'};
-r_string(3:end) = cellstr(num2str(r', 'B(r=%-d)')); 
+r_string(3:end) = cellstr(num2str(r', '$B(r=%-d)$')); 
 
 r_string_variance = r_string([1,3:end]); 
 
@@ -69,11 +69,11 @@ axis tight
 xlabel('Index $i$', 'interpreter', 'latex', 'fontsize', FS)
 ylabel('Normalized Eigenvalue', 'interpreter', 'latex', 'fontsize', FS)
 axis tight
-set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis);box on
+set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis,'TickLabelInterpreter','latex'); box on
 % grid on
 set(gcf,'Position',size_1)
 xlim([1,5])
-legend([p1,p2],{'L','Ref'},'interpreter', 'latex', 'fontsize', FS_leg,'Location','NorthEast')
+legend([p1,p2],{'$L$','Ref'},'interpreter', 'latex', 'fontsize', FS_leg,'Location','NorthEast')
 
 if save_on == 1
     saveas(gcf,'Plots/LDC_eigen','epsc')
@@ -112,7 +112,8 @@ end
 ylabel('Average Relative Error in Mean','interpreter', 'latex', 'fontsize', FS)
 xlabel('$n$','interpreter','latex','Fontsize',FS)
 axis tight
-set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis);box on
+set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis,'TickLabelInterpreter','latex');box on
+legend(r_string,'interpreter', 'latex', 'fontsize', FS_leg)
 % title('Mean','interpreter', 'latex', 'fontsize', FS_axis)
 
 subplot(1,2,2)
@@ -129,10 +130,11 @@ end
 xlabel('$n$','interpreter','latex','Fontsize',FS)
 ylabel('Average Relative Error in Variance','interpreter', 'latex', 'fontsize', FS)
 axis tight
-set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis);box on
+set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis,'TickLabelInterpreter','latex');box on
 legend(r_string,'interpreter', 'latex', 'fontsize', FS_leg)
 % title('Variance','interpreter', 'latex', 'fontsize', FS_axis)
 set(gcf, 'Position', size_2)
+
 
 if save_on == 1
     saveas(gcf,'Plots/LDC_N_r','epsc')
@@ -189,13 +191,13 @@ Y_arrow = [0.95   0.95];
 hh = annotation('arrow',X_arrow,Y_arrow,'Color','r');
 set(hh, 'LineWidth', LW)
 
-xlabel('x','interpreter', 'latex', 'fontsize', FS)
-ylabel('y','interpreter', 'latex', 'fontsize', FS)
+xlabel('$x$','interpreter', 'latex', 'fontsize', FS+5)
+ylabel('$y$','interpreter', 'latex', 'fontsize', FS+5)
 axis tight
 xlim([0,1]); ylim([0,1]);
 new_labels = linspace(0, 1, 3);
 set(gca,'XTick', new_labels); set(gca,'YTick', new_labels);
-set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis); %box on
+set(gca,'Fontsize', FS_axis+5, 'linewidth',LW_axis,'TickLabelInterpreter','latex'); %box on
 set(gcf, 'Position', size_square)
 pbaspect([1 1 1])
 
@@ -224,12 +226,12 @@ hh = annotation('arrow',X_arrow,Y_arrow,'Color','r');
 set(hh, 'LineWidth', LW)
 
 hold off
-xlabel('x','interpreter', 'latex', 'fontsize', FS)
-ylabel('y','interpreter', 'latex', 'fontsize', FS)
+xlabel('$x$','interpreter', 'latex', 'fontsize', FS+5)
+ylabel('$y$','interpreter', 'latex', 'fontsize', FS+5)
 xlim([0,1]); ylim([0,1]);
 new_labels = linspace(0, 1, 3);
 set(gca,'XTick', new_labels); set(gca,'YTick', new_labels);
-set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis);box on
+set(gca,'Fontsize', FS_axis+5, 'linewidth',LW_axis,'TickLabelInterpreter','latex'); %box on
 % set(gcf, 'Position', size_1)
 set(gcf, 'Position', size_square)
 
@@ -266,28 +268,28 @@ figure
 plot(xx_l, yy_l, 'k','LineWidth',LW/2)
 hold on; 
 plot(yy_l, xx_l, 'k','LineWidth',LW/2)
-xlabel('x', 'interpreter', 'latex', 'fontsize', FS)
-ylabel('y', 'interpreter', 'latex', 'fontsize', FS)
+xlabel('$x$', 'interpreter', 'latex', 'fontsize', FS+5)
+ylabel('$y$', 'interpreter', 'latex', 'fontsize', FS+5)
 % grid on; 
 new_labels = linspace(0, 1, 3);
 set(gca,'XTick', new_labels); set(gca,'YTick', new_labels);
-set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis);%box on; 
+set(gca,'Fontsize', FS_axis+5, 'linewidth',LW_axis,'TickLabelInterpreter','latex'); %box on
 axis tight;
 
 set(gcf,'Position',size_square)
 
 if save_on ==1
-    saveas(gcf,'Plots/mesh_low','epsc')
+    saveas(gcf,'Plots/LDC_mesh_low','epsc')
 end
 
 figure
 plot(xx_h, yy_h, 'k','LineWidth',LW/4)
 hold on; 
 plot(yy_h, xx_h, 'k','LineWidth',LW/4)
-xlabel('x', 'interpreter', 'latex', 'fontsize', FS)
-ylabel('y', 'interpreter', 'latex', 'fontsize', FS)
+xlabel('$x$', 'interpreter', 'latex', 'fontsize', FS+5)
+ylabel('$y$', 'interpreter', 'latex', 'fontsize', FS+5)
 % grid on; 
-set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis);%box on; 
+set(gca,'Fontsize', FS_axis+5, 'linewidth',LW_axis,'TickLabelInterpreter','latex'); %box on
 axis tight;
 new_labels = linspace(0, 1, 3);
 set(gca,'XTick', new_labels); set(gca,'YTick', new_labels);
@@ -295,7 +297,7 @@ set(gcf,'Position',size_square)
 
 
 if save_on ==1
-    saveas(gcf,'Plots/mesh_high','epsc')
+    saveas(gcf,'Plots/LDC_mesh_high','epsc')
 end
 
 1; 
@@ -308,27 +310,28 @@ load('Results/LDC_qoi_mean_var');
 
 figure
 subplot(1,2,1)
-p0 = plot(x_h, mean(u_ref),'k:+','LineWidth',LW);
+p0 = plot(x_h, c_ref(:,1),'k:+','LineWidth',LW);
 hold on
-p1 = plot(x_h, mean(u_hi),'-','color',c1,'LineWidth',LW);
-p2 = plot(x_h, mean(u_low),'--','color',c2,'LineWidth',LW);
-p3 = plot(x_h, mean(u_bi),'-.','color',c3,'LineWidth',LW);
+p1 = plot(x_h, c_hi(:,1),'-','color',c1,'LineWidth',LW);
+p2 = plot(x_h, c_low(:,1),'--','color',c2,'LineWidth',LW);
+p3 = plot(x_h, c_bi(:,1),'-.','color',c3,'LineWidth',LW);
 xlabel('$x$','interpreter', 'latex', 'fontsize', FS)
 ylabel('Vertical Velocity Mean','interpreter', 'latex', 'fontsize', FS)
-set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis);box on
+set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis,'TickLabelInterpreter','latex'); box on
 % title('Mean','interpreter', 'latex', 'fontsize', FS_axis)
+legend([p0,p1,p2,p3],{'Ref','$H$','$L$', '$B$'},'interpreter', 'latex', 'fontsize', FS_leg)
 
 subplot(1,2,2)
-p0 = plot(x_h, var(u_ref),'k:+','LineWidth',LW);
+p0 = plot(x_h, sum(c_ref(:,2:end).^2,2),'k:+','LineWidth',LW);
 hold on
-p1 = plot(x_h, var(u_hi),'-','color',c1,'LineWidth',LW);
-p2 = plot(x_h, var(u_low),'--','color',c2,'LineWidth',LW);
-p3 = plot(x_h, var(u_bi),'-.','color',c3,'LineWidth',LW);
+p1 = plot(x_h, sum(c_hi(:,2:end).^2,2),'-','color',c1,'LineWidth',LW);
+p2 = plot(x_h, sum(c_low(:,2:end).^2,2),'--','color',c2,'LineWidth',LW);
+p3 = plot(x_h, sum(c_bi(:,2:end).^2,2),'-.','color',c3,'LineWidth',LW);
 xlabel('$x$','interpreter', 'latex', 'fontsize', FS)
 ylabel('Vertical Velocity Variance','interpreter', 'latex', 'fontsize', FS)
-set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis);box on
+set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis,'TickLabelInterpreter','latex'); box on
 % title('Variance','interpreter', 'latex', 'fontsize', FS_axis)
-legend([p0,p1,p2,p3],{'Ref','H','L', 'B'},'interpreter', 'latex', 'fontsize', FS_leg)
+legend([p0,p1,p2,p3],{'Ref','$H$','$L$', '$B$'},'interpreter', 'latex', 'fontsize', FS_leg)
 
 set(gcf, 'Position', size_2)
 
@@ -346,9 +349,10 @@ h = pcolor(N_hi_vec, r_vec, efficacy);
 set(h, 'EdgeColor', 'none');
 axis tight
 xlabel('$n$', 'interpreter', 'latex', 'fontsize', FS)
-ylabel('Approximation rank $r$', 'interpreter', 'latex', 'fontsize', FS)
-colorbar
-set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis);box on
+ylabel('Approximation Rank $r$', 'interpreter', 'latex', 'fontsize', FS)
+c =colorbar;
+c.TickLabelInterpreter = 'latex'; 
+set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis,'TickLabelInterpreter','latex'); box on
 % title('Efficacy','interpreter', 'latex', 'fontsize', FS_leg)
 set(gcf, 'Position', size_1)
 

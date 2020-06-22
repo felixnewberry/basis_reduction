@@ -35,10 +35,10 @@ c4 = [0.4940, 0.1840, 0.5560];
 c5 = [0.4660, 0.6740, 0.1880]; 
 c6 = [0.3010, 0.7450, 0.9330]; 
 
-save_on = 1; 
+save_on = 0; 
 
-QoI = 0; % u mid
-% QoI = 1; % cylinder
+% QoI = 0; % u mid
+QoI = 1; % cylinder
 
 
 if QoI == 0
@@ -64,7 +64,7 @@ r_symbol = {'-.+','-.*','-.s','-.d'};
 
 r_string = cell(length(r)+2,1);
 r_string(1:2,:) = {'$H$'; '$L$'};
-r_string(3:end) = cellstr(num2str(r', 'B(r=%-d)')); 
+r_string(3:end) = cellstr(num2str(r', '$B(r=%-d)$')); 
 
 r_string_variance = r_string([1,3:end]); 
 
@@ -101,8 +101,10 @@ end
 ylabel('Average Relative Error in Mean','interpreter','latex','Fontsize',FS)
 xlabel('$n$','interpreter','latex','Fontsize',FS)
 axis tight
-set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis);box on
+set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis,'TickLabelInterpreter','latex'); box on
 set(gcf, 'Position', size_1)
+legend(r_string,'interpreter', 'latex', 'fontsize', FS_leg)
+
 % grid on
 set(gcf, 'Position', size_1)
 
@@ -120,10 +122,14 @@ end
 xlabel('$n$','interpreter','latex','Fontsize',FS)
 ylabel('Average Relative Error in Variance','interpreter','latex','Fontsize',FS)
 axis tight
-set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis);box on
+set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis,'TickLabelInterpreter','latex'); box on
 legend(r_string,'interpreter', 'latex', 'fontsize', FS_leg)
 % grid on 
 set(gcf, 'Position', size_2)
+yl = ylim; 
+ylim([yl(1),1])
+new_labels = [1e-1, 1];
+set(gca,'YTick', new_labels);
 
 if save_on == 1
     saveas(gcf,strcat('Plots/',results_name,'N_r'),'epsc')
@@ -158,11 +164,11 @@ xlabel('Index $i$', 'interpreter', 'latex', 'fontsize', FS)
 ylabel('Normalized Eigenvalue', 'interpreter', 'latex', 'fontsize', FS)
 axis tight
 xlim([1,10])
-set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis);box on
+set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis,'TickLabelInterpreter','latex'); box on
 % grid on
 set(gcf,'Position',size_1)
 
-legend([p1,p2, p3, p4],{'L QoI 1','Ref QoI 1', 'L QoI 2','Ref QoI 2'},'interpreter', 'latex', 'fontsize', FS_leg,'Location','NorthEast')
+legend([p1,p2, p3, p4],{'$L$ $T_{\mathrm{cylinder}}$','Ref $T_{\mathrm{cylinder}}$', '$L$ $T_{x=0.2}$','Ref $T_{x=0.2}$'},'interpreter', 'latex', 'fontsize', FS_leg,'Location','NorthEast')
 
 if save_on == 1
     saveas(gcf,strcat('Plots/',results_name,'eigen'),'epsc')
@@ -176,40 +182,44 @@ load(strcat('Results/',results_name, 'mean_var'));
 
 figure
 subplot(1,2,1)
-p0 = plot(x_h, mean(u_ref),'k:+','LineWidth',LW);
+p0 = plot(x_h, c_ref(:,1),'k:+','LineWidth',LW);
 hold on
-p1 = plot(x_h, mean(u_hi),'-','color',c1,'LineWidth',LW);
-p2 = plot(x_l, mean(u_low),'--','color',c2,'LineWidth',LW);
-p3 = plot(x_h, mean(u_bi),'-.','color',c3,'LineWidth',LW);
+p1 = plot(x_h, c_hi(:,1),'-','color',c1,'LineWidth',LW);
+p2 = plot(x_l, c_low(:,1),'--','color',c2,'LineWidth',LW);
+p3 = plot(x_h, c_bi(:,1),'-.','color',c3,'LineWidth',LW);
+
 if QoI == 0
     xlabel('$y$','interpreter', 'latex', 'fontsize', FS)
 else
     xlabel('$\theta$','interpreter', 'latex', 'fontsize', FS)
     xticks([-pi -pi/2 0 pi/2 pi])
-    xticklabels({'-\pi','-\pi/2','0','\pi/2','\pi'})
+    xticklabels({'$-\pi$','$-\pi/2$','0','$\pi/2$','$\pi$'})
     xlim([-pi, pi])
 end
 ylabel(strcat(label_name, ' Temperature Mean'),'interpreter', 'latex', 'fontsize', FS)
-set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis);box on
+legend([p0,p1,p2,p3],{'Ref','$H$','$L$', '$B$'},'interpreter', 'latex', 'fontsize', FS_leg)
+set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis,'TickLabelInterpreter','latex'); box on
 % title('Mean','interpreter', 'latex', 'fontsize', FS_axis)
 
 subplot(1,2,2)
-p0 = plot(x_h, var(u_ref),'k:+','LineWidth',LW);
+p0 = plot(x_h, sum(c_ref(:,2:end).^2,2),'k:+','LineWidth',LW);
 hold on
-p1 = plot(x_h, var(u_hi),'-','color',c1,'LineWidth',LW);
-p2 = plot(x_l, var(u_low),'--','color',c2,'LineWidth',LW);
-p3 = plot(x_h, var(u_bi),'-.','color',c3,'LineWidth',LW);
+p1 = plot(x_h, sum(c_hi(:,2:end).^2,2),'-','color',c1,'LineWidth',LW);
+p2 = plot(x_l, sum(c_low(:,2:end).^2,2),'--','color',c2,'LineWidth',LW);
+p3 = plot(x_h, sum(c_bi(:,2:end).^2,2),'-.','color',c3,'LineWidth',LW);
+
 if QoI == 0
     xlabel('$y$','interpreter', 'latex', 'fontsize', FS)
 else
     xlabel('$\theta$','interpreter', 'latex', 'fontsize', FS)
     xticks([-pi -pi/2 0 pi/2 pi])
-    xticklabels({'-\pi','-\pi/2','0','\pi/2','\pi'})
+    xticklabels({'$-\pi$','$-\pi/2$','$0$','$\pi/2$','$\pi$'})
     xlim([-pi, pi])
 end
 ylabel(strcat(label_name, ' Temperature Variance'),'interpreter', 'latex', 'fontsize', FS)
-set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis);box on
-legend([p0,p1,p2,p3],{'Ref','H','L', 'B'},'interpreter', 'latex', 'fontsize', FS_leg)
+legend([p0,p1,p2,p3],{'Ref','$H$','$L$', '$B$'},'interpreter', 'latex', 'fontsize', FS_leg)
+set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis,'TickLabelInterpreter','latex'); box on
+
 % title('Variance','interpreter', 'latex', 'fontsize', FS_axis)
 
 set(gcf, 'Position', size_2)
@@ -235,29 +245,104 @@ lim_max = max([efficacy_cy(:); efficacy_mid(:)]);
 
 figure
 subplot(1,2,1)
-h = pcolor(N_hi_vec, r_vec, efficacy_mid);
-set(h, 'EdgeColor', 'none');
-axis tight
-xlabel('$n$', 'interpreter', 'latex', 'fontsize', FS)
-ylabel('Approximation rank $r$', 'interpreter', 'latex', 'fontsize', FS)
-colorbar
-set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis);box on
-title('Error Bound Efficacy: Vertical Line','interpreter', 'latex', 'fontsize', FS_axis)
-caxis([lim_min, lim_max]); 
-
-subplot(1,2,2)
 h = pcolor(N_hi_vec, r_vec, efficacy_cy);
 set(h, 'EdgeColor', 'none');
 axis tight
 xlabel('$n$', 'interpreter', 'latex', 'fontsize', FS)
-ylabel('Approximation rank $r$', 'interpreter', 'latex', 'fontsize', FS)
-colorbar
-set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis);box on
+ylabel('Approximation Rank $r$', 'interpreter', 'latex', 'fontsize', FS)
+c =colorbar;
+c.TickLabelInterpreter = 'latex'; 
 caxis([lim_min, lim_max]); 
+set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis,'TickLabelInterpreter','latex'); box on
 title('Error Bound Efficacy: Cylinder Surface','interpreter', 'latex', 'fontsize', FS_axis)
+
+subplot(1,2,2)
+h = pcolor(N_hi_vec, r_vec, efficacy_mid);
+set(h, 'EdgeColor', 'none');
+axis tight
+xlabel('$n$', 'interpreter', 'latex', 'fontsize', FS)
+ylabel('Approximation Rank $r$', 'interpreter', 'latex', 'fontsize', FS)
+c =colorbar;
+c.TickLabelInterpreter = 'latex'; 
+caxis([lim_min, lim_max]); 
+set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis,'TickLabelInterpreter','latex'); box on
+title('Error Bound Efficacy: Vertical Line','interpreter', 'latex', 'fontsize', FS_axis)
+
+
+
 
 set(gcf, 'Position', size_2)
 
 if save_on == 1
     saveas(gcf,'Plots/GT_efficacy','epsc')
+end
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%% Mesh             
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+size_cylinder = [0,0,1250,225]; 
+
+figure 
+
+xlabel('$x$', 'interpreter', 'latex', 'fontsize', FS)
+ylabel('$y$', 'interpreter', 'latex', 'fontsize', FS)
+xlim([-0.2, 1.0]); 
+ylim([-0.1, 0.1]); 
+set(gcf, 'Position', size_cylinder)
+
+
+
+hold on
+I = imread('GT_mesh_2.png'); 
+h = image(xlim,ylim,I); 
+uistack(h,'bottom')
+
+set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis,'TickLabelInterpreter','latex'); box on
+new_labels = [-0.1, 0, 0.1];
+set(gca,'YTick', new_labels);
+
+% hold on
+% I = imread('GT_mesh_2.png'); 
+% h = image(xlim,ylim,I); 
+% uistack(h,'bottom')
+
+if save_on == 1
+    saveas(gcf,'Plots/GT_mesh_axis','epsc')
+end
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%% Colorbar for realizations             
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+figure 
+size_colorbar = [0,0,100,450]; 
+% xlabel('$x$', 'interpreter', 'latex', 'fontsize', FS)
+% ylabel('$y$', 'interpreter', 'latex', 'fontsize', FS)
+% xlim([-0.2, 1.0]); 
+new_x = []; 
+new_labels = [2.85e2,313.75,342.5,371.25,4e2];
+ylim([min(new_labels), max(new_labels)]); 
+set(gca,'YTick', new_labels);
+set(gca,'XTick', new_x);
+set(gca, 'YAxisLocation', 'right')
+
+set(gcf, 'Position', size_colorbar)
+set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis,'TickLabelInterpreter','latex'); %box on
+
+ax = gca; 
+% ax.YAxis.Label.String = num2str(new_labels);
+ax.XAxis.Visible = 'off';
+
+
+
+hold on
+I = imread('GT_colorbar.png'); 
+h = image(xlim,ylim,I); 
+uistack(h,'top')
+
+
+
+if save_on == 1
+    saveas(gcf,'Plots/GT_colorbar_axis','epsc')
 end

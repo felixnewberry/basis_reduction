@@ -11,6 +11,8 @@ function [bi_stats, mean_lam_hi, lam_ref, lam_low]...
 % u_ref     % Reference solution
 % xi_ref    % Reference stochastic inputs
 
+% sigma     % spg solver tolerance
+
 %%% Outputs: 
 
 
@@ -155,6 +157,8 @@ end
 bi_stats = cat(3,mean_mean_bi_err , mean_mean_hi_err, var_mean_bi_err, ...
     var_mean_hi_err, mean_var_bi_err , mean_var_hi_err ,...
     var_var_bi_err, var_var_hi_err);
+
+1; 
 
 end
 
