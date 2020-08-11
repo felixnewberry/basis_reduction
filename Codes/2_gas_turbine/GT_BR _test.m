@@ -92,7 +92,7 @@ p = 6;                          % PCE order
 N_hi = [110]; 
 
 % r = [3 8 10];                  % KL order
-r = 8; 
+r = 50; 
 
 % tolerance on residual used in spgl1 solver
 sigma = .007;
