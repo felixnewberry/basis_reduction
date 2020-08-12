@@ -1,10 +1,11 @@
-function [err_bi, err_ep_tau_bound, err_Bhat, err_E, err_T, Ir, err_E_exact,err_T_exact, err_CS_pre, err_CS_post, err_bi_N] = ...
-    br_ep_tau_error_dev(B, A, N_hi, n, psi_ref, psi_low, c_low, sigma, r, p, xi_low, pc_solver)
+function [err_bi, err_ep_tau_bound, err_Bhat, err_E, err_T, Ir, err_E_exact, ...
+    err_T_exact, err_CS_pre, err_CS_post, err_bi_N, err_bi_inf] = ...
+    br_ep_tau_error_dev(B, A, N_hi, n, psi_ref, psi_low, c_low, sigma, r, p, xi_low, pc_solver, n_est)
 % Compute bi-fidelity error and error bound quantities
 
 % Inputs: 
 % B - low-fidelity samples
-% A - highfidelity samples
+% A - highfidelity samples - first n_est correspond to B - then additional
 % N_hi - number of high-fidelity samples
 % n - number of samples used to compute bound
 % psi_ref - pc basis of complete high fidelity samples
@@ -32,7 +33,7 @@ psi_hi= psi_ref(sample,:);
 opts = spgSetParms('iterations',10000,'verbosity',0);
 
 %             Hi fid PCE solved for via ell_1 minimization
-c_hi = spg_mmv(psi_hi,u_hi,sigma*norm(A),opts);            
+c_hi = spg_mmv(psi_hi,u_hi,sigma*norm(A(:,1:n_est)),opts);            
 %             c_hi = psi_hi\u_hi; 
 c_hi = c_hi';
 
@@ -59,23 +60,25 @@ c_hi = c_hi';
 [~, ~, c_bi,~, ~, alpha2]= BR_FN(u_hi,psi_hi,c_hi,c_low,r,sigma); 
             
 %%% Bi-fidelity error calculation
-psi_bi = psi_ref(:,2:end)*alpha2';
+psi_bi = psi_ref(1:n_est,2:end)*alpha2';
 %psi_bi_ref = psi_ref(:,2:end)*alpha2';
 % New reduced basis including column of ones
-psi_bi = [ones(size(A, 2), 1) psi_bi]; 
+psi_bi = [ones(size(A(:,1:n_est), 2), 1) psi_bi]; 
 % remove r+1 column before solving for coefficients.
 psi_bi = psi_bi(:,1:end); 
-A_hat = (psi_bi*c_bi')'; 
-err_bi = norm(A_hat-A);
+A_hat_n = (psi_bi*c_bi')'; 
+err_bi = norm(A_hat_n-A(:,1:n_est));
 
 
 %%% estimate with all samples
 
-[~, ~, c_bi_N,~, ~, ~]= BR_FN(A',psi_ref,c_hi,c_low,r,sigma); 
-
+[~, ~, c_bi_N,~, ~, ~]= BR_FN(A(:,1:n_est)',psi_ref(1:n_est,:),c_hi,c_low,r,sigma); 
 A_hat_N = (psi_bi*c_bi_N')'; 
-err_bi_N = norm(A_hat-A_hat_N);
+err_bi_N = norm(A_hat_n-A_hat_N);
 
+[~, ~, c_bi_inf,~, ~, ~]= BR_FN(A',psi_ref,c_hi,c_low,r,sigma); 
+A_hat_inf = (psi_bi*c_bi_inf')'; 
+err_bi_inf = norm(A_hat_n-A_hat_inf)+norm(A_hat_N-A_hat_inf);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Error bound calculation
@@ -120,7 +123,7 @@ A_R = A(:,rand_sample);
 [err_ep_tau_bound, err_E, err_T, Ir] = ...
     br_ep_tau_bound_dev(B_R, A_R, err_Bhat, sb, n, N);
 
-[err_E_exact,err_T_exact, err_CS_pre, err_CS_post] = br_E_T_dev(B,A, Ir, psi_bi_L');
+[err_E_exact,err_T_exact, err_CS_pre, err_CS_post] = br_E_T_dev(B, A(:,1:n_est), Ir, psi_bi_L');
 
 end
 

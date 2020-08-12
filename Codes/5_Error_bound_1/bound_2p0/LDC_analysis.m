@@ -65,6 +65,20 @@ gridpt_h = 1:size(highFiResults(:,1));
 u_ref = highFiResults(gridpt_h,:)';
 u_low = lowFiResults(gridpt_l,:)';
 
+
+% append results with new data: 
+
+load('u_matrix_hi2.mat')
+u_high = u_matrix_0; 
+load('u_nu_vec_hi.mat')
+xi_hi_2 = xi_hi; 
+
+u_ref = [u_ref; u_high];
+xi_ref = [xi_ref; xi_hi_2]; 
+
+n_est = 200; 
+
+
 % 
 % load('airfoil_data_2/Uf.mat', 'Uf')
 % u_ref = Uf'; 
@@ -117,16 +131,18 @@ timerval = tic;
 
 Uc = u_low'; Uf = u_ref'; 
 B = Uc/norm(Uc,'fro');
+A = Uf(:,1:n_est)/norm(Uf(:,1:n_est),'fro');
 
-
-A = Uf/norm(Uf,'fro');
+A_inf = Uf/norm(Uf(:,1:n_est),'fro');
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% PCE - choose mmv or individual spg
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%% reference solution
-[c_ref, psi_ref] = my_pce(xi_ref, p, A', sigma, pc_solver, pc_val); 
+%%% reference solution - psi_ref is used... 
+% [c_ref, psi_ref] = my_pce(xi_ref, p, A', sigma, pc_solver, pc_val); 
+
+[c_ref, psi_ref] = my_pce(xi_ref, p, A_inf', sigma, pc_solver, pc_val); 
 t_ref = toc(timerval); 
 fprintf('Reference solution : %d s.\n', t_ref);
 timerval = tic; 
@@ -165,20 +181,20 @@ err_T_exact = zeros(1,length(N_hi_vec));
 err_CS_pre = zeros(1,length(N_hi_vec));
 err_CS_post = zeros(1,length(N_hi_vec));
 err_bi_N = zeros(n_rep,length(N_hi_vec));
+err_bi_inf = zeros(n_rep,length(N_hi_vec));
 
 
 
 for i_rep =1:n_rep
-    
-for i_N_hi = 1:length(N_hi_vec)
-    [err_bi(i_rep, i_N_hi), err_ep_tau_bound(i_N_hi), err_Bhat(i_N_hi),...
-        err_E(i_N_hi), err_T(i_N_hi), Ir, err_E_exact(i_N_hi),...
-        err_T_exact(i_N_hi), err_CS_pre(i_N_hi), err_CS_post(i_N_hi), err_bi_N(i_rep,i_N_hi)] = ...
-                br_ep_tau_error_dev(B, A, N_hi_vec(i_N_hi), R, psi_ref, psi_low, c_low, sigma, ...
-                r, p, xi_low, pc_solver);
+    for i_N_hi = 1:length(N_hi_vec)
+        [err_bi(i_rep, i_N_hi), err_ep_tau_bound(i_N_hi), err_Bhat(i_N_hi),...
+            err_E(i_N_hi), err_T(i_N_hi), Ir, err_E_exact(i_N_hi),...
+            err_T_exact(i_N_hi), err_CS_pre(i_N_hi), err_CS_post(i_N_hi), err_bi_N(i_rep,i_N_hi), err_bi_inf(i_rep,i_N_hi)] = ...
+                    br_ep_tau_error_dev(B, A_inf, N_hi_vec(i_N_hi), R, psi_ref, psi_low, c_low, sigma, ...
+                    r, p, xi_low, pc_solver, n_est);
+    end
 end
 
-end
 % note that n samps in bound is fixed. Right now I'm changing n high
 % sampes. ie R is fixed n is changing. 
 
@@ -193,6 +209,8 @@ p3 = plot(N_hi_vec, 2*err_E_exact+err_T_exact.*err_Bhat,'-.s','Color',c3,...
 p4 = plot(N_hi_vec, err_E_exact+err_T_exact.*err_Bhat+err_CS_pre,':d','Color',c4,...
     'LineWidth',LW,'MarkerSize',MS);
 p5 = plot(N_hi_vec, err_ep_tau_bound+err_bi_N,'-<','Color',c5,...
+    'LineWidth',LW,'MarkerSize',MS);
+p6 = plot(N_hi_vec, err_ep_tau_bound+err_bi_N+err_bi_inf,'->','Color',c6,...
     'LineWidth',LW,'MarkerSize',MS);
 hold off
 axis tight
@@ -212,6 +230,9 @@ legend([p1(1),p2, p3, p4,p5(1)],{'True', '$\epsilon ( \tau )$','E, T Exact', 'Pr
 
 figure
 p5 = plot(N_hi_vec, err_bi_N,'-<','Color',c5,...
+    'LineWidth',LW,'MarkerSize',MS);
+hold on
+p6 = plot(N_hi_vec, err_ep_tau_bound+err_bi_N+err_bi_inf,'->','Color',c6,...
     'LineWidth',LW,'MarkerSize',MS);
 axis tight
 xlabel('$n$ samples', 'interpreter', 'latex', 'fontsize', FS)
