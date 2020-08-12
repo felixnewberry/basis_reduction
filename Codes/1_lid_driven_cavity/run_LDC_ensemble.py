@@ -36,7 +36,9 @@ nu_vec = content['nu_vec']
 # content = loadmat('./sample_i.mat')
 # sample_i = int(content['sample_i'])
 
-content = loadmat('./LDC_data/inputs_vec.mat')
+# content = loadmat('./LDC_data/inputs_vec.mat')
+content = loadmat('./LDC_data/inputs_vec_high.mat')
+
 nx = int(content['nx'])
 delta_u = float(content['delta_u'])
 delta_nu = float(content['delta_nu'])
