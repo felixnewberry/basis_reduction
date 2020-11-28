@@ -242,7 +242,6 @@ efficacy_mid = efficacy;
 lim_min = min([efficacy_cy(:); efficacy_mid(:)]);
 lim_max = max([efficacy_cy(:); efficacy_mid(:)]);
 
-
 figure
 subplot(1,2,1)
 h = pcolor(N_hi_vec, r_vec, efficacy_cy);
