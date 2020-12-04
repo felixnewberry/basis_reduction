@@ -45,7 +45,8 @@ n_points = size(u_hi,2);
 P = size(psi_hi,2); 
 
 c_data{n_points} = []; 
-parfor i_points=1:n_points
+%parfor i_points=1:n_points
+for i_points=1:n_points
     opts = spgSetParms('iterations',8000,'verbosity',0,'optTol',1e-9,'bpTol',1e-9);
 
     delta = sigma*norm_u_vec(i_points);

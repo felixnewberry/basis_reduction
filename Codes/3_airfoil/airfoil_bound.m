@@ -67,7 +67,7 @@ xi_low = xi_ref;
 n_points = 200; 
 x_l = linspace(-1,1,n_points); 
 
-n_est = 200; 
+n_est = 500; 
 xi_low = xi_low(1:n_est,:); 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -140,11 +140,9 @@ err_low = norm(B-A)/norm(A);
 N_hi_vec = 3:50; 
 r_vec = 3:20; 
 
-% n_vec = r_vec+10; 
-
-% r_vec = [3,10,20]; 
-% n_vec = r_vec+10
-% N_hi_vec = [3,20,50];
+r_vec = [3, 20]; 
+N_hi_vec = [3,50];
+n_reps = 2;
 
 length_n = length(N_hi_vec);
 length_r = length(r_vec); 
@@ -152,7 +150,7 @@ length_r = length(r_vec);
 n_r_results{n_reps} = [];
 
 % Repeat
-for i_rep = 1:n_reps
+parfor i_rep = 1:n_reps
     i_rep
     n_r_results{i_rep}.efficacy = zeros(length_r,length_n); 
     n_r_results{i_rep}.prob = zeros(length_r,length_n); 
@@ -181,10 +179,10 @@ save('Results/Airfoil_efficacy', 'r_vec', 'efficacy_mat', 'prob_mat', 'N_hi_vec'
 %%% Single point:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-r = 5; 
+r = 8; 
 R = r+10;
 
-N_hi = 20; 
+N_hi = 30; 
 
 err_bi_sum_rep  = zeros(n_est,n_reps);
 err_bi_mean_rep = zeros(n_points, n_reps); % mean(err_bi_mat,2)

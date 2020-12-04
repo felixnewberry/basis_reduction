@@ -105,6 +105,13 @@ set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis,'TickLabelInterpreter','latex')
 set(gcf, 'Position', size_1)
 legend(r_string,'interpreter', 'latex', 'fontsize', FS_leg)
 
+if QoI == 1
+    yl = ylim; 
+    ylim([1e-3, yl(2)])
+    new_labels = [1e-3, 1e-2];
+    set(gca,'YTick', new_labels);
+end
+
 % grid on
 set(gcf, 'Position', size_1)
 
@@ -228,55 +235,6 @@ if save_on == 1
     saveas(gcf,strcat('Plots/',results_name,'mean_var'),'epsc')
 end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% Bound efficacy 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-load('Results/GT_efficacy_cyl');
-efficacy_cy = efficacy; 
-% efficacy_cy = efficacy_mid; % Until fixed
-
-load('Results/GT_efficacy_mid');
-efficacy_mid = efficacy; 
-
-% Set common limits 
-lim_min = min([efficacy_cy(:); efficacy_mid(:)]);
-lim_max = max([efficacy_cy(:); efficacy_mid(:)]);
-
-figure
-subplot(1,2,1)
-h = pcolor(N_hi_vec, r_vec, efficacy_cy);
-set(h, 'EdgeColor', 'none');
-axis tight
-xlabel('$n$', 'interpreter', 'latex', 'fontsize', FS)
-ylabel('Approximation Rank $r$', 'interpreter', 'latex', 'fontsize', FS)
-c =colorbar;
-c.TickLabelInterpreter = 'latex'; 
-caxis([lim_min, lim_max]); 
-set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis,'TickLabelInterpreter','latex'); box on
-title('Error Bound Efficacy: Cylinder Surface','interpreter', 'latex', 'fontsize', FS_axis)
-
-subplot(1,2,2)
-h = pcolor(N_hi_vec, r_vec, efficacy_mid);
-set(h, 'EdgeColor', 'none');
-axis tight
-xlabel('$n$', 'interpreter', 'latex', 'fontsize', FS)
-ylabel('Approximation Rank $r$', 'interpreter', 'latex', 'fontsize', FS)
-c =colorbar;
-c.TickLabelInterpreter = 'latex'; 
-caxis([lim_min, lim_max]); 
-set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis,'TickLabelInterpreter','latex'); box on
-title('Error Bound Efficacy: Vertical Line','interpreter', 'latex', 'fontsize', FS_axis)
-
-
-
-
-set(gcf, 'Position', size_2)
-
-if save_on == 1
-    saveas(gcf,'Plots/GT_efficacy','epsc')
-end
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%% Mesh             
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -344,4 +302,173 @@ uistack(h,'top')
 
 if save_on == 1
     saveas(gcf,'Plots/GT_colorbar_axis','epsc')
+end
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Bound efficacy 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% load('Results/GT_efficacy_cyl');
+% efficacy_cy = efficacy; 
+% % efficacy_cy = efficacy_mid; % Until fixed
+% 
+% load('Results/GT_efficacy_mid');
+% efficacy_mid = efficacy; 
+% 
+% % Set common limits 
+% lim_min = min([efficacy_cy(:); efficacy_mid(:)]);
+% lim_max = max([efficacy_cy(:); efficacy_mid(:)]);
+% 
+% figure
+% subplot(1,2,1)
+% h = pcolor(N_hi_vec, r_vec, efficacy_cy);
+% set(h, 'EdgeColor', 'none');
+% axis tight
+% xlabel('$n$', 'interpreter', 'latex', 'fontsize', FS)
+% ylabel('Approximation Rank $r$', 'interpreter', 'latex', 'fontsize', FS)
+% c =colorbar;
+% c.TickLabelInterpreter = 'latex'; 
+% caxis([lim_min, lim_max]); 
+% set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis,'TickLabelInterpreter','latex'); box on
+% title('Error Bound Efficacy: Cylinder Surface','interpreter', 'latex', 'fontsize', FS_axis)
+% 
+% subplot(1,2,2)
+% h = pcolor(N_hi_vec, r_vec, efficacy_mid);
+% set(h, 'EdgeColor', 'none');
+% axis tight
+% xlabel('$n$', 'interpreter', 'latex', 'fontsize', FS)
+% ylabel('Approximation Rank $r$', 'interpreter', 'latex', 'fontsize', FS)
+% c =colorbar;
+% c.TickLabelInterpreter = 'latex'; 
+% caxis([lim_min, lim_max]); 
+% set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis,'TickLabelInterpreter','latex'); box on
+% title('Error Bound Efficacy: Vertical Line','interpreter', 'latex', 'fontsize', FS_axis)
+% 
+% 
+% 
+% 
+% set(gcf, 'Position', size_2)
+% 
+% if save_on == 1
+%     saveas(gcf,'Plots/GT_efficacy','epsc')
+% end
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Bound efficacy 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+load(strcat('Results/',results_name,'efficacy'));
+
+figure
+h = pcolor(N_hi_vec, r_vec, efficacy_mat);
+set(h, 'EdgeColor', 'none');
+axis tight
+xlabel('$n$', 'interpreter', 'latex', 'fontsize', FS)
+ylabel('Approximation Rank $r$', 'interpreter', 'latex', 'fontsize', FS)
+c =colorbar;
+c.TickLabelInterpreter = 'latex'; 
+set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis,'TickLabelInterpreter','latex'); box on
+% title('Efficacy','interpreter', 'latex', 'fontsize', FS_leg)
+set(gcf, 'Position', size_1)
+
+if save_on == 1
+    saveas(gcf,strcat('Plots/',results_name,'efficacy'),'epsc')
+end
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Bound - single N and r 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+load(strcat('Results/',results_name,'bound_results'));
+
+% Stats that are useful: 
+% efficacy_vec compares eqn 29, 27_sum, 42, mean(p_39) and p41
+efficacy_vec
+%rho_vec compares r*rho_k*2, vs expression in eqn prior - sum U_hat^2/Y...
+rho_vec
+
+figure
+plot(x_h,theta_vec,'-x','Color',c1, 'LineWidth',LW,'MarkerSize',MS);
+axis tight
+if QoI == 0
+    xlabel('$y$','interpreter', 'latex', 'fontsize', FS)
+else
+    xlabel('$\theta$','interpreter', 'latex', 'fontsize', FS)
+    xticks([-pi -pi/2 0 pi/2 pi])
+    xticklabels({'$-\pi$','$-\pi/2$','0','$\pi/2$','$\pi$'})
+    xlim([-pi, pi])
+end
+ylabel('$\Theta$','interpreter', 'latex', 'fontsize', FS)
+axis tight
+% ylim([1e-8,1])
+%xlim([1,10])
+%yticks([1e-4, 1e-2,1e0])
+set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis,'TickLabelInterpreter','latex'); box on
+% grid on
+set(gcf,'Position',size_1)
+
+if save_on == 1
+    saveas(gcf,strcat('Plots/',results_name,'theta'),'epsc')
+end
+
+figure
+plot(x_h, Y_Nh_vec,'-x','Color',c1,...
+    'LineWidth',LW,'MarkerSize',MS);
+axis tight
+if QoI == 0
+    xlabel('$y$','interpreter', 'latex', 'fontsize', FS)
+else
+    xlabel('$\theta$','interpreter', 'latex', 'fontsize', FS)
+    xticks([-pi -pi/2 0 pi/2 pi])
+    xticklabels({'$-\pi$','$-\pi/2$','0','$\pi/2$','$\pi$'})
+    xlim([-pi, pi])
+end
+ylabel('$Y$','interpreter', 'latex', 'fontsize', FS)
+axis tight
+% ylim([1e-8,1])
+% xlim([1,10])
+% yticks([1e-4, 1e-2,1e0])
+set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis,'TickLabelInterpreter','latex'); box on
+% grid on
+set(gcf,'Position',size_1)
+
+if save_on == 1
+    saveas(gcf,strcat('Plots/',results_name,'Y'),'epsc')
+end
+
+figure
+p1 = semilogy(x_h, sqrt(err_bi_mat),'-o','Color',c1,'LineWidth',LW,'MarkerSize',MS);
+hold on
+p2 = semilogy(x_h, sqrt(bound_27),'--s','Color',c3,'LineWidth',LW,'MarkerSize',MS);
+p3 = semilogy(x_h, sqrt(bound_40),'-.x','Color',c4,'LineWidth',LW,'MarkerSize',MS);
+hold off
+axis tight
+if QoI == 0
+    xlabel('$y$','interpreter', 'latex', 'fontsize', FS)
+else
+    xlabel('$\theta$','interpreter', 'latex', 'fontsize', FS)
+    xticks([-pi -pi/2 0 pi/2 pi])
+    xticklabels({'$-\pi$','$-\pi/2$','0','$\pi/2$','$\pi$'})
+    xlim([-pi, pi])
+end
+
+if QoI == 0
+    yl = ylim; 
+    ylim([yl(1), 1e-3])
+    new_labels = [1e-4, 1e-3];
+    set(gca,'YTick', new_labels);
+end
+
+ylabel('Error','interpreter', 'latex', 'fontsize', FS)
+% axis tight
+% first and last points are zero so don't plot these: 
+set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis,'TickLabelInterpreter','latex'); box on
+% grid on
+set(gcf,'Position',size_1)
+
+legend([p1,p2,p3],{'True Mean','Bound (29)', 'Bound (43)'}...
+    ,'interpreter', 'latex', 'fontsize', FS_leg,'Location','SouthEast')
+
+if save_on == 1
+    saveas(gcf,strcat('Plots/',results_name,'bound'),'epsc')
 end

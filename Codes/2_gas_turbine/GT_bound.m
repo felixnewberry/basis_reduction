@@ -40,8 +40,8 @@ c6 = [0.3010, 0.7450, 0.9330];
 %%% Chose QoI
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% QoI = 0; % u mid
-QoI = 1; % cylinder
+QoI = 0; % u mid
+% QoI = 1; % cylinder
 
 if QoI == 0
     results_name = 'GT_mid_';
@@ -145,7 +145,7 @@ gridpt_h = 1:length(x_h);
 u_ref = highFiResults(gridpt_h,:)';
 u_low = lowFiResults(gridpt_l,:)';
 
-n_est = 100; 
+n_est = 200; 
 xi_low = xi_low(1:n_est,:); 
 
 n_points = length(x_h); 
@@ -220,11 +220,9 @@ fprintf('Low fidelity solution : %d s.\n', t_low);
 N_hi_vec = 3:50; 
 r_vec = 3:20; 
 
-% n_vec = r_vec+10; 
-
-% r_vec = [3,10,20]; 
-% n_vec = r_vec+10
-% N_hi_vec = [3,20,50];
+% r_vec = [3,20]; 
+% N_hi_vec = [3,50];
+% n_reps = 2; 
 
 length_n = length(N_hi_vec);
 length_r = length(r_vec); 
@@ -232,8 +230,7 @@ length_r = length(r_vec);
 n_r_results{n_reps} = [];
 
 % Repeat
-for i_rep = 1:n_reps
-    i_rep
+parfor i_rep = 1:n_reps
     n_r_results{i_rep}.efficacy = zeros(length_r,length_n); 
     n_r_results{i_rep}.prob = zeros(length_r,length_n); 
 
@@ -255,8 +252,9 @@ prob_mat = mean(cat(3,stat_struct.prob),3);
 
 % efficacy_mat = mean_ep_tau_bound./mean_bi_err; 
 
-save(strcat('Results/',results_name,'efficacy'), 'r_vec', 'efficacy_mat', 'prob_mat', 'N_hi_vec')
-
+if save_on == 1
+    save(strcat('Results/',results_name,'efficacy'), 'r_vec', 'efficacy_mat', 'prob_mat', 'N_hi_vec')
+end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Single point:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -264,7 +262,7 @@ save(strcat('Results/',results_name,'efficacy'), 'r_vec', 'efficacy_mat', 'prob_
 r = 8; 
 R = r+10;
 
-N_hi = 20; 
+N_hi = 50; 
 
 err_bi_sum_rep  = zeros(n_est,n_reps);
 err_bi_mean_rep = zeros(n_points, n_reps); % mean(err_bi_mat,2)
@@ -342,10 +340,12 @@ efficacy_vec = [efficacy_29, efficacy_27_sum, efficacy_42, mean(p_39), p_41];
 % share this 
 rho_vec = [r*rho_k^2, sum(U_hat_vec.^2./Y_Nh_vec)]; 
 
-save(strcat('Results/',results_name,'bound_results'), 'r_vec', 'efficacy_mat',...
+if save_on == 1
+    save(strcat('Results/',results_name,'bound_results'), 'r_vec', 'efficacy_mat',...
     'N_hi_vec', 'r', 'R', 'N_hi', 'n_reps', 'x_h', ...
     'efficacy_27', 'efficacy_40', 'theta_vec', 'Y_Nh_vec', 'err_bi_mat',...
     'bound_27', 'bound_40', 'efficacy_vec', 'rho_vec');
+end
 
 % [efficacy_29, efficacy_27_sum, efficacy_42, mean(p_39), p_41] % interesting to compare... 
 % 

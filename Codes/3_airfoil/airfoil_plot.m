@@ -221,7 +221,7 @@ rho_vec
 figure
 plot(x_l,theta_vec,'-x','Color',c1, 'LineWidth',LW,'MarkerSize',MS);
 axis tight
-xlabel('$x$', 'interpreter', 'latex', 'fontsize', FS)
+xlabel('Location on Airfoil','interpreter', 'latex', 'fontsize', FS)
 ylabel('$\Theta$', 'interpreter', 'latex', 'fontsize', FS)
 axis tight
 % ylim([1e-8,1])
@@ -236,10 +236,10 @@ if save_on == 1
 end
 
 figure
-semilogy(x_l, Y_Nh_vec,'-x','Color',c1,...
+plot(x_l, Y_Nh_vec,'-x','Color',c1,...
     'LineWidth',LW,'MarkerSize',MS);
 axis tight
-xlabel('$x$', 'interpreter', 'latex', 'fontsize', FS)
+xlabel('Location on Airfoil','interpreter', 'latex', 'fontsize', FS)
 ylabel('$Y$', 'interpreter', 'latex', 'fontsize', FS)
 axis tight
 % ylim([1e-8,1])
@@ -260,7 +260,7 @@ p2 = semilogy(x_l, sqrt(bound_27),'--s','Color',c3,'LineWidth',LW,'MarkerSize',M
 p3 = semilogy(x_l, sqrt(bound_40),'-.x','Color',c4,'LineWidth',LW,'MarkerSize',MS);
 hold off
 axis tight
-xlabel('$x$', 'interpreter', 'latex', 'fontsize', FS)
+xlabel('Location on Airfoil','interpreter', 'latex', 'fontsize', FS)
 ylabel('Error', 'interpreter', 'latex', 'fontsize', FS)
 axis tight
 % first and last points are zero so don't plot these: 
@@ -272,7 +272,7 @@ set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis,'TickLabelInterpreter','latex')
 % grid on
 set(gcf,'Position',size_1)
 
-legend([p1,p2,p3],{'True Mean','Bound 27', 'Bound 40'}...
+legend([p1,p2,p3],{'True Mean','Bound (29)', 'Bound (43)'}...
     ,'interpreter', 'latex', 'fontsize', FS_leg,'Location','SouthEast')
 
 if save_on == 1

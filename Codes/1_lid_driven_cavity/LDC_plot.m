@@ -426,7 +426,7 @@ set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis,'TickLabelInterpreter','latex')
 % grid on
 set(gcf,'Position',size_1)
 
-legend([p1,p2,p3],{'True Mean','Bound 27', 'Bound 40'}...
+legend([p1,p2,p3],{'True Mean','Bound (29)', 'Bound (43)'}...
     ,'interpreter', 'latex', 'fontsize', FS_leg,'Location','SouthEast')
 
 if save_on == 1
