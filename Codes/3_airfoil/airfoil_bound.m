@@ -8,7 +8,7 @@ clc
 
 tic 
 
-save_on = 0; 
+%save_on = 0; 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%% Plot Settings                    
@@ -140,9 +140,9 @@ err_low = norm(B-A)/norm(A);
 N_hi_vec = 3:50; 
 r_vec = 3:20; 
 
-r_vec = [3, 20]; 
-N_hi_vec = [3,50];
-n_reps = 2;
+%r_vec = [3, 20]; 
+%N_hi_vec = [3,50];
+%n_reps = 2;
 
 length_n = length(N_hi_vec);
 length_r = length(r_vec); 

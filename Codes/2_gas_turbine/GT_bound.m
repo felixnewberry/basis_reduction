@@ -8,7 +8,7 @@ clc
 
 tic 
 
-save_on = 0; 
+save_on = 1; 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%% Plot Settings                    
@@ -41,7 +41,7 @@ c6 = [0.3010, 0.7450, 0.9330];
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 QoI = 0; % u mid
-% QoI = 1; % cylinder
+%QoI = 1; % cylinder
 
 if QoI == 0
     results_name = 'GT_mid_';
@@ -231,6 +231,7 @@ n_r_results{n_reps} = [];
 
 % Repeat
 parfor i_rep = 1:n_reps
+    i_rep
     n_r_results{i_rep}.efficacy = zeros(length_r,length_n); 
     n_r_results{i_rep}.prob = zeros(length_r,length_n); 
 

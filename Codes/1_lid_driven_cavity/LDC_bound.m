@@ -148,14 +148,12 @@ err_low = norm(B-A)/norm(A);
 % Where is the parfor stuff? Maybe I didn't do that for these... which is
 % silly. Try run the LDC now and see how it goes? 
 N_hi_vec = 3:50; 
+r_vec = 3:20; 
 
-% r_vec = 3:20; 
-% n_vec = r_vec+10; 
+% N_hi_vec = [3,20];
+% r_vec = [3, 50]; 
 % n_reps = 2; 
 
-r_vec = [3,10,20]; 
-% n_vec = r_vec+10
-N_hi_vec = [3,20,50];
 
 length_n = length(N_hi_vec);
 length_r = length(r_vec); 
