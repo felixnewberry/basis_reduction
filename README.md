@@ -8,7 +8,7 @@ Contains the code neccessary for stochastic model reduction, as described in pap
 3. spgl1-1.9 
 
 # Code specific to each numerical example
-1. Cantilever Beam
-2. Lid-driven Cavity
-3. L-shaped Elasticity
+1. Lid-driven Cavity
+2. Gas Turbine
+3. NACA Airfoil
 
