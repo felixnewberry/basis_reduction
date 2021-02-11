@@ -8,7 +8,7 @@ clc
 
 tic 
 
-save_on = 1; 
+save_on = 0; 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%% Plot Settings                    
@@ -40,8 +40,8 @@ c6 = [0.3010, 0.7450, 0.9330];
 %%% Chose QoI
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-QoI = 0; % u mid
-%QoI = 1; % cylinder
+% QoI = 0; % u mid
+QoI = 1; % cylinder
 
 if QoI == 0
     results_name = 'GT_mid_';
@@ -217,8 +217,11 @@ fprintf('Low fidelity solution : %d s.\n', t_low);
 
 % Where is the parfor stuff? Maybe I didn't do that for these... which is
 % silly. Try run the LDC now and see how it goes? 
-N_hi_vec = 3:50; 
-r_vec = 3:20; 
+% N_hi_vec = 3:50; 
+% r_vec = 3:20; 
+
+N_hi_vec = 50; 
+r_vec = 8; 
 
 % r_vec = [3,20]; 
 % N_hi_vec = [3,50];
@@ -230,7 +233,8 @@ length_r = length(r_vec);
 n_r_results{n_reps} = [];
 
 % Repeat
-parfor i_rep = 1:n_reps
+%parfor i_rep = 1:n_reps
+for i_rep = 1:n_reps
     i_rep
     n_r_results{i_rep}.efficacy = zeros(length_r,length_n); 
     n_r_results{i_rep}.prob = zeros(length_r,length_n); 

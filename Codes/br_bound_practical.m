@@ -222,19 +222,28 @@ rho_W =  mean(abs(W-mu_W),2).^3;
 
 % For a given probability (39) and (41) 
 
+t = 4;
 phi_t = normcdf(t); 
 
 % % eqn (39)
 % p_39 = phi_t - C.*rho_V./(sigma_V.^3*sqrt(N_hi));
 % bound_40 = term_1.*(mu_V+t.*sigma_V/sqrt(N_hi)); 
-
+ 
 p_41 = phi_t - C.*rho_W./(sigma_W.^3*sqrt(N_hi));
 bound = term_1*(mu_W + t*sigma_W/sqrt(N_hi)); 
+
+[t, phi_t, p_41, bound] 
 
 % efficacy_40 = sqrt(bound_40./mean(err_bi_mat,2));
 % efficacy_42 = sqrt(bound_42./mean(err_bi_sum));
 % rho_W./(sigma_W.^3*sqrt(N_hi)) % why is this always 0.2236? 
 
 efficacy = sqrt(bound./mean(err_bi_sum));
+
+
+% Calculate probability for mu: 
+% 1 - 2 r exp( -0.1 n mu^(-1))
+
+p_mu = 1 - 2*r*exp(-0.1*N_hi*(1/mu)); 
 end
 

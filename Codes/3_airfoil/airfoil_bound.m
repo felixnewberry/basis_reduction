@@ -8,7 +8,7 @@ clc
 
 tic 
 
-%save_on = 0; 
+save_on = 0; 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%% Plot Settings                    
@@ -137,8 +137,11 @@ err_low = norm(B-A)/norm(A);
 
 % Where is the parfor stuff? Maybe I didn't do that for these... which is
 % silly. Try run the LDC now and see how it goes? 
-N_hi_vec = 3:50; 
-r_vec = 3:20; 
+% N_hi_vec = 3:50; 
+% r_vec = 3:20; 
+
+N_hi_vec = 30; 
+r_vec = 8; 
 
 %r_vec = [3, 20]; 
 %N_hi_vec = [3,50];
@@ -150,7 +153,8 @@ length_r = length(r_vec);
 n_r_results{n_reps} = [];
 
 % Repeat
-parfor i_rep = 1:n_reps
+%parfor i_rep = 1:n_reps
+for i_rep = 1:n_reps
     i_rep
     n_r_results{i_rep}.efficacy = zeros(length_r,length_n); 
     n_r_results{i_rep}.prob = zeros(length_r,length_n); 
@@ -173,8 +177,9 @@ prob_mat = mean(cat(3,stat_struct.prob),3);
 
 % efficacy_mat = mean_ep_tau_bound./mean_bi_err; 
 
-save('Results/Airfoil_efficacy', 'r_vec', 'efficacy_mat', 'prob_mat', 'N_hi_vec')
-
+if save_on == 1
+    save('Results/Airfoil_efficacy', 'r_vec', 'efficacy_mat', 'prob_mat', 'N_hi_vec')
+end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Single point:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -261,10 +266,12 @@ efficacy_vec = [efficacy_29, efficacy_27_sum, efficacy_42, mean(p_39), p_41];
 % share this 
 rho_vec = [r*rho_k^2, sum(U_hat_vec.^2./Y_Nh_vec)]; 
 
+if save_on == 1
 save('Results/Airfoil_bound_results', 'r_vec', 'efficacy_mat',...
     'N_hi_vec', 'r', 'R', 'N_hi', 'n_reps', 'x_l', ...
     'efficacy_27', 'efficacy_40', 'theta_vec', 'Y_Nh_vec', 'err_bi_mat',...
     'bound_27', 'bound_40', 'efficacy_vec', 'rho_vec');
+end
 
 % figure
 % plot(x_l, efficacy_27,'-x','Color',c1,...

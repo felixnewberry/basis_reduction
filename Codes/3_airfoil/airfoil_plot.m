@@ -35,7 +35,7 @@ c4 = [0.4940, 0.1840, 0.5560];
 c5 = [0.4660, 0.6740, 0.1880]; 
 c6 = [0.3010, 0.7450, 0.9330]; 
 
-save_on = 0; 
+save_on = 1; 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%% Load data                  
@@ -272,7 +272,7 @@ set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis,'TickLabelInterpreter','latex')
 % grid on
 set(gcf,'Position',size_1)
 
-legend([p1,p2,p3],{'True Mean','Bound (29)', 'Bound (43)'}...
+legend([p1,p2,p3],{'True Mean','Bound (23)', 'Bound (34)'}...
     ,'interpreter', 'latex', 'fontsize', FS_leg,'Location','SouthEast')
 
 if save_on == 1
