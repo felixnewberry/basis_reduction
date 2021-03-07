@@ -110,9 +110,9 @@ C = 0.4748;
 % t = 4; %is .877
 % % t = 0.6 is .60
 % t = 0.6; 
-t=0.95;
+t = 2.0; %- phi_t = 1, p_41 = 0.87. 
 
-n_reps = 2;  
+n_reps = 30;  
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Pre-process
@@ -154,11 +154,11 @@ err_low = norm(B-A)/norm(A);
 % 
 % % Where is the parfor stuff? Maybe I didn't do that for these... which is
 % % silly. Try run the LDC now and see how it goes? 
-% % N_hi_vec = 3:50; 
-% % r_vec = 3:20; 
+% N_hi_vec = 3:50; 
+% r_vec = 3:20; 
 % 
-% N_hi_vec = 15;
-% r_vec = 3; 
+% % N_hi_vec = 15;
+% % r_vec = 3; 
 % 
 % % N_hi_vec = [3,20];
 % % r_vec = [3, 50]; 
@@ -171,8 +171,8 @@ err_low = norm(B-A)/norm(A);
 % n_r_results{n_reps} = [];
 % 
 % % Repeat
-% % parfor i_rep = 1:n_reps
-% for i_rep = 1:n_reps
+% parfor i_rep = 1:n_reps
+% % for i_rep = 1:n_reps
 % 
 %     i_rep
 %     n_r_results{i_rep}.efficacy = zeros(length_r,length_n); 
@@ -197,7 +197,7 @@ err_low = norm(B-A)/norm(A);
 % % efficacy_mat = mean_ep_tau_bound./mean_bi_err; 
 % 
 % if save_on == 1
-%     save('Results/LDC_efficacy', 'r_vec', 'efficacy_mat', 'prob_mat', 'N_hi_vec')
+%     save('Results/LDC_efficacy_2', 'r_vec', 'efficacy_mat', 'prob_mat', 'N_hi_vec')
 % end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Single point:
@@ -226,10 +226,11 @@ p_33_rep        = zeros(n_points, n_reps);
 bound_34_rep    = zeros(n_points, n_reps); 
 p_35_rep        = zeros(1, n_reps); 
 bound_36_rep    = zeros(1, n_reps); 
-U_bar_fro_rep    = zeros(1, n_reps); 
-U_bar_2_rep    = zeros(1, n_reps); 
+% U_bar_fro_rep    = zeros(1, n_reps); 
+% U_bar_2_rep    = zeros(1, n_reps); 
 
 
+% Fix ID after... 
 for i_rep = 1:n_reps
    
 
@@ -237,8 +238,7 @@ for i_rep = 1:n_reps
     rho_k_rep(i_rep), Y_Nh_rep(:,i_rep), theta_rep(:,i_rep), ...
     U_bar_rep(:,i_rep), U_hat_rep(:,i_rep),  Y_num_rep(:,i_rep), ...
     Y_den_rep(:,i_rep), err_mat_rep(:,i_rep), p_33_rep(:,i_rep), ...
-    bound_34_rep(:,i_rep), p_35_rep(i_rep), bound_36_rep(i_rep), ...
-    U_bar_fro_rep(i_rep), U_bar_2_rep(i_rep)] = ...
+    bound_34_rep(:,i_rep), p_35_rep(i_rep), bound_36_rep(i_rep)] = ...
     br_bound_complete(B, A_inf, N_hi, R, psi_ref, c_low, sigma, r, n_est, t, C);
 end
 
@@ -258,53 +258,52 @@ p_33 = mean(p_33_rep,2);
 bound_34 = mean(bound_34_rep,2); 
 p_35 = mean(p_35_rep); 
 bound_36 = mean(bound_36_rep); 
-U_bar_fro = mean(U_bar_fro_rep); 
-U_bar_2 = mean(U_bar_2_rep); 
+% U_bar_fro = mean(U_bar_fro_rep); 
+% U_bar_2 = mean(U_bar_2_rep); 
 
 term_1 = (1+4*mu/N_hi);
 
-% 25 to 23. 
+% 25 to 23 to 16. 
 % 27 to A6. 
 % 39 to 33
 % 41 to 35
 % 40 to 34
 % 42 to 36
 
+% a = Y_Nh_vec.*U_bar_vec.^2-U_hat_vec.^2; 
 % could compute without max values too... 
-term_23 = theta_vec./N_hi.*U_hat_vec.^2;
-term_A6 = Y_Nh_vec.*theta_vec./N_hi.*U_bar_vec.^2;
+term_16 = theta_vec./N_hi.*U_hat_vec.^2;
+% term_22 = 
+term_24 = Y_Nh_vec.*theta_vec./N_hi.*U_bar_vec.^2;
 term_29 = r*max(Y_Nh_vec)*max(theta_vec)./N_hi*rho_k^2;
 
 % Y_Nh_vec2 max is quite large - 5e5... at index 50. 
 
-bound_23 = term_1*term_23; 
-bound_A6 = term_1*term_A6;
-bound_A6_sum = term_1*sum(term_A6);
-bound_A8 = term_1*term_29;
+bound_16 = term_1*term_16; 
+bound_16_sum = term_1*sum(term_16);
+bound_24 = term_1*term_24;
+bound_24_sum = term_1*sum(term_24);
+bound_19 = term_1*term_29;
 
 % something is wrong
-efficacy_23 = sqrt(bound_23./mean(err_bi_mat,2));
-efficacy_A6 = sqrt(bound_A6./mean(err_bi_mat,2));
-efficacy_A6_sum = sqrt(bound_A6_sum./mean(err_bi_sum));
-efficacy_A8 = sqrt(bound_A8./mean(err_bi_sum));
+efficacy_16 = sqrt(bound_16./mean(err_bi_mat,2));
+efficacy_16_sum = sqrt(bound_16_sum./mean(err_bi_sum));
+efficacy_24 = sqrt(bound_24./mean(err_bi_mat,2));
+efficacy_24_sum = sqrt(bound_24_sum./mean(err_bi_sum));
+efficacy_19 = sqrt(bound_19./mean(err_bi_sum));
 
 efficacy_34 = sqrt(bound_34./mean(err_bi_mat,2));
 efficacy_36 = sqrt(bound_36./mean(err_bi_sum));
 
+% efficacy_vec = [, efficacy_19, efficacy_36, efficacy_24_sum, mean(p_33), p_35];
+efficacy_vec = [efficacy_24_sum, efficacy_19, efficacy_36, p_35];
 
-efficacy_vec = [efficacy_A8, efficacy_A6_sum, efficacy_36, mean(p_33), p_35];
 % interesting to compare... 
 
 % check rho_k difference: compare term from (29?), (A6) and (23)
 % share this 
 
-% U_bar_fro^2 = sum(U_bar_vec.^2)
-
-% rho_vec = [r*rho_k^2, sum(U_hat_vec.^2./Y_Nh_vec)]; 
 rho_vec = [sqrt(r*rho_k^2), sqrt(sum(U_bar_vec.^2))]; 
-rho_vec_2 = [sqrt(r*rho_k^2), U_bar_2]; 
-% rho_vec = [sqrt(r*rho_k^2), sqrt(sum(U_hat_vec.^2./Y_Nh_vec))]; 
-% rho_vec = [sqrt(r*rho_k^2), U_bar_fro]; 
 % Ah, I see, I've undone the change from hat to bar... this may not be
 % correct... 
 
@@ -316,7 +315,7 @@ rho_vec_2 = [sqrt(r*rho_k^2), U_bar_2];
 % Y remains consistently much larger than (0,1]... this is a major problem.
 
 % if save_on == 1
-%     save('Results/LDC_bound_results', 'r_vec', 'efficacy_mat',...
+%     save('Results/LDC_boufrond_results', 'r_vec', 'efficacy_mat',...
 %     'N_hi_vec', 'r', 'R', 'N_hi', 'n_reps', 'x_h', ...
 %     'efficacy_27', 'efficacy_40', 'theta_vec', 'Y_Nh_vec', 'err_bi_mat',...
 %     'bound_27', 'bound_40', 'efficacy_vec', 'rho_vec');
@@ -327,11 +326,21 @@ rho_vec_2 = [sqrt(r*rho_k^2), U_bar_2];
 %     'efficacy_23', 'efficacy_A6', 'efficacy_34', 'theta_vec', 'Y_Nh_vec', 'err_bi_mat',...
 %     'bound_23','bound_A6', 'bound_34', 'efficacy_vec', 'rho_vec');
 % end
+
+load('Results/LDC_efficacy_2');
+
 if save_on == 1
     save('Results/LDC_bound_results_test_t', 'r_vec', 'efficacy_mat',...
     'N_hi_vec', 'r', 'R', 'N_hi', 'n_reps', 'x_h', ...
-    'efficacy_23', 'efficacy_A6', 'efficacy_34', 'theta_vec', 'Y_Nh_vec', 'err_bi_mat',...
-    'bound_23','bound_A6', 'bound_34', 'efficacy_vec', 'rho_vec');
+    'efficacy_16', 'efficacy_24', 'efficacy_34', 'theta_vec', 'Y_Nh_vec', 'err_bi_mat',...
+    'bound_16','bound_24', 'bound_34', 'efficacy_vec', 'rho_vec');
 end
+
+% if save_on == 1
+%     save('Results/LDC_bound_results_test_t',...
+%     'r', 'R', 'N_hi', 'n_reps', 'x_h', ...
+%     'efficacy_16', 'efficacy_24', 'efficacy_34', 'theta_vec', 'Y_Nh_vec', 'err_bi_mat',...
+%     'bound_16','bound_24', 'bound_34', 'efficacy_vec', 'rho_vec');
+% end
 
 % check p39 and p41

@@ -37,8 +37,8 @@ c6 = [0.3010, 0.7450, 0.9330];
 
 save_on = 0; 
 
-% QoI = 0; % u mid
-QoI = 1; % cylinder
+QoI = 0; % u mid
+% QoI = 1; % cylinder
 
 
 if QoI == 0
@@ -357,7 +357,8 @@ end
 %%% Bound efficacy 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-load(strcat('Results/',results_name,'efficacy'));
+% load(strcat('Results/',results_name,'efficacy'));
+load(strcat('Results/',results_name,'efficacy_2'));
 
 figure
 h = pcolor(N_hi_vec, r_vec, efficacy_mat);
@@ -379,7 +380,8 @@ end
 %%% Bound - single N and r 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-load(strcat('Results/',results_name,'bound_results'));
+% load(strcat('Results/',results_name,'bound_results'));
+load(strcat('Results/',results_name,'bound_results_2'));
 
 % Stats that are useful: 
 % efficacy_vec compares eqn 29, 27_sum, 42, mean(p_39) and p41
@@ -453,11 +455,13 @@ else
 end
 
 if QoI == 0
-    yl = ylim; 
-    ylim([yl(1), 1e-3])
-    new_labels = [1e-4, 1e-3];
-    set(gca,'YTick', new_labels);
+%     yl = ylim; 
+%     ylim([yl(1), 1e-3])
+%     new_labels = [1e-4, 1e-3];
+%     set(gca,'YTick', new_labels);
+%     ytickformat('%e');
 end
+% YTickLabel=cellstr(num2str(new_labels));
 
 ylabel('Error','interpreter', 'latex', 'fontsize', FS)
 % axis tight
@@ -466,7 +470,7 @@ set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis,'TickLabelInterpreter','latex')
 % grid on
 set(gcf,'Position',size_1)
 
-legend([p1,p2,p3],{'True Mean','Bound (23)', 'Bound (34)'}...
+legend([p1,p2,p3],{'Ref Average','Bound (16)', 'Bound (36)'}...
     ,'interpreter', 'latex', 'fontsize', FS_leg,'Location','SouthEast')
 
 if save_on == 1

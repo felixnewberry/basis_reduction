@@ -188,7 +188,7 @@ end
 %%% Bound efficacy 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-load('Results/Airfoil_efficacy');
+load('Results/Airfoil_efficacy_1');
 
 figure
 h = pcolor(N_hi_vec, r_vec, efficacy_mat);
@@ -210,7 +210,7 @@ end
 %%% Bound - single N and r 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-load('Results/Airfoil_bound_results');
+load('Results/Airfoil_bound_results_1');
 
 % Stats that are useful: 
 % efficacy_vec compares eqn 29, 27_sum, 42, mean(p_39) and p41
@@ -272,8 +272,8 @@ set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis,'TickLabelInterpreter','latex')
 % grid on
 set(gcf,'Position',size_1)
 
-legend([p1,p2,p3],{'True Mean','Bound (23)', 'Bound (34)'}...
-    ,'interpreter', 'latex', 'fontsize', FS_leg,'Location','SouthEast')
+legend([p1,p2,p3],{'Ref Average','Bound (16)', 'Bound (36)'}...
+    ,'interpreter', 'latex', 'fontsize', FS_leg,'Location','NorthEast')
 
 if save_on == 1
     saveas(gcf,'Plots/Airfoil_bound','epsc')

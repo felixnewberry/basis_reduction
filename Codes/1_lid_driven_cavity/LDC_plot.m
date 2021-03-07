@@ -331,7 +331,8 @@ xlabel('$x$','interpreter', 'latex', 'fontsize', FS)
 ylabel('Vertical Velocity Variance','interpreter', 'latex', 'fontsize', FS)
 set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis,'TickLabelInterpreter','latex'); box on
 % title('Variance','interpreter', 'latex', 'fontsize', FS_axis)
-legend([p0,p1,p2,p3],{'Ref','$H$','$L$', '$B$'},'interpreter', 'latex', 'fontsize', FS_leg)
+legend([p0,p1,p2,p3],{'Ref','$H$','$L$', '$B$'},'interpreter', 'latex',...
+    'fontsize', FS_leg, 'Location','northwest')
 
 set(gcf, 'Position', size_2)
 
@@ -342,7 +343,8 @@ end
 %%% Bound efficacy 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-load('Results/LDC_efficacy');
+load('Results/LDC_efficacy_2');
+% load('LDC_bound_results_test_t');
 
 figure
 h = pcolor(N_hi_vec, r_vec, efficacy_mat);
@@ -364,8 +366,8 @@ end
 %%% Bound - single N and r 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-load('Results/LDC_bound_results');
-
+% load('Results/LDC_bound_results');
+load('LDC_bound_results_test_t');
 % Stats that are useful: 
 % efficacy_vec compares eqn 29, 27_sum, 42, mean(p_39) and p41
 % Translates to... 
@@ -403,7 +405,6 @@ axis tight
 set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis,'TickLabelInterpreter','latex'); box on
 % grid on
 set(gcf,'Position',size_1)
-
 if save_on == 1
     saveas(gcf,'Plots/LDC_Y','epsc')
 end
@@ -411,8 +412,9 @@ end
 figure
 p1 = semilogy(x_h, sqrt(err_bi_mat),'-o','Color',c1,'LineWidth',LW,'MarkerSize',MS);
 hold on
-p2 = semilogy(x_h, sqrt(bound_27),'--s','Color',c3,'LineWidth',LW,'MarkerSize',MS);
-p3 = semilogy(x_h, sqrt(bound_40),'-.x','Color',c4,'LineWidth',LW,'MarkerSize',MS);
+p2 = semilogy(x_h, sqrt(bound_16),'--s','Color',c3,'LineWidth',LW,'MarkerSize',MS);
+p3 = semilogy(x_h, sqrt(bound_34),'-.x','Color',c4,'LineWidth',LW,'MarkerSize',MS);
+% p4 = semilogy(x_h, sqrt(bound_24),'-.<','Color',c5,'LineWidth',LW,'MarkerSize',MS);
 hold off
 axis tight
 xlabel('$x$', 'interpreter', 'latex', 'fontsize', FS)
@@ -427,7 +429,9 @@ set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis,'TickLabelInterpreter','latex')
 % grid on
 set(gcf,'Position',size_1)
 
-legend([p1,p2,p3],{'True Mean','Bound (23)', 'Bound (34)'}...
+% legend([p1,p2,p3, p4],{'Reference Average','Bound (16)', 'Bound (34)',  'Bound (24ish)'}...
+%     ,'interpreter', 'latex', 'fontsize', FS_leg,'Location','SouthEast')
+legend([p1,p2,p3],{'Ref Average','Bound (16)', 'Bound (34)'}...
     ,'interpreter', 'latex', 'fontsize', FS_leg,'Location','SouthEast')
 
 if save_on == 1
@@ -437,42 +441,6 @@ end
 
 
 
-load('Results/LDC_bound_results_test_t_4_p88');
-bound_34_t4 = bound_34; 
-
-load('Results/LDC_bound_results_test_t_p6_p60');
-bound_34_tp6 = bound_34; 
-
-figure
-p1 = semilogy(x_h, sqrt(err_bi_mat),'-o','Color',c1,'LineWidth',LW,'MarkerSize',MS);
-hold on
-p2 = semilogy(x_h, sqrt(bound_23),'--s','Color',c3,'LineWidth',LW,'MarkerSize',MS);
-p3 = semilogy(x_h, sqrt(bound_34_t4),'-.x','Color',c4,'LineWidth',LW,'MarkerSize',MS);
-p4 = semilogy(x_h, sqrt(bound_34_tp6),':<','Color',c5,'LineWidth',LW,'MarkerSize',MS);
-hold off
-axis tight
-xlabel('$x$', 'interpreter', 'latex', 'fontsize', FS)
-ylabel('Error', 'interpreter', 'latex', 'fontsize', FS)
-axis tight
-% first and last points are zero so don't plot these: 
-xlim([x_l(2),x_l(64)])
-% ylim([1e-8,1])
-%xlim([1,10])
-%yticks([1e-4, 1e-2,1e0])
-set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis,'TickLabelInterpreter','latex'); box on
-% grid on
-set(gcf,'Position',size_1)
-
-legend([p1,p2, p3,p4],{'True Mean','Bound (23)',  'Bound (34) $t=4$, $p(t) = 0.88$','Bound (34) $t=0.6$, $p(t) = 0.60$'}...
-    ,'interpreter', 'latex', 'fontsize', FS_leg,'Location','SouthEast')
-
-if save_on == 1
-    saveas(gcf,'Plots/LDC_bound','epsc')
-end
-
-% Stats that are useful: 
-% efficacy_vec compares eqn 29, 27_sum, 42, mean(p_39) and p41
-% Translates to... 
 efficacy_vec
 %rho_vec compares r*rho_k*2, vs expression in eqn prior - sum U_hat^2/Y...
 rho_vec

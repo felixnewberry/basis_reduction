@@ -1,5 +1,5 @@
 function [err_bi_sum, err_bi_mean, mu, rho_k, Y_Nh_vec, theta_vec, U_bar_vec, ...
-    U_hat_vec, Y_num, Y_den, err_mat, p_39, bound_40, p_41, bound_42, U_bar_fro, U_bar_2] = ...
+    U_hat_vec, Y_num, Y_den, err_mat, p_39, bound_40, p_41, bound_42] = ...
     br_bound_complete(B, A, N_hi, n, psi_ref, c_low, sigma, r, n_est, t, C)
 % Compute bi-fidelity error and error bound quantities
 
@@ -86,9 +86,18 @@ err_bi_mean = mean(err_bi_mat,2);
 % To check that bi-fid estimate of just sample is similar to
 % A_hat_n(:,sample)
 
-psi_bi2 = psi_ref(sample,2:end)*alpha2';
-psi_bi2 = [ones(size(A(:,sample), 2), 1) psi_bi2]; 
-A_hat_n2 = (psi_bi2*c_bi')';
+% psi_bi2 = psi_ref(sample,2:end)*alpha2';
+% t = 0.95 yields probabilities of 0.709... 
+% t = 4 is .88
+% t = 0.6 is .60
+
+% % eqn (39)
+% p_39 = phi_t - C.*rho_V./(sigma_V.^3*sqrt(N_hi));
+% bound_40 = term_1.*(mu_V+t.*sigma_V/sqrt(N_hi)); 
+% 
+% p_41 = phi_t - C.*rho_W./(sigma_W.^3*sqrt(N_hi));
+% psi_bi2 = [ones(size(A(:,sample), 2), 1) psi_bi2]; 
+% A_hat_n2 = (psi_bi2*c_bi')';
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Error bound calculation
@@ -153,7 +162,7 @@ rand_sample = [ix, getfield(setxor(ix,1:n_qr_bound), {1:n_qr_bound-numel(ix)})];
 % Probably should be N_H - an improvement to make. 
 % maybe random sample 
 
-%%% rho_k - rank revealing qr to estimate just N_h samples = sample
+%%% rho_k - rank revealing qr  estimate just N_h samples = sample
 
 % Error bound inputs
 normC = norm(P_s);
@@ -189,7 +198,10 @@ A_R = A_samp(:,rand_sample);
 % scale:
 rho_k = rho_k_1*norm(A(:,sample), 'fro');
 
-% Calculate Y from (21)
+% Calculate Y from (21) - but exclude ix
+
+
+
 Y_Nh_vec = (vecnorm(A(:,sample)-A_hat_n(:,sample),2,2).^2)./...
     (vecnorm((A_samp-A_samp(:,ix)*P_s)*norm(A(:,sample), 'fro'), 2, 2).^2);
 Y_num = vecnorm(A(:,sample)-A_hat_n(:,sample), 2, 2); 
@@ -200,16 +212,13 @@ err_mat = [err_Abar, err_Ahat, rho_k];
 U_bar_vec = vecnorm((A_samp-A_samp(:,ix)*P_s)*norm(A(:,sample), 'fro'), 2, 2);
 U_hat_vec = vecnorm(A_hat_n(:,sample)-A(:,sample),2,2); 
 
-U_bar_fro = norm((A_samp-A_samp(:,ix)*P_s)*norm(A(:,sample), 'fro'), 'fro');
+% bar_error_mat = (A_samp-A_samp(:,ix)*P_s)*norm(A(:,sample), 'fro'); 
+% Y_den = vecnorm(bar_error_mat(:,setdiff(1:end,ix)), 2,2); 
+% 
+% Y_num = vecnorm(A(:,sample(setdiff(1:end,ix)))-A_hat_n(:,sample(setdiff(1:end,ix))), 2, 2); 
+% Y_Nh_vec2 = Y_num.^2./Y_den.^2; 
 
-bar_error_mat = (A_samp-A_samp(:,ix)*P_s)*norm(A(:,sample), 'fro'); 
-Y_den_2 = vecnorm(bar_error_mat(:,setdiff(1:end,ix)), 2,2); 
-% Should Y_num be calculated as if it were just these 15 samples... would
-% that make a difference? 
-Y_num_1 = vecnorm(A(:,sample)-A_hat_n(:,sample), 2, 2); 
-Y_2 = Y_num_1.^2./Y_den_2.^2; 
-
-U_bar_2 = norm(c);
+% U_bar_2 = norm(c);
            
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% New statistics
