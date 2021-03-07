@@ -35,10 +35,10 @@ c4 = [0.4940, 0.1840, 0.5560];
 c5 = [0.4660, 0.6740, 0.1880]; 
 c6 = [0.3010, 0.7450, 0.9330]; 
 
-save_on = 0; 
+save_on = 1; 
 
-QoI = 0; % u mid
-% QoI = 1; % cylinder
+% QoI = 0; % u mid
+QoI = 1; % cylinder
 
 
 if QoI == 0
@@ -54,9 +54,9 @@ end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 if QoI == 0
-    load('Results/GT_u_mid_results_spg.mat')
+    load('Results/GT_u_mid_results_1_spg.mat')
 elseif QoI == 1
-    load('Results/GT_cylinder_results_spg.mat')
+    load('Results/GT_cylinder_results_1_spg.mat')
 end
 
 % Vector of strings for r plots
@@ -149,12 +149,17 @@ end
 %%% Plot both QoI on one figure
 
 % QoI 0
-load('Results/GT_u_mid_results.mat')
+
+% load('Results/GT_u_mid_results.mat')
+load('Results/GT_u_mid_results_1_spg.mat')
+
 mean_lam_low_0 = mean_lam_low; 
 mean_lam_ref_0 = mean_lam_ref; 
 
 % QoI 1
-load('Results/GT_cylinder_results.mat')
+% load('Results/GT_cylinder_results.mat')
+load('Results/GT_cylinder_results_1_spg.mat')
+
 mean_lam_low_1 = mean_lam_low; 
 mean_lam_ref_1 = mean_lam_ref; 
 

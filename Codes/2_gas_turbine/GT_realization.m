@@ -53,7 +53,7 @@ end
 
 if QoI == 0
     results_name = 'GT_mid_'; 
-    lowFiResults = importdata('assembledRunMid_40_1');   
+    lowFiResults = importdata('assembledRunMid_40');   
     % I think _2 may have been used in earlier results?? 
 %     lowFiResults = importdata('assembledRunMid_40_2'); 
     lowFiResults = lowFiResults';
@@ -66,7 +66,7 @@ if QoI == 0
     x_h = x_h(2,idx_h); 
     highFiResults = highFiResults(idx_h,:); 
   
-    x_l = importdata('assembledCoordsMid_40_1');
+    x_l = importdata('assembledCoordsMid_40');
 %     x_l = importdata('assembledCoordsMid_40_2');
     [~,idx_l] = sort(x_l(2,:));
     x_l = x_l(2,idx_l);
@@ -74,7 +74,7 @@ if QoI == 0
     
 elseif QoI == 1
     results_name = 'GT_cylinder_'; 
-    lowFiResults = importdata('assembledRunCylinder_40_1'); 
+    lowFiResults = importdata('assembledRunCylinder_40'); 
 %     lowFiResults = importdata('assembledRunCylinder_40_2'); 
     lowFiResults = lowFiResults';
     tic
@@ -88,7 +88,7 @@ elseif QoI == 1
     x_h = x_h(idx_h); 
     highFiResults = highFiResults(idx_h,:); 
   
-    x_l = importdata('assembledCoordsCylinder_40_1');
+    x_l = importdata('assembledCoordsCylinder_40');
 %     x_l = importdata('assembledCoordsMid_40_2');
     x_l = atan2(x_l(2,:),-x_l(1,:));    
     [~,idx_l] = unique(x_l);
@@ -96,11 +96,12 @@ elseif QoI == 1
     lowFiResults = lowFiResults(idx_l,:);  
 end
 
-y_samp = load('uniform_40_low.mat');
-xi_low = y_samp.uniform_data;
+% y_samp = load('uniform_40_low.mat');
+% xi_low = y_samp.uniform_data;
 
 y_samp = load('uniform_110_high.mat');
 xi_ref = y_samp.uniform_data;
+xi_low = xi_ref; 
    
 
 gridpt_l = 1:length(x_l); 
