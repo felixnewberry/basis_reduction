@@ -35,7 +35,7 @@ c4 = [0.4940, 0.1840, 0.5560];
 c5 = [0.4660, 0.6740, 0.1880]; 
 c6 = [0.3010, 0.7450, 0.9330]; 
 
-save_on = 1; 
+save_on = 0; 
 
 % QoI = 0; % u mid
 QoI = 1; % cylinder
@@ -105,12 +105,12 @@ set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis,'TickLabelInterpreter','latex')
 set(gcf, 'Position', size_1)
 legend(r_string,'interpreter', 'latex', 'fontsize', FS_leg)
 
-if QoI == 1
-    yl = ylim; 
-    ylim([1e-3, yl(2)])
-    new_labels = [1e-3, 1e-2];
-    set(gca,'YTick', new_labels);
-end
+% if QoI == 1
+%     yl = ylim; 
+% %     ylim([1e-3, yl(2)])
+%     new_labels = [1e-3, 1e-2];
+%     set(gca,'YTick', new_labels);
+% end
 
 % grid on
 set(gcf, 'Position', size_1)
@@ -386,40 +386,43 @@ end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % load(strcat('Results/',results_name,'bound_results'));
-load(strcat('Results/',results_name,'bound_results_2'));
+load(strcat('Results/',results_name,'bound_results_theta_est'));
 
-% Stats that are useful: 
-% efficacy_vec compares eqn 29, 27_sum, 42, mean(p_39) and p41
-efficacy_vec
-%rho_vec compares r*rho_k*2, vs expression in eqn prior - sum U_hat^2/Y...
-rho_vec
+% eff_vec measures:  bound_23, bound_25, bound_26, bound_27, bound_36
+eff_36
+mean(p_33)
+p_35
+zeta_N
+
+% figure
+% plot(x_h,theta_vec,'-x','Color',c1, 'LineWidth',LW,'MarkerSize',MS);
+% axis tight
+% if QoI == 0
+%     xlabel('$y$','interpreter', 'latex', 'fontsize', FS)
+% else
+%     xlabel('$\theta$','interpreter', 'latex', 'fontsize', FS)
+%     xticks([-pi -pi/2 0 pi/2 pi])
+%     xticklabels({'$-\pi$','$-\pi/2$','0','$\pi/2$','$\pi$'})
+%     xlim([-pi, pi])
+% end
+% ylabel('$\Theta$','interpreter', 'latex', 'fontsize', FS)
+% axis tight
+% % ylim([1e-8,1])
+% %xlim([1,10])
+% %yticks([1e-4, 1e-2,1e0])
+% set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis,'TickLabelInterpreter','latex'); box on
+% % grid on
+% set(gcf,'Position',size_1)
+% 
+% if save_on == 1
+%     saveas(gcf,strcat('Plots/',results_name,'theta'),'epsc')
+% end
 
 figure
-plot(x_h,theta_vec,'-x','Color',c1, 'LineWidth',LW,'MarkerSize',MS);
-axis tight
-if QoI == 0
-    xlabel('$y$','interpreter', 'latex', 'fontsize', FS)
-else
-    xlabel('$\theta$','interpreter', 'latex', 'fontsize', FS)
-    xticks([-pi -pi/2 0 pi/2 pi])
-    xticklabels({'$-\pi$','$-\pi/2$','0','$\pi/2$','$\pi$'})
-    xlim([-pi, pi])
-end
-ylabel('$\Theta$','interpreter', 'latex', 'fontsize', FS)
-axis tight
-% ylim([1e-8,1])
-%xlim([1,10])
-%yticks([1e-4, 1e-2,1e0])
-set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis,'TickLabelInterpreter','latex'); box on
-% grid on
-set(gcf,'Position',size_1)
-
-if save_on == 1
-    saveas(gcf,strcat('Plots/',results_name,'theta'),'epsc')
-end
-
-figure
-plot(x_h, Y_Nh_vec,'-x','Color',c1,...
+p1 = plot(x_h, zeta_i_1,'-x','Color',c1,...
+    'LineWidth',LW,'MarkerSize',MS);
+hold on;
+p2 = plot(x_h, zeta_i_2,'--o','Color',c2,...
     'LineWidth',LW,'MarkerSize',MS);
 axis tight
 if QoI == 0
@@ -430,7 +433,7 @@ else
     xticklabels({'$-\pi$','$-\pi/2$','0','$\pi/2$','$\pi$'})
     xlim([-pi, pi])
 end
-ylabel('$Y$','interpreter', 'latex', 'fontsize', FS)
+ylabel('$\zeta_{n,i}$','interpreter', 'latex', 'fontsize', FS)
 axis tight
 % ylim([1e-8,1])
 % xlim([1,10])
@@ -439,15 +442,18 @@ set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis,'TickLabelInterpreter','latex')
 % grid on
 set(gcf,'Position',size_1)
 
+legend([p1,p2],{'(22)','(24)'}...
+    ,'interpreter', 'latex', 'fontsize', FS_leg,'Location','NorthEast')
+
 if save_on == 1
-    saveas(gcf,strcat('Plots/',results_name,'Y'),'epsc')
+    saveas(gcf,strcat('Plots/',results_name,'zeta'),'epsc')
 end
 
 figure
-p1 = semilogy(x_h, sqrt(err_bi_mat),'-o','Color',c1,'LineWidth',LW,'MarkerSize',MS);
+p1 = semilogy(x_h, sqrt(err_bi_mean),'-o','Color',c1,'LineWidth',LW,'MarkerSize',MS);
 hold on
-p2 = semilogy(x_h, sqrt(bound_27),'--s','Color',c3,'LineWidth',LW,'MarkerSize',MS);
-p3 = semilogy(x_h, sqrt(bound_40),'-.x','Color',c4,'LineWidth',LW,'MarkerSize',MS);
+% p2 = semilogy(x_h, sqrt(bound_20),'--s','Color',c3,'LineWidth',LW,'MarkerSize',MS);
+p3 = semilogy(x_h, sqrt(bound_34),'-.x','Color',c4,'LineWidth',LW,'MarkerSize',MS);
 hold off
 axis tight
 if QoI == 0
@@ -460,10 +466,10 @@ else
 end
 
 if QoI == 0
-%     yl = ylim; 
-%     ylim([yl(1), 1e-3])
-%     new_labels = [1e-4, 1e-3];
-%     set(gca,'YTick', new_labels);
+    yl = ylim; 
+    ylim([1e-5, yl(2)])
+    new_labels = [1e-5, 1e-4];
+    set(gca,'YTick', new_labels);
 %     ytickformat('%e');
 end
 % YTickLabel=cellstr(num2str(new_labels));
@@ -475,7 +481,7 @@ set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis,'TickLabelInterpreter','latex')
 % grid on
 set(gcf,'Position',size_1)
 
-legend([p1,p2,p3],{'Ref Average','Bound (16)', 'Bound (36)'}...
+legend([p1,p3],{'Ref Average', 'Bound (34)'}...
     ,'interpreter', 'latex', 'fontsize', FS_leg,'Location','SouthEast')
 
 if save_on == 1

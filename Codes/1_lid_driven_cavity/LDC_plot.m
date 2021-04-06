@@ -41,7 +41,9 @@ save_on = 0;
 %%%% Load data                  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% load('Results/LDC_results_spg_3.mat')
 load('Results/LDC_results_spg.mat')
+
 
 % Vector of strings for r plots
 r_symbol = {'-.+','-.*','-.s','-.d'}; 
@@ -367,37 +369,79 @@ end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % load('Results/LDC_bound_results');
-load('LDC_bound_results_test_t');
+load('LDC_bound_results_test_theta_est');
 % Stats that are useful: 
-% efficacy_vec compares eqn 29, 27_sum, 42, mean(p_39) and p41
-% Translates to... 
-efficacy_vec
-%rho_vec compares r*rho_k*2, vs expression in eqn prior - sum U_hat^2/Y...
-rho_vec
+
+eff_36
+mean(p_33)
+p_35
+zeta_N
+
+% figure
+% plot(x_h,theta_vec,'-x','Color',c1, 'LineWidth',LW,'MarkerSize',MS);
+% axis tight
+% xlabel('$x$', 'interpreter', 'latex', 'fontsize', FS)
+% ylabel('$\Theta$', 'interpreter', 'latex', 'fontsize', FS)
+% axis tight
+% % ylim([1e-8,1])
+% %xlim([1,10])
+% %yticks([1e-4, 1e-2,1e0])
+% set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis,'TickLabelInterpreter','latex'); box on
+% % grid on
+% set(gcf,'Position',size_1)
+% 
+% if save_on == 1
+%     saveas(gcf,'Plots/LDC_theta','epsc')
+% end
+% 
+% figure
+% semilogy(x_h,zeta_vec,'-x','Color',c1,...
+%     'LineWidth',LW,'MarkerSize',MS);
+% axis tight
+% xlabel('$x$', 'interpreter', 'latex', 'fontsize', FS)
+% ylabel('$\zeta_{n,i}$', 'interpreter', 'latex', 'fontsize', FS)
+% axis tight
+% % ylim([1e-8,1])
+% %xlim([1,10])
+% %yticks([1e-4, 1e-2,1e0])
+% set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis,'TickLabelInterpreter','latex'); box on
+% % grid on
+% set(gcf,'Position',size_1)
+% if save_on == 1
+%     saveas(gcf,'Plots/LDC_zeta','epsc')
+% end
+% 
+% figure
+% p1 = semilogy(x_h,zeta_den,'-x','Color',c1,...
+%     'LineWidth',LW,'MarkerSize',MS);
+% hold on
+% p2 = semilogy(x_h,zeta_num,'--o','Color',c2,...
+%     'LineWidth',LW,'MarkerSize',MS);
+% axis tight
+% xlabel('$x$', 'interpreter', 'latex', 'fontsize', FS)
+% ylabel('$\zeta$ calculation', 'interpreter', 'latex', 'fontsize', FS)
+% axis tight
+% % ylim([1e-8,1])
+% %xlim([1,10])
+% %yticks([1e-4, 1e-2,1e0])
+% set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis,'TickLabelInterpreter','latex'); box on
+% legend([p1,p2],{'$\Vert H(i,:) - \bar{H}(i,:) \Vert_2^2$','$\Vert H(i,:) - \hat{H}(i,:) \Vert_2^2$'},...
+%     'interpreter', 'latex', 'fontsize', FS_leg,'Location','SouthEast')
+% set(gcf,'Position',size_1)
+% 
+% if save_on == 1
+%     saveas(gcf,'Plots/LDC_zeta_terms','epsc')
+% end
 
 figure
-plot(x_h,theta_vec,'-x','Color',c1, 'LineWidth',LW,'MarkerSize',MS);
-axis tight
-xlabel('$x$', 'interpreter', 'latex', 'fontsize', FS)
-ylabel('$\Theta$', 'interpreter', 'latex', 'fontsize', FS)
-axis tight
-% ylim([1e-8,1])
-%xlim([1,10])
-%yticks([1e-4, 1e-2,1e0])
-set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis,'TickLabelInterpreter','latex'); box on
-% grid on
-set(gcf,'Position',size_1)
-
-if save_on == 1
-    saveas(gcf,'Plots/LDC_theta','epsc')
-end
-
-figure
-semilogy(x_h, Y_Nh_vec,'-x','Color',c1,...
+p1 = semilogy(x_h, zeta_i_1,'-x','Color',c1,...
+    'LineWidth',LW,'MarkerSize',MS);
+hold on;
+p2 = semilogy(x_h, zeta_i_2,'--o','Color',c2,...
     'LineWidth',LW,'MarkerSize',MS);
 axis tight
-xlabel('$x$', 'interpreter', 'latex', 'fontsize', FS)
-ylabel('$Y$', 'interpreter', 'latex', 'fontsize', FS)
+xlabel('Location on Airfoil','interpreter', 'latex', 'fontsize', FS)
+ylabel('$\zeta_{n,i}$', 'interpreter', 'latex', 'fontsize', FS)
 axis tight
 % ylim([1e-8,1])
 %xlim([1,10])
@@ -405,14 +449,18 @@ axis tight
 set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis,'TickLabelInterpreter','latex'); box on
 % grid on
 set(gcf,'Position',size_1)
+legend([p1,p2],{'(22)','(24)'}...
+    ,'interpreter', 'latex', 'fontsize', FS_leg,'Location','NorthEast')
+
 if save_on == 1
-    saveas(gcf,'Plots/LDC_Y','epsc')
+    saveas(gcf,'Plots/Airfoil_zeta','epsc')
 end
 
+
 figure
-p1 = semilogy(x_h, sqrt(err_bi_mat),'-o','Color',c1,'LineWidth',LW,'MarkerSize',MS);
+p1 = semilogy(x_h, sqrt(err_bi_mean),'-o','Color',c1,'LineWidth',LW,'MarkerSize',MS);
 hold on
-p2 = semilogy(x_h, sqrt(bound_16),'--s','Color',c3,'LineWidth',LW,'MarkerSize',MS);
+% p2 = semilogy(x_h, sqrt(bound_20),'--s','Color',c3,'LineWidth',LW,'MarkerSize',MS);
 p3 = semilogy(x_h, sqrt(bound_34),'-.x','Color',c4,'LineWidth',LW,'MarkerSize',MS);
 % p4 = semilogy(x_h, sqrt(bound_24),'-.<','Color',c5,'LineWidth',LW,'MarkerSize',MS);
 hold off
@@ -431,7 +479,7 @@ set(gcf,'Position',size_1)
 
 % legend([p1,p2,p3, p4],{'Reference Average','Bound (16)', 'Bound (34)',  'Bound (24ish)'}...
 %     ,'interpreter', 'latex', 'fontsize', FS_leg,'Location','SouthEast')
-legend([p1,p2,p3],{'Ref Average','Bound (16)', 'Bound (34)'}...
+legend([p1,p3],{'Ref Average', 'Bound (34)'}...
     ,'interpreter', 'latex', 'fontsize', FS_leg,'Location','SouthEast')
 
 if save_on == 1
@@ -439,8 +487,3 @@ if save_on == 1
 end
 %
 
-
-
-efficacy_vec
-%rho_vec compares r*rho_k*2, vs expression in eqn prior - sum U_hat^2/Y...
-rho_vec

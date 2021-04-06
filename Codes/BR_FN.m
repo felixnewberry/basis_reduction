@@ -66,6 +66,11 @@ psi_bi = psi_hi(:,2:end)*alpha2';
 % New reduced basis including column of ones
 psi_bi = [ones(size(u_hi, 1), 1) psi_bi]; 
 
+% remove r+1 column before solving for coefficients
+psi_bi = psi_bi(:,1:end-1); 
+
+
+
 % Necessary paramters for spgl1 toolbox
 opts = spgSetParms('iterations', 10000, 'verbosity', 0); 
 

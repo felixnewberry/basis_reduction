@@ -41,8 +41,8 @@ u_low = lowFiResults(gridpt_l,:)';
 p = 4;                          % PCE order
 d = 2;                          % Stochastic dimension
 
-N_hi = [10, 15, 20, 25];      % Number high-fidelity samples
-% N_hi = [10]; 
+N_hi = [5, 10, 15, 20, 25];      % Number high-fidelity samples
+% N_hi = [5]; 
 
 r = [1 3 6];                  % KL order
 % r = 3; 
@@ -119,7 +119,7 @@ var_low_err = norm(mean_low - var_ref)/norm(var_ref);
 %     'var_low_err','mean_low_err', 'r')
 
 % Save results: 
-save('Results/LDC_results_spg_2','bi_stats', 'mean_lam_hi', 'mean_lam_ref', ...
+save('Results/LDC_results_spg_3','bi_stats', 'mean_lam_hi', 'mean_lam_ref', ...
     'mean_lam_low','N_hi',...
     'var_low_err','mean_low_err', 'r')
 

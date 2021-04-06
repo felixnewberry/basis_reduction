@@ -35,7 +35,7 @@ c4 = [0.4940, 0.1840, 0.5560];
 c5 = [0.4660, 0.6740, 0.1880]; 
 c6 = [0.3010, 0.7450, 0.9330]; 
 
-save_on = 1; 
+save_on = 0; 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%% Load data                  
@@ -206,41 +206,60 @@ if save_on == 1
     saveas(gcf,'Plots/Airfoil_efficacy','epsc')
 end
 
+figure
+h = pcolor(N_hi_vec, r_vec, prob_mat);
+set(h, 'EdgeColor', 'none');
+axis tight
+xlabel('$n$', 'interpreter', 'latex', 'fontsize', FS)
+ylabel('Approximation Rank $r$', 'interpreter', 'latex', 'fontsize', FS)
+c =colorbar;
+c.TickLabelInterpreter = 'latex'; 
+set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis,'TickLabelInterpreter','latex'); box on
+% title('Efficacy','interpreter', 'latex', 'fontsize', FS_leg)
+set(gcf, 'Position', size_1)
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Bound - single N and r 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-load('Results/Airfoil_bound_results_1');
+load('Results/Airfoil_bound_results_theta_est');
 
 % Stats that are useful: 
-% efficacy_vec compares eqn 29, 27_sum, 42, mean(p_39) and p41
-efficacy_vec
-%rho_vec compares r*rho_k*2, vs expression in eqn prior - sum U_hat^2/Y...
-rho_vec
+% eff_vec measures:  bound_23, bound_25, bound_26, bound_27, bound_36
+eff_36
+mean(p_33)
+p_35
+zeta_N
+%factor_vec = [eff_vec(2), eff_vec(3)/eff_vec(2), eff_vec(4)/eff_vec(3), eff_vec(1)/eff_vec(4)];
+% factor_vec
+
+% figure
+% plot(x_l,theta_vec,'-x','Color',c1, 'LineWidth',LW,'MarkerSize',MS);
+% axis tight
+% xlabel('Location on Airfoil','interpreter', 'latex', 'fontsize', FS)
+% ylabel('$\Theta$', 'interpreter', 'latex', 'fontsize', FS)
+% axis tight
+% % ylim([1e-8,1])
+% %xlim([1,10])
+% %yticks([1e-4, 1e-2,1e0])
+% set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis,'TickLabelInterpreter','latex'); box on
+% % grid on
+% set(gcf,'Position',size_1)
+% 
+% if save_on == 1
+%     saveas(gcf,'Plots/Airfoil_theta','epsc')
+% end
 
 figure
-plot(x_l,theta_vec,'-x','Color',c1, 'LineWidth',LW,'MarkerSize',MS);
-axis tight
-xlabel('Location on Airfoil','interpreter', 'latex', 'fontsize', FS)
-ylabel('$\Theta$', 'interpreter', 'latex', 'fontsize', FS)
-axis tight
-% ylim([1e-8,1])
-%xlim([1,10])
-%yticks([1e-4, 1e-2,1e0])
-set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis,'TickLabelInterpreter','latex'); box on
-% grid on
-set(gcf,'Position',size_1)
-
-if save_on == 1
-    saveas(gcf,'Plots/Airfoil_theta','epsc')
-end
-
-figure
-plot(x_l, Y_Nh_vec,'-x','Color',c1,...
+p1 = semilogy(x_l, zeta_i_1,'-x','Color',c1,...
+    'LineWidth',LW,'MarkerSize',MS);
+hold on;
+p2 = semilogy(x_l, zeta_i_2,'--o','Color',c2,...
     'LineWidth',LW,'MarkerSize',MS);
 axis tight
 xlabel('Location on Airfoil','interpreter', 'latex', 'fontsize', FS)
-ylabel('$Y$', 'interpreter', 'latex', 'fontsize', FS)
+ylabel('$\zeta_{n,i}$', 'interpreter', 'latex', 'fontsize', FS)
 axis tight
 % ylim([1e-8,1])
 %xlim([1,10])
@@ -248,16 +267,18 @@ axis tight
 set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis,'TickLabelInterpreter','latex'); box on
 % grid on
 set(gcf,'Position',size_1)
+legend([p1,p2],{'(22)','(24)'}...
+    ,'interpreter', 'latex', 'fontsize', FS_leg,'Location','NorthEast')
 
 if save_on == 1
-    saveas(gcf,'Plots/Airfoil_Y','epsc')
+    saveas(gcf,'Plots/Airfoil_zeta','epsc')
 end
 
 figure
-p1 = semilogy(x_l, sqrt(err_bi_mat),'-o','Color',c1,'LineWidth',LW,'MarkerSize',MS);
+p1 = semilogy(x_l, sqrt(err_bi_mean),'-o','Color',c1,'LineWidth',LW,'MarkerSize',MS);
 hold on
-p2 = semilogy(x_l, sqrt(bound_27),'--s','Color',c3,'LineWidth',LW,'MarkerSize',MS);
-p3 = semilogy(x_l, sqrt(bound_40),'-.x','Color',c4,'LineWidth',LW,'MarkerSize',MS);
+% p2 = semilogy(x_l, sqrt(bound_20),'--s','Color',c3,'LineWidth',LW,'MarkerSize',MS);
+p3 = semilogy(x_l, sqrt(bound_34),'-.x','Color',c4,'LineWidth',LW,'MarkerSize',MS);
 hold off
 axis tight
 xlabel('Location on Airfoil','interpreter', 'latex', 'fontsize', FS)
@@ -272,9 +293,62 @@ set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis,'TickLabelInterpreter','latex')
 % grid on
 set(gcf,'Position',size_1)
 
-legend([p1,p2,p3],{'Ref Average','Bound (16)', 'Bound (36)'}...
+legend([p1,p3],{'Ref Average', 'Bound (34)'}...
     ,'interpreter', 'latex', 'fontsize', FS_leg,'Location','NorthEast')
 
 if save_on == 1
     saveas(gcf,'Plots/Airfoil_bound','epsc')
+end
+
+figure
+p1 = semilogy(x_l, sqrt(err_bi_mean),'-o','Color',c1,'LineWidth',LW,'MarkerSize',MS);
+hold on
+% p2 = semilogy(x_l, sqrt(bound_20),'--s','Color',c3,'LineWidth',LW,'MarkerSize',MS);
+% p3 = semilogy(x_l, sqrt(bound_34),'-.x','Color',c2,'LineWidth',LW,'MarkerSize',MS);
+hold off
+axis tight
+xlabel('Location on Airfoil','interpreter', 'latex', 'fontsize', FS)
+ylabel('Error', 'interpreter', 'latex', 'fontsize', FS)
+axis tight
+ylim([min(sqrt(err_bi_mean)), max(sqrt(bound_34))])
+% first and last points are zero so don't plot these: 
+% xlimx_lx_l(2),x_l(64)])
+% ylim([1e-8,1])
+%xlim([1,10])
+%yticks([1e-4, 1e-2,1e0])
+set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis,'TickLabelInterpreter','latex'); box on
+% grid on
+set(gcf,'Position',size_1)
+
+legend([p1],{'Ref Average'}...
+    ,'interpreter', 'latex', 'fontsize', FS_leg,'Location','NorthEast')
+ylim 
+if save_on == 1
+    saveas(gcf,'Plots/Airfoil_bound_0','epsc')
+end
+
+figure
+p1 = semilogy(x_l, sqrt(err_bi_mean),'-o','Color',c1,'LineWidth',LW,'MarkerSize',MS);
+hold on
+% p2 = semilogy(x_l, sqrt(bound_20),'--s','Color',c3,'LineWidth',LW,'MarkerSize',MS);
+p3 = semilogy(x_l, sqrt(bound_34),'-.x','Color',c2,'LineWidth',LW,'MarkerSize',MS);
+hold off
+axis tight
+xlabel('Location on Airfoil','interpreter', 'latex', 'fontsize', FS)
+ylabel('Error', 'interpreter', 'latex', 'fontsize', FS)
+axis tight
+% first and last points are zero so don't plot these: 
+% xlimx_lx_l(2),x_l(64)])
+% ylim([1e-8,1])
+%xlim([1,10])
+%yticks([1e-4, 1e-2,1e0])
+set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis,'TickLabelInterpreter','latex'); box on
+% grid on
+set(gcf,'Position',size_1)
+ylim
+legend([p1,p3],{'Ref Average', 'Error Bound'}...
+    ,'interpreter', 'latex', 'fontsize', FS_leg,'Location','NorthEast')
+
+if save_on == 1
+    saveas(gcf,'Plots/Airfoil_bound_1','epsc')
 end

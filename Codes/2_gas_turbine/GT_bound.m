@@ -39,8 +39,8 @@ c6 = [0.3010, 0.7450, 0.9330];
 %%% Chose QoI
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% QoI = 0; % u mid
-QoI = 1; % cylinder
+QoI = 0; % u mid
+% QoI = 1; % cylinder
 
 if QoI == 0
     results_name = 'GT_mid_';
@@ -176,147 +176,166 @@ fprintf('Low fidelity solution : %d s.\n', t_low);
 % u_low_int = interp1(x_l, B, x_h);  
 % err_low = norm(B-A)/norm(A); 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% Efficacy loop
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% Where is the parfor stuff? Maybe I didn't do that for these... which is
-% silly. Try run the LDC now and see how it goes? 
-N_hi_vec = 3:50; 
-r_vec = 3:20; 
-
-% N_hi_vec = 50; 
-% r_vec = 8; 
-
-% r_vec = [3,20]; 
-% N_hi_vec = [3,50];
-% n_reps = 2; 
-
-length_n = length(N_hi_vec);
-length_r = length(r_vec); 
-
-n_r_results{n_reps} = [];
-
-% Repeat
-%parfor i_rep = 1:n_reps
-for i_rep = 1:n_reps
-    i_rep
-    n_r_results{i_rep}.efficacy = zeros(length_r,length_n); 
-    n_r_results{i_rep}.prob = zeros(length_r,length_n); 
-
-    for i_n = 1:length_n
-        for i_r = 1:length_r
-
-        [n_r_results{i_rep}.efficacy(i_r, i_n), n_r_results{i_rep}.prob(i_r, i_n)] = ...
-    br_bound_practical(A_inf, N_hi_vec(i_n), psi_ref, c_low, sigma, r_vec(i_r), n_est, t, C);
-
-        end
-    end
-end
-1;
-
-% Calculate mean over n_reps
-stat_struct = cat(3,n_r_results{:});
-efficacy_mat = mean(cat(3,stat_struct.efficacy),3);
-prob_mat = mean(cat(3,stat_struct.prob),3);
-
-% efficacy_mat = mean_ep_tau_bound./mean_bi_err; 
-
-if save_on == 1
-    save(strcat('Results/',results_name,'efficacy_2'), 'r_vec', 'efficacy_mat', 'prob_mat', 'N_hi_vec')
-end
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%% Efficacy loop
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+% % Where is the parfor stuff? Maybe I didn't do that for these... which is
+% % silly. Try run the LDC now and see how it goes? 
+% N_hi_vec = 3:50; 
+% r_vec = 3:20; 
+% 
+% % N_hi_vec = 50; 
+% % r_vec = 8; 
+% 
+% % r_vec = [3,20]; 
+% % N_hi_vec = [3,50];
+% % n_reps = 2; 
+% 
+% length_n = length(N_hi_vec);
+% length_r = length(r_vec); 
+% 
+% n_r_results{n_reps} = [];
+% 
+% % Repeat
+% %parfor i_rep = 1:n_reps
+% for i_rep = 1:n_reps
+%     i_rep
+%     n_r_results{i_rep}.efficacy = zeros(length_r,length_n); 
+%     n_r_results{i_rep}.prob = zeros(length_r,length_n); 
+% 
+%     for i_n = 1:length_n
+%         for i_r = 1:length_r
+% 
+%         [n_r_results{i_rep}.efficacy(i_r, i_n), n_r_results{i_rep}.prob(i_r, i_n)] = ...
+%     br_bound_practical(A_inf, N_hi_vec(i_n), psi_ref, c_low, sigma, r_vec(i_r), n_est, t, C);
+% 
+%         end
+%     end
+% end
+% 1;
+% 
+% % Calculate mean over n_reps
+% stat_struct = cat(3,n_r_results{:});
+% efficacy_mat = mean(cat(3,stat_struct.efficacy),3);
+% prob_mat = mean(cat(3,stat_struct.prob),3);
+% 
+% % efficacy_mat = mean_ep_tau_bound./mean_bi_err; 
+% 
+% if save_on == 1
+%     save(strcat('Results/',results_name,'efficacy_2'), 'r_vec', 'efficacy_mat', 'prob_mat', 'N_hi_vec')
+% end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Single point:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 r = 8; 
-R = r+10;
-
 N_hi = 50; 
+R = N_hi+10;
 
-err_bi_sum_rep  = zeros(n_est,n_reps);
-err_bi_mean_rep = zeros(n_points, n_reps); % mean(err_bi_mat,2)
-mu_rep          = zeros(1, n_reps); 
-rho_k_rep       = zeros(1, n_reps); 
-Y_Nh_rep        = zeros(n_points, n_reps); 
-theta_rep       = zeros(n_points, n_reps); 
-U_bar_rep       = zeros(n_points, n_reps); 
-U_hat_rep       = zeros(n_points, n_reps); 
-Y_num_rep       = zeros(n_points, n_reps); % vecnorm(Y_num, 2, 2)
-Y_den_rep       = zeros(n_points, n_reps); 
-err_mat_rep     = zeros(3, n_reps); 
-p_39_rep        = zeros(n_points, n_reps); 
-bound_40_rep    = zeros(n_points, n_reps); 
-p_41_rep        = zeros(1, n_reps); 
-bound_42_rep    = zeros(1, n_reps); 
+% err_bi_mean_rep     = zeros(n_points,n_reps);
+% err_bi_sum_rep      = zeros(1, n_reps); 
+% mu_rep              = zeros(1, n_reps);
+% rho_k_rep           = zeros(1, n_reps);
+% zeta_vec_rep        = zeros(n_points,n_reps);
+% zeta_num_rep        = zeros(n_points,n_reps);
+% zeta_den_rep        = zeros(n_points,n_reps);
+% theta_vec_rep       = zeros(n_points,n_reps);
+% MID_efficacy_rep    = zeros(1, n_reps);
+% eff_vec_rep         = zeros(5, n_reps);
+% factor_vec_rep      = zeros(4, n_reps);
+% bound_34_rep        = zeros(n_points,n_reps);
+% bound_20_rep        = zeros(n_points,n_reps);
+% p_33_rep            = zeros(n_points,n_reps);
+% p_35_rep            = zeros(1,n_reps);
+% R_rep               = zeros(1,n_reps);
+
+err_bi_mean_rep     = zeros(n_points,n_reps);
+err_bi_sum_rep      = zeros(1, n_reps); 
+mu_rep              = zeros(1, n_reps);
+rho_k_rep           = zeros(1, n_reps);
+zeta_i_1_rep        = zeros(n_points,n_reps);
+zeta_i_2_rep        = zeros(n_points,n_reps);
+zeta_N_1_rep        = zeros(1,n_reps);
+% theta_vec_rep       = zeros(n_points,n_reps);
+MID_efficacy_rep    = zeros(1, n_reps);
+eff_36_rep         = zeros(1, n_reps);
+% factor_vec_rep      = zeros(4, n_reps);
+bound_34_rep        = zeros(n_points,n_reps);
+% bound_20_rep        = zeros(n_points,n_reps);
+p_33_rep            = zeros(n_points,n_reps);
+p_35_rep            = zeros(1,n_reps);
+R_rep               = zeros(1,n_reps);
 
 for i_rep = 1:n_reps
     
-% [err_bi_sum, err_bi_mat, mu,rho_k, Y_Nh_vec, theta_vec, U_bar_vec,...
-%     U_hat_vec,  Y_num, Y_den, err_mat, p_39, bound_40, p_41, bound_42] = ...
-%     br_ep_tau_3p0(B, A_inf, N_hi, R, psi_ref, c_low, sigma, r, n_est, t, C);
-
-[err_bi_sum_rep(:,i_rep), err_bi_mean_rep(:,i_rep), mu_rep(i_rep), ...
-    rho_k_rep(i_rep), Y_Nh_rep(:,i_rep), theta_rep(:,i_rep), ...
-    U_bar_rep(:,i_rep), U_hat_rep(:,i_rep),  Y_num_rep(:,i_rep), ...
-    Y_den_rep(:,i_rep), err_mat_rep(:,i_rep), p_39_rep(:,i_rep), ...
-    bound_40_rep(:,i_rep), p_41_rep(i_rep), bound_42_rep(i_rep)] = ...
-    br_bound_complete(B, A_inf, N_hi, R, psi_ref, c_low, sigma, r, n_est, t, C);
+    i_rep 
+%     [err_bi_mean_rep(:,i_rep), err_bi_sum_rep(:,i_rep), mu_rep(:,i_rep),...
+%         rho_k_rep(:,i_rep), zeta_vec_rep(:,i_rep), zeta_num_rep(:,i_rep), ...
+%         zeta_den_rep(:,i_rep), theta_vec_rep(:,i_rep), MID_efficacy_rep(:,i_rep),...
+%         eff_vec_rep(:,i_rep), factor_vec_rep(:,i_rep), bound_34_rep(:,i_rep), ...
+%         bound_20_rep(:,i_rep), p_33_rep(:,i_rep), p_35_rep(:,i_rep), R_rep(:,i_rep)]...
+%     =  br_bound_complete(B, A_inf, N_hi, R, psi_ref, c_low, sigma, r, n_est, t, C);
+    [err_bi_mean_rep(:,i_rep), err_bi_sum_rep(:,i_rep), mu_rep(:,i_rep),...
+        rho_k_rep(:,i_rep), zeta_i_1_rep(:,i_rep), zeta_i_2_rep(:,i_rep), ...
+        zeta_N_1_rep(:,i_rep), MID_efficacy_rep(:,i_rep),...
+        eff_36_rep(:,i_rep), bound_34_rep(:,i_rep), ...
+        p_33_rep(:,i_rep), p_35_rep(:,i_rep), R_rep(:,i_rep)]...
+    =  br_bound_complete(B, A_inf, N_hi, R, psi_ref, c_low, sigma, r, n_est, t, C);
 end
 
-err_bi_sum = mean(err_bi_sum_rep,2); 
-err_bi_mat = mean(err_bi_mean_rep,2); 
-mu = mean(mu_rep); 
-rho_k = mean(rho_k_rep); 
-Y_Nh_vec = mean(Y_Nh_rep,2); 
-theta_vec = mean(theta_rep,2); 
-U_bar_vec = mean(U_bar_rep,2); 
-U_hat_vec = mean(U_hat_rep,2); 
-Y_num = mean(Y_num_rep,2); 
-Y_den = mean(Y_den_rep,2); 
-err_mat = mean(err_mat_rep,2); 
-p_39 = mean(p_39_rep,2); 
-bound_40 = mean(bound_40_rep,2); 
-p_41 = mean(p_41_rep); 
-bound_42 = mean(bound_42_rep); 
+1; 
 
-term_1 = (1+4*mu/N_hi);
+% err_bi_mean     = mean(err_bi_mean_rep,2); 
+% err_bi_sum      = mean(err_bi_sum_rep);
+% mu              = mean(mu_rep);
+% rho_k           = mean(rho_k_rep);
+% zeta_vec        = mean(zeta_vec_rep,2); 
+% zeta_num        = mean(zeta_num_rep,2); 
+% zeta_den        = mean(zeta_den_rep,2); 
+% theta_vec       = mean(theta_vec_rep,2); 
+% MID_efficacy    = mean(MID_efficacy_rep);
+% eff_vec         = mean(eff_vec_rep,2); 
+% factor_vec      = mean(factor_vec_rep,2); 
+% bound_34        = mean(bound_34_rep,2); 
+% bound_20        = mean(bound_20_rep,2); 
+% p_33            = mean(p_33_rep,2); 
+% p_35            = mean(p_35_rep);
+% R_rank          = mean(R_rep);
 
-% could compute without max values too... 
-term_25 = theta_vec./N_hi.*U_hat_vec.^2;
-term_27 = Y_Nh_vec.*theta_vec./N_hi.*U_bar_vec.^2;
-term_29 = r*max(Y_Nh_vec)*max(theta_vec)./N_hi*rho_k^2;
+err_bi_mean     = mean(err_bi_mean_rep,2); 
+err_bi_sum      = mean(err_bi_sum_rep);
+mu              = mean(mu_rep);
+rho_k           = mean(rho_k_rep);
+zeta_i_1        = mean(zeta_i_1_rep,2); 
+zeta_i_2        = mean(zeta_i_2_rep,2); 
+zeta_N        = mean(zeta_N_1_rep,2); 
+% theta_vec       = mean(theta_vec_rep,2); 
+MID_efficacy    = mean(MID_efficacy_rep);
+eff_36         = mean(eff_36_rep,2); 
+% factor_vec      = mean(factor_vec_rep,2); 
+bound_34        = mean(bound_34_rep,2); 
+% bound_20        = mean(bound_20_rep,2); 
+p_33            = mean(p_33_rep,2); 
+p_35            = mean(p_35_rep);
+R_rank          = mean(R_rep);
+% eff_vec measures:  bound_23, bound_25, bound_26, bound_27, bound_36
+eff_36
 
-% Y_Nh_vec2 max is quite large - 5e5... at index 50. 
-
-bound_25 = term_1*term_25; % presently matches 27 by design
-bound_27 = term_1*term_27;
-bound_27_sum = term_1*sum(term_27);
-bound_29 = term_1*term_29;
-
-
-% something is wrong
-efficacy_27 = sqrt(bound_27./mean(err_bi_mat,2));
-efficacy_27_sum = sqrt(bound_27_sum./mean(err_bi_sum));
-efficacy_29 = sqrt(bound_29./mean(err_bi_sum));
-
-efficacy_40 = sqrt(bound_40./mean(err_bi_mat,2));
-efficacy_42 = sqrt(bound_42./mean(err_bi_sum));
-
-efficacy_vec = [efficacy_29, efficacy_27_sum, efficacy_42, mean(p_39), p_41];
-% interesting to compare... 
-
-% check rho_k difference: compare term from (29), (27) and (25)
-% share this 
-rho_vec = [sqrt(r)*rho_k, sqrt(sum(U_hat_vec.^2./Y_Nh_vec))]; 
 
 if save_on == 1
-    save(strcat('Results/',results_name,'bound_results_2'), 'r_vec', 'efficacy_mat',...
-    'N_hi_vec', 'r', 'R', 'N_hi', 'n_reps', 'x_h', ...
-    'efficacy_27', 'efficacy_40', 'theta_vec', 'Y_Nh_vec', 'err_bi_mat',...
-    'bound_27', 'bound_40', 'efficacy_vec', 'rho_vec');
+    load(strcat('Results/',results_name,'efficacy_2'));
+%     save(strcat('Results/',results_name,'bound_results_theta_est'), 'err_bi_mean',...
+%     'N_hi_vec', 'r', 'R', 'N_hi', 'n_reps', 'x_l', ...
+%     'err_bi_sum', 'mu', 'rho_k', 'zeta_vec', 'zeta_num', 'zeta_den',...
+%     'theta_vec', 'MID_efficacy', 'eff_vec', 'factor_vec', 'bound_34', ...
+%     'bound_20', 'p_33', 'p_35', 'R_rank');
+    save(strcat('Results/',results_name,'bound_results_theta_est'), 'err_bi_mean',...
+    'N_hi_vec', 'r', 'R', 'N_hi', 'n_reps', 'x_l', ...
+    'err_bi_sum', 'mu', 'rho_k', 'zeta_i_1', 'zeta_i_2', 'zeta_N',...
+    'MID_efficacy', 'eff_36', 'bound_34', ...
+    'p_33', 'p_35', 'R_rank');
 end
-
 
 
               
