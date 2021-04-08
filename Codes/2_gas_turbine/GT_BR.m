@@ -180,9 +180,9 @@ mean_low_err
 
 % Save results: 
 if QoI == 0
-    results_name = 'GT_u_mid_results_1';
+    results_name = 'GT_u_mid_results_5';
 elseif QoI == 1
-    results_name = 'GT_cylinder_results_1'; 
+    results_name = 'GT_cylinder_results_5'; 
 end
 
 save(strcat('Results/',results_name, '_spg'),'bi_stats', 'mean_lam_hi', 'mean_lam_ref', ...

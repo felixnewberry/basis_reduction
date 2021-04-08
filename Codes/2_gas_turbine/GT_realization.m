@@ -236,7 +236,7 @@ alpha2 = diag(1./sqrt(diag(lam_low)))*(v_low'*c_low(:, 2:end));
 psi_bi = psi_hi(:,2:end)*alpha2';
 
 % New reduced basis including column of ones
-psi_bi = [ones(size(u_hi, 1), 1) psi_bi]; 
+psi_bi = [ones(size(u_hi, 1), 1) psi_bi(:,1:end-1)]; 
 
 
 opts = spgSetParms('iterations', 10000, 'verbosity', 0); 
@@ -250,7 +250,7 @@ c_bi = c_bi';
 % psi_ref and psi_low are the same. 
 
 psi_bi_est = psi_ref(:,2:end)*alpha2';
-psi_bi_est = [ones(size(u_ref, 1), 1) psi_bi_est]; 
+psi_bi_est = [ones(size(u_ref, 1), 1) psi_bi_est(:,1:end-1)]; 
 
 u_bi = psi_bi_est*c_bi';
 

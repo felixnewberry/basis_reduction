@@ -195,7 +195,7 @@ err_low = norm(B-A)/norm(A);
 % % efficacy_mat = mean_ep_tau_bound./mean_bi_err; 
 % 
 % if save_on == 1
-%     save('Results/LDC_efficacy_2', 'r_vec', 'efficacy_mat', 'prob_mat', 'N_hi_vec')
+%     save('Results/LDC_efficacy_5', 'r_vec', 'efficacy_mat', 'prob_mat', 'N_hi_vec')
 % end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Single point:
@@ -204,9 +204,9 @@ err_low = norm(B-A)/norm(A);
 % How to speed this up? 
 % Really we just want a few things out compute those in the for loop then
 % send out so that this is tidier. 
-r = 3; 
+r = 4; 
 N_hi = 15; % This was 15... 
-R = N_hi+10;
+R = N_hi;
 
 % err_bi_mean_rep     = zeros(n_points,n_reps);
 % err_bi_sum_rep      = zeros(1, n_reps); 
@@ -277,7 +277,7 @@ eff_36
 
 
 if save_on == 1
-    load('Results/LDC_efficacy_2');
+    load('Results/LDC_efficacy_5');
     save('Results/LDC_bound_results_test_theta_est', 'err_bi_mean',...
     'N_hi_vec', 'r', 'R', 'N_hi', 'n_reps', 'x_l', ...
     'err_bi_sum', 'mu', 'rho_k', 'zeta_i_1', 'zeta_i_2', 'zeta_N',...

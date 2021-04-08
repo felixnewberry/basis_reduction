@@ -180,15 +180,15 @@ err_low = norm(B-A)/norm(A);
 % % efficacy_mat = mean_ep_tau_bound./mean_bi_err; 
 % 
 % if save_on == 1
-%     save('Results/Airfoil_efficacy_1', 'r_vec', 'efficacy_mat', 'prob_mat', 'N_hi_vec')
+%     save('Results/Airfoil_efficacy_5', 'r_vec', 'efficacy_mat', 'prob_mat', 'N_hi_vec')
 % end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Single point:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 r = 8; 
-N_hi = 30; 
-R = N_hi+10;
+N_hi = 20; 
+R = N_hi;
 
 % err_bi_mean_rep     = zeros(n_points,n_reps);
 % err_bi_sum_rep      = zeros(1, n_reps); 
@@ -257,7 +257,7 @@ R_rank          = mean(R_rep);
 eff_36
 
 if save_on == 1
-    load('Results/Airfoil_efficacy_1');
+    load('Results/Airfoil_efficacy_5');
     save('Results/Airfoil_bound_results_theta_est', 'err_bi_mean',...
     'N_hi_vec', 'r', 'R', 'N_hi', 'n_reps', 'x_l', ...
     'err_bi_sum', 'mu', 'rho_k', 'zeta_i_1', 'zeta_i_2', 'zeta_N',...

@@ -35,14 +35,16 @@ c4 = [0.4940, 0.1840, 0.5560];
 c5 = [0.4660, 0.6740, 0.1880]; 
 c6 = [0.3010, 0.7450, 0.9330]; 
 
-save_on = 0; 
+save_on = 1; 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%% Load data                  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % load('Results/LDC_results_spg_3.mat')
-load('Results/LDC_results_spg.mat')
+% load('Results/LDC_results_spg.mat')
+load('Results/LDC_results_spg_5.mat')
+
 
 
 % Vector of strings for r plots
@@ -345,7 +347,7 @@ end
 %%% Bound efficacy 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-load('Results/LDC_efficacy_2');
+load('Results/LDC_efficacy_5');
 % load('LDC_bound_results_test_t');
 
 figure
@@ -479,7 +481,7 @@ set(gcf,'Position',size_1)
 
 % legend([p1,p2,p3, p4],{'Reference Average','Bound (16)', 'Bound (34)',  'Bound (24ish)'}...
 %     ,'interpreter', 'latex', 'fontsize', FS_leg,'Location','SouthEast')
-legend([p1,p3],{'Ref Average', 'Bound (34)'}...
+legend([p1,p3],{'Ref Average', 'Bound (35)'}...
     ,'interpreter', 'latex', 'fontsize', FS_leg,'Location','SouthEast')
 
 if save_on == 1

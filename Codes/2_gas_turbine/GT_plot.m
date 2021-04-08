@@ -35,7 +35,7 @@ c4 = [0.4940, 0.1840, 0.5560];
 c5 = [0.4660, 0.6740, 0.1880]; 
 c6 = [0.3010, 0.7450, 0.9330]; 
 
-save_on = 0; 
+save_on = 1; 
 
 % QoI = 0; % u mid
 QoI = 1; % cylinder
@@ -54,9 +54,13 @@ end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 if QoI == 0
-    load('Results/GT_u_mid_results_1_spg.mat')
+%     load('Results/GT_u_mid_results_1_spg.mat')
+        load('Results/GT_u_mid_results_5_spg.mat')
+
 elseif QoI == 1
-    load('Results/GT_cylinder_results_1_spg.mat')
+%     load('Results/GT_cylinder_results_1_spg.mat')
+        load('Results/GT_cylinder_results_5_spg.mat')
+
 end
 
 % Vector of strings for r plots
@@ -481,7 +485,7 @@ set(gca,'Fontsize', FS_axis, 'linewidth',LW_axis,'TickLabelInterpreter','latex')
 % grid on
 set(gcf,'Position',size_1)
 
-legend([p1,p3],{'Ref Average', 'Bound (34)'}...
+legend([p1,p3],{'Ref Average', 'Bound (35)'}...
     ,'interpreter', 'latex', 'fontsize', FS_leg,'Location','SouthEast')
 
 if save_on == 1

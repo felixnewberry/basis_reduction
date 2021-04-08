@@ -39,8 +39,8 @@ c6 = [0.3010, 0.7450, 0.9330];
 %%% Chose QoI
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-QoI = 0; % u mid
-% QoI = 1; % cylinder
+% QoI = 0; % u mid
+QoI = 1; % cylinder
 
 if QoI == 0
     results_name = 'GT_mid_';
@@ -198,8 +198,8 @@ fprintf('Low fidelity solution : %d s.\n', t_low);
 % n_r_results{n_reps} = [];
 % 
 % % Repeat
-% %parfor i_rep = 1:n_reps
-% for i_rep = 1:n_reps
+% parfor i_rep = 1:n_reps
+% % for i_rep = 1:n_reps
 %     i_rep
 %     n_r_results{i_rep}.efficacy = zeros(length_r,length_n); 
 %     n_r_results{i_rep}.prob = zeros(length_r,length_n); 
@@ -223,7 +223,7 @@ fprintf('Low fidelity solution : %d s.\n', t_low);
 % % efficacy_mat = mean_ep_tau_bound./mean_bi_err; 
 % 
 % if save_on == 1
-%     save(strcat('Results/',results_name,'efficacy_2'), 'r_vec', 'efficacy_mat', 'prob_mat', 'N_hi_vec')
+%     save(strcat('Results/',results_name,'efficacy_5'), 'r_vec', 'efficacy_mat', 'prob_mat', 'N_hi_vec')
 % end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Single point:
@@ -231,7 +231,7 @@ fprintf('Low fidelity solution : %d s.\n', t_low);
 
 r = 8; 
 N_hi = 50; 
-R = N_hi+10;
+R = N_hi;
 
 % err_bi_mean_rep     = zeros(n_points,n_reps);
 % err_bi_sum_rep      = zeros(1, n_reps); 
@@ -324,7 +324,7 @@ eff_36
 
 
 if save_on == 1
-    load(strcat('Results/',results_name,'efficacy_2'));
+    load(strcat('Results/',results_name,'efficacy_5'));
 %     save(strcat('Results/',results_name,'bound_results_theta_est'), 'err_bi_mean',...
 %     'N_hi_vec', 'r', 'R', 'N_hi', 'n_reps', 'x_l', ...
 %     'err_bi_sum', 'mu', 'rho_k', 'zeta_vec', 'zeta_num', 'zeta_den',...

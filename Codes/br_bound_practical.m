@@ -67,8 +67,9 @@ end
 psi_bi = psi_ref(1:n_est,2:end)*alpha2';
 %psi_bi_ref = psi_ref(:,2:end)*alpha2';
 % New reduced basis including column of ones
-psi_bi = [ones(size(A(:,1:n_est), 2), 1) psi_bi]; 
 % remove r+1 column before solving for coefficients.
+psi_bi = [ones(size(A(:,1:n_est), 2), 1) psi_bi(:,1:end-1)]; 
+
 % psi_bi = psi_bi(:,1:end); 
 A_hat_n = (psi_bi*c_bi')'; 
 

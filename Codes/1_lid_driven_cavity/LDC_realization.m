@@ -106,7 +106,7 @@ d = 2;                          % Stochastic dimension
 
 N_hi = 10;      % Number high-fidelity samples
 
-r = 3;                  % KL order
+r = 4;                  % KL order
 
 % tolerance on residual used in spgl1 solver
 sigma = .001;
@@ -218,7 +218,7 @@ alpha2 = diag(1./sqrt(diag(lam_low)))*(v_low'*c_low(:, 2:end));
 psi_bi = psi_hi(:,2:end)*alpha2';
 
 % New reduced basis including column of ones
-psi_bi = [ones(size(u_hi, 1), 1) psi_bi]; 
+psi_bi = [ones(size(u_hi, 1), 1) psi_bi(:,1:end-1)]; 
 
 
 opts = spgSetParms('iterations', 10000, 'verbosity', 0); 

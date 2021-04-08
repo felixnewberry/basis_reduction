@@ -64,7 +64,7 @@ end
 %%% Bi-fidelity error calculation
 psi_bi = psi_ref(1:n_est,2:end)*alpha2';
 % New reduced basis including column of ones
-psi_bi = [ones(size(A(:,1:n_est), 2), 1) psi_bi]; 
+psi_bi = [ones(size(A(:,1:n_est), 2), 1) psi_bi(:,1:end-1)]; 
 A_hat = (psi_bi*c_bi')'; 
 
 %%% calculate squared error for each sample and each point. 
@@ -91,12 +91,12 @@ term_1 = (1+4*mu/N_hi);
 r_max = rank(c_low(:, 2:end) * c_low(:, 2:end)');
 [~, ~, c_bi_ideal,~, ~, alpha2_ideal]= BR_FN(A',psi_ref,c_hi,c_low,r_max,sigma); 
 psi_bi_ideal_R = psi_ref(:,2:end)*alpha2_ideal';
-psi_bi_ideal_R = [ones(size(A(:,:), 2), 1) psi_bi_ideal_R]; 
+psi_bi_ideal_R = [ones(size(A(:,:), 2), 1) psi_bi_ideal_R(:,1:end-1)]; 
 A_hat_ideal_R = (psi_bi_ideal_R*c_bi_ideal')'; 
 % RHS of (11) for n=N and r=r
 [~, ~, c_bi_ideal_r,~, ~, alpha2_ideal_r]= BR_FN(A',psi_ref,c_hi,c_low,r,sigma); 
 psi_bi_ideal_r = psi_ref(:,2:end)*alpha2_ideal_r';
-psi_bi_ideal_r = [ones(size(A(:,:), 2), 1) psi_bi_ideal_r]; 
+psi_bi_ideal_r = [ones(size(A(:,:), 2), 1) psi_bi_ideal_r(:,1:end-1)]; 
 A_hat_ideal_r = (psi_bi_ideal_r*c_bi_ideal_r')'; 
 
 err_N_R = (A_hat_ideal_R-A_hat_ideal_r);
@@ -107,7 +107,7 @@ delta_R_N_i2 = mean(err_N_R.^2,2);
 % RHS of (11) for n=n and r=R
 [~, ~, c_bi_n_R,~, ~, alpha2_n_R]= BR_FN(u_hi,psi_hi,c_hi,c_low,r_max,sigma); 
 psi_bi_n_R = psi_ref(:,2:end)*alpha2_n_R';
-psi_bi_n_R = [ones(size(A(:,1:n_est), 2), 1) psi_bi_n_R]; 
+psi_bi_n_R = [ones(size(A(:,1:n_est), 2), 1) psi_bi_n_R(1:n_est,1:end-1)]; 
 A_hat_n_R = (psi_bi_n_R*c_bi_n_R')'; 
 % RHS of (11) for n=n and r=r (already have) 
 err_R_n = (A_hat-A_hat_n_R);

@@ -117,7 +117,7 @@ x_int = linspace(-1,1,n_points);
 p = 5;                          % PCE order
 d = 6;                          % Stochastic dimension
 
-N_hi = 30;      % Number high-fidelity samples
+N_hi = 20;      % Number high-fidelity samples
 % N_hi = [30]; 
 
 r = 8;           % KL order
@@ -234,7 +234,7 @@ alpha2 = diag(1./sqrt(diag(lam_low)))*(v_low'*c_low(:, 2:end));
 psi_bi = psi_hi(:,2:end)*alpha2';
 
 % New reduced basis including column of ones
-psi_bi = [ones(size(u_hi, 1), 1) psi_bi]; 
+psi_bi = [ones(size(u_hi, 1), 1) psi_bi(:,1:end-1)]; 
 
 
 opts = spgSetParms('iterations', 10000, 'verbosity', 0); 
@@ -246,7 +246,7 @@ c_bi = c_bi';
 % Compute mean, variance or bi-fid estimate
 
 
-% save('Results/Airfoil_qoi_mean_var', 'x_int', 'c_ref', 'c_low', 'c_bi', 'c_hi')
+save('Results/Airfoil_qoi_mean_var', 'x_int', 'c_ref', 'c_low', 'c_bi', 'c_hi')
 
 
 figure
