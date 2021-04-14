@@ -35,10 +35,10 @@ c4 = [0.4940, 0.1840, 0.5560];
 c5 = [0.4660, 0.6740, 0.1880]; 
 c6 = [0.3010, 0.7450, 0.9330]; 
 
-save_on = 1; 
+save_on = 0; 
 
-% QoI = 0; % u mid
-QoI = 1; % cylinder
+QoI = 0; % u mid
+% QoI = 1; % cylinder
 
 
 if QoI == 0
@@ -376,9 +376,12 @@ end
 
 if QoI == 0
     yl = ylim; 
-    ylim([1e-5, yl(2)])
-    new_labels = [1e-5, 1e-4];
-    set(gca,'YTick', new_labels);
+    ylim([1e-5-1e-8, yl(2)])
+%     new_labels = [1e-5, 1e-4];
+%     set(gca,'YTick');
+
+%     set(gca,'YTick', new_labels);
+%     ytickformat('%g');
 %     ytickformat('%e');
 end
 % YTickLabel=cellstr(num2str(new_labels));
