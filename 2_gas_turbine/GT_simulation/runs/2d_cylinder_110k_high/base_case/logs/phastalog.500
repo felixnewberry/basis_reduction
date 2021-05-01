@@ -1,0 +1,41 @@
+Mon Feb 18 15:45:27 MST 2019
+PHASTA Git hash 989cb3c2b669074ba1760e1c729c3c1e9316c794
+Attempting to set ulimit from phasta exec 
+ Complete Filename: /users/fnewberry/phasta/buildI-master-next-ICduct-R/input.config 
+
+ Local Config: solver.inp 
+
+
+ Equation Solver Work Selector: 50 
+
+ MKL not available: ieqswork set to 50 
+Number of geombc-dat and restart-dat files to read: 1
+Bypassing subcommunicator
+ Number of interior topologies:            1
+ Number of boundary topologies:            1
+ time to read geombc (seconds)  0.23807382583618164     
+Bypassing subcommunicator
+ time to read restart (seconds)  0.11983299255371094     
+ Element block size =           64
+ input.f computes Rgas to be   288.29438280166437     
+ Domain size (x,y,z):     1.2000000000   0.2000000000   0.0010000000
+ Navier is set to            1
+Total number of modes = 18596
+ entering initTurb
+Bypassing subcommunicator
+d2wall field found in restart-dat.500.
+time to read d2wall (seconds) 0.072452
+
+ leaving initTurb
+ Back to MPI            1
+ Back to MPI            2
+ Back to MPI            3
+ Back to MPI            0
+ Number of global nonzeros       417609
+environment variable LES_LICENSE_SERVER not defined 
+using wesley as default 
+Bypassing subcommunicator
+ stopjob,lstep,istep          -1         500           0
+   501 9.120E-01 1.009E-07  (   0)   6.383E-06   1.032E-05  <  2249-   15|  15> [  11 -  56]
+   501 3.096E+00 7.062E-08  (  -1)   4.435E-06   4.667E-06  <    43-   10|  10> [ 103 - 200]
+   501 3.453E+00 2.485E-07           1.764E-06                               [   200]

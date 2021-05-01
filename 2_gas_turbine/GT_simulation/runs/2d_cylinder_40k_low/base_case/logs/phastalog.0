@@ -1,0 +1,1958 @@
+Mon Sep 17 16:11:55 MDT 2018
+PHASTA Git hash 425688a32b187e1952b354a7c887dfb0bae9495b
+Attempting to set ulimit from phasta exec 
+ Complete Filename: /users/fnewberry/phasta/buildI-master-next-ICduct-R/input.config 
+
+ Local Config: solver.inp 
+
+
+ Equation Solver Work Selector: 50 
+
+ MKL not available: ieqswork set to 50 
+Number of geombc-dat and restart-dat files to read: 1
+Bypassing subcommunicator
+ Number of interior topologies:            1
+ Number of boundary topologies:            1
+ time to read geombc (seconds)   9.0486049652099609E-002
+Bypassing subcommunicator
+WARNING readheader: Not found time derivative of solution@1?
+ Time derivative of solution is set to zero (SAFE)                                                                                                                                                                                                              
+ time to read restart (seconds)   3.5212039947509766E-002
+ Element block size =           64
+ input.f computes Rgas to be   288.29438280166437     
+ Domain size (x,y,z):     1.2000000000   0.2000000000   0.0010000000
+ Navier is set to            1
+Total number of modes = 6718
+ entering initTurb
+Bypassing subcommunicator
+WARNING readheader: Not found dwal@1?
+d2wall field not found in restart-dat.0. - trying d2wall files now
+time to read d2wall (seconds) 0.027743
+
+ Computing the d2wall field
+ leaving initTurb
+ Back to MPI            0
+ Back to MPI            1
+ Back to MPI            3
+ Back to MPI            2
+environment variable LES_LICENSE_SERVER not defined 
+using wesley as default 
+ Number of global nonzeros       151327
+Bypassing subcommunicator
+WARNING readheader: Not found pressure projection vectors@1?
+pressure projection vectors are being initialized to zero (SAFE)
+ stopjob,lstep,istep          -1           0           0
+     1 3.984E-01 9.562E-03  (   0)   1.439E+01   2.393E+26  <   805-    3|  13> [ 200 -  37]
+     1 7.862E-01 5.254E-03  (  -2)   1.531E+00   3.512E+00  <   169-    3|  13> [ 200 - 140]
+     1 8.482E-01 1.369E-06           2.192E-01                               [   111]
+     1 9.152E-01 3.835E-06           4.298E-01                               [   106]
+     1 1.240E+00 7.136E-03  (  -1)   6.194E-01   7.010E-01  <    17-    6|  10> [ 200 - 134]
+     1 1.829E+00 7.276E-03  (  -1)   4.343E-01   1.072E-01  <  1798-    3|  12> [ 200 - 200]
+     1 1.914E+00 1.523E-05           8.359E-01                               [   134]
+     1 2.063E+00 1.146E+00           1.929E-03                               [   200]
+             CFL Flow  Step  CFLfl_max  dt       1 3.258E+03 5.000E-04
+   sforce            0 if any handled by rank           7  on node           7
+   sforce            1 if any handled by rank           6  on node           6
+ stopjob,lstep,istep          -1           1           1
+     2 2.639E+00 1.086E-02  (   0)   3.453E-01   2.692E-01  <  1570-    6|   9> [ 200 - 200]
+     2 3.220E+00 6.660E-03  (  -1)   3.001E-01   3.718E-01  <  1504-    8|   9> [ 200 - 200]
+     2 3.313E+00 1.917E-05           5.957E-01                               [   145]
+     2 3.396E+00 2.922E-05           3.342E-01                               [   134]
+     2 4.163E+00 3.365E-03  (  -4)   2.999E-01   4.778E-01  <   354-    6|  10> [ 200 - 200]
+     2 4.890E+00 2.636E-03  (  -5)   2.380E-01   5.887E-01  <   258-    6|  10> [ 200 - 200]
+     2 4.956E+00 9.136E-05           4.354E-01                               [   113]
+     2 5.129E+00 3.417E-01           4.514E-03                               [   200]
+             CFL Flow  Step  CFLfl_max  dt       2 4.834E+03 5.000E-04
+Number of fields to write in restart files: 7
+Bypassing subcommunicator
+time to write restart (seconds) 0.016281
+
+The 4/7 th field to be written is 'pressure projection vectors'
+
+The 5/7 th field to be written is 'projection vectors'
+ call saveLesRestart for projection andpressure projection vectors   8.5430145263671875E-003
+
+The 6/7 th field to be written is 'errors'
+ Time to write the error fields to the disks   8.0289840698242188E-003
+
+The 7/7 th field to be written is 'dwal'
+Last field 7 ! 
+Last field 'dwal' finished! 
+
+ Time to write dwal to the disks =    2.6077985763549805E-002
+ stopjob,lstep,istep          -1           2           2
+     3 5.927E+00 8.857E-03  (   0)   2.609E-01   8.575E-02  <  1777-    7|   9> [ 200 - 200]
+     3 6.597E+00 5.992E-03  (  -2)   2.323E-01   5.054E-01  <   295-    6|  10> [ 200 - 200]
+     3 6.778E+00 1.205E-04           4.689E-01                               [   200]
+     3 6.866E+00 4.893E-05           1.622E-01                               [   138]
+     3 7.516E+00 3.151E-03  (  -4)   2.229E-01   3.528E-01  <   288-    6|   9> [ 200 - 200]
+     3 8.164E+00 4.323E-03  (  -3)   2.364E-01   1.009E+00  <  1127-    6|  10> [ 200 - 200]
+     3 8.236E+00 1.191E-04           4.007E-01                               [   122]
+     3 8.412E+00 2.538E-01           4.814E-03                               [   200]
+             CFL Flow  Step  CFLfl_max  dt       3 9.417E+03 5.000E-04
+ stopjob,lstep,istep          -1           3           3
+     4 8.996E+00 1.321E-02  (   1)   2.003E-01   9.801E-02  <  1345-    7|   8> [ 200 - 193]
+     4 9.627E+00 4.750E-03  (  -3)   1.660E-01   3.501E-01  <  1488-    6|  12> [ 200 - 200]
+     4 9.705E+00 1.519E-04           4.346E-01                               [   130]
+     4 9.793E+00 6.329E-05           1.533E-01                               [   139]
+     4 1.041E+01 3.353E-03  (  -4)   1.528E-01   3.276E-01  <  1385-    4|  11> [ 200 - 200]
+     4 1.104E+01 2.383E-03  (  -6)   1.842E-01   5.757E-01  <   662-    6|  10> [ 200 - 200]
+     4 1.112E+01 1.585E-04           2.134E-01                               [   130]
+     4 1.128E+01 2.166E-01           4.706E-03                               [   200]
+             CFL Flow  Step  CFLfl_max  dt       4 3.320E+03 5.000E-04
+Number of fields to write in restart files: 7
+Bypassing subcommunicator
+time to write restart (seconds) 0.017790
+
+The 4/7 th field to be written is 'pressure projection vectors'
+
+The 5/7 th field to be written is 'projection vectors'
+ call saveLesRestart for projection andpressure projection vectors   9.7868442535400391E-003
+
+The 6/7 th field to be written is 'errors'
+ Time to write the error fields to the disks   9.2699527740478516E-003
+
+The 7/7 th field to be written is 'dwal'
+Last field 7 ! 
+Last field 'dwal' finished! 
+
+ Time to write dwal to the disks =    3.7934064865112305E-002
+ stopjob,lstep,istep          -1           4           4
+     5 1.188E+01 1.018E-02  (   0)   2.275E-01   8.981E-01  <  1001-    7|   8> [ 200 - 162]
+     5 1.269E+01 4.475E-03  (  -3)   1.982E-01   8.587E-02  <   288-    6|  12> [ 200 - 200]
+     5 1.280E+01 2.470E-04           3.438E-01                               [   148]
+     5 1.299E+01 1.149E-04           1.222E-01                               [   197]
+     5 1.381E+01 3.134E-03  (  -4)   1.513E-01   9.486E-02  <   354-    6|  11> [ 200 - 200]
+     5 1.462E+01 2.177E-03  (  -6)   1.201E-01   5.319E-02  <   488-    6|  11> [ 200 - 200]
+     5 1.472E+01 1.080E-04           1.732E-01                               [   153]
+     5 1.489E+01 2.728E-01           6.387E-03                               [   200]
+             CFL Flow  Step  CFLfl_max  dt       5 2.300E+03 5.000E-04
+ stopjob,lstep,istep          -1           5           5
+     6 1.564E+01 9.592E-03  (   0)   1.470E-01   9.618E-02  <   126-    7|  10> [ 200 - 193]
+     6 1.646E+01 2.931E-03  (  -5)   1.410E-01   3.590E-01  <   567-    6|  11> [ 200 - 200]
+     6 1.656E+01 2.659E-04           5.081E-01                               [   155]
+     6 1.669E+01 2.084E-04           1.379E-01                               [   167]
+     6 1.750E+01 1.763E-03  (  -7)   1.247E-01   2.006E-01  <   571-    6|  11> [ 200 - 200]
+     6 1.831E+01 1.594E-03  (  -7)   1.145E-01   2.429E-01  <   342-    6|  10> [ 200 - 200]
+     6 1.849E+01 2.167E-04           1.513E-01                               [   200]
+     6 1.865E+01 2.404E-01           8.874E-03                               [   200]
+             CFL Flow  Step  CFLfl_max  dt       6 7.027E+03 5.000E-04
+Number of fields to write in restart files: 7
+Bypassing subcommunicator
+time to write restart (seconds) 0.017218
+
+The 4/7 th field to be written is 'pressure projection vectors'
+
+The 5/7 th field to be written is 'projection vectors'
+ call saveLesRestart for projection andpressure projection vectors   9.1779232025146484E-003
+
+The 6/7 th field to be written is 'errors'
+ Time to write the error fields to the disks   8.2321166992187500E-003
+
+The 7/7 th field to be written is 'dwal'
+Last field 7 ! 
+Last field 'dwal' finished! 
+
+ Time to write dwal to the disks =    2.4083137512207031E-002
+ stopjob,lstep,istep          -1           6           6
+     7 1.940E+01 3.197E-03  (  -4)   1.057E-01   4.927E-01  <   126-    7|   9> [ 200 - 200]
+     7 2.028E+01 1.495E-03  (  -8)   1.022E-01   1.078E-01  <   287-    6|  10> [ 200 - 200]
+     7 2.044E+01 3.105E-04           3.364E-01                               [   193]
+     7 2.061E+01 1.348E-04           9.387E-02                               [   200]
+     7 2.142E+01 1.286E-03  (  -8)   8.242E-02   1.062E-01  <   414-    6|  11> [ 200 - 200]
+     7 2.223E+01 1.005E-03  (  -9)   6.858E-02   6.749E-02  <  1488-    6|  10> [ 200 - 200]
+     7 2.240E+01 1.895E-04           9.147E-02                               [   200]
+     7 2.257E+01 2.054E-01           2.888E-03                               [   200]
+             CFL Flow  Step  CFLfl_max  dt       7 2.658E+03 5.000E-04
+ stopjob,lstep,istep          -1           7           7
+     8 2.338E+01 2.410E-03  (  -5)   7.605E-02   8.201E-02  <   779-    7|   7> [ 200 - 200]
+     8 2.419E+01 1.709E-03  (  -7)   8.166E-02   8.494E-02  <   281-    8|   9> [ 200 - 200]
+     8 2.436E+01 4.538E-04           2.687E-01                               [   200]
+     8 2.453E+01 1.776E-04           9.574E-02                               [   200]
+     8 2.534E+01 1.007E-03  (  -9)   6.238E-02   5.361E-02  <  1422-    6|  10> [ 200 - 200]
+     8 2.615E+01 9.170E-04  ( -10)   5.042E-02   2.629E-02  <   487-    6|  10> [ 200 - 200]
+     8 2.632E+01 2.303E-04           6.113E-02                               [   200]
+     8 2.649E+01 1.590E-01           4.721E-03                               [   200]
+             CFL Flow  Step  CFLfl_max  dt       8 1.602E+03 5.000E-04
+Number of fields to write in restart files: 7
+Bypassing subcommunicator
+time to write restart (seconds) 0.016553
+
+The 4/7 th field to be written is 'pressure projection vectors'
+
+The 5/7 th field to be written is 'projection vectors'
+ call saveLesRestart for projection andpressure projection vectors   1.0446071624755859E-002
+
+The 6/7 th field to be written is 'errors'
+ Time to write the error fields to the disks   8.2249641418457031E-003
+
+The 7/7 th field to be written is 'dwal'
+Last field 7 ! 
+Last field 'dwal' finished! 
+
+ Time to write dwal to the disks =    2.6124954223632812E-002
+ stopjob,lstep,istep          -1           8           8
+     9 2.723E+01 1.875E-03  (  -7)   4.881E-02   2.383E-02  <   233-    8|   8> [ 200 - 200]
+     9 2.801E+01 1.230E-03  (  -8)   4.229E-02   6.186E-02  <   245-    8|  10> [ 200 - 200]
+     9 2.819E+01 5.382E-04           2.634E-01                               [   200]
+     9 2.836E+01 2.896E-04           9.364E-02                               [   200]
+     9 2.908E+01 7.944E-04  ( -10)   3.686E-02   1.889E-02  <   161-    8|   9> [ 200 - 200]
+     9 2.979E+01 7.384E-04  ( -11)   2.750E-02   1.450E-02  <   935-    8|   9> [ 200 - 200]
+     9 2.996E+01 3.072E-04           3.730E-02                               [   200]
+     9 3.013E+01 1.328E-01           9.296E-03                               [   200]
+             CFL Flow  Step  CFLfl_max  dt       9 8.846E+02 5.000E-04
+ stopjob,lstep,istep          -1           9           9
+    10 3.088E+01 1.566E-03  (  -7)   3.116E-02   3.494E-02  <  1301-    8|   9> [ 200 - 200]
+    10 3.159E+01 1.101E-03  (  -9)   2.918E-02   3.470E-02  <   939-    8|   9> [ 200 - 200]
+    10 3.177E+01 7.594E-04           2.312E-01                               [   200]
+    10 3.194E+01 3.986E-04           7.426E-02                               [   200]
+    10 3.265E+01 8.905E-04  ( -10)   2.426E-02   3.414E-02  <   130-    8|  10> [ 200 - 200]
+    10 3.336E+01 6.316E-04  ( -11)   2.263E-02   3.882E-02  <  1182-    8|   9> [ 200 - 200]
+    10 3.353E+01 3.205E-04           2.237E-02                               [   200]
+    10 3.370E+01 1.154E-01           7.518E-03                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      10 5.995E+02 5.000E-04
+Number of fields to write in restart files: 7
+Bypassing subcommunicator
+time to write restart (seconds) 0.018989
+
+The 4/7 th field to be written is 'pressure projection vectors'
+
+The 5/7 th field to be written is 'projection vectors'
+ call saveLesRestart for projection andpressure projection vectors   1.0665178298950195E-002
+
+The 6/7 th field to be written is 'errors'
+ Time to write the error fields to the disks   8.4300041198730469E-003
+
+The 7/7 th field to be written is 'dwal'
+Last field 7 ! 
+Last field 'dwal' finished! 
+
+ Time to write dwal to the disks =    2.7119874954223633E-002
+ stopjob,lstep,istep          -1          10          10
+    11 3.444E+01 1.722E-03  (  -7)   2.623E-02   7.542E-02  <  1247-    8|   9> [ 200 - 200]
+    11 3.504E+01 1.131E-03  (  -9)   2.413E-02   2.827E-02  <  1014-    8|   9> [ 200 - 200]
+    11 3.521E+01 9.495E-04           1.944E-01                               [   200]
+    11 3.539E+01 4.893E-04           5.432E-02                               [   200]
+    11 3.596E+01 9.879E-04  (  -9)   2.409E-02   1.575E-02  <  1182-    8|   9> [ 200 - 200]
+    11 3.663E+01 7.285E-04  ( -11)   1.830E-02   1.961E-02  <   400-    8|   9> [ 200 - 200]
+    11 3.683E+01 3.903E-04           1.557E-02                               [   200]
+    11 3.702E+01 1.151E-01           4.124E-03                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      11 5.829E+02 5.000E-04
+ stopjob,lstep,istep          -1          11          11
+    12 3.773E+01 2.005E-03  (  -6)   2.166E-02   1.882E-02  <  1734-    7|   8> [ 200 - 200]
+    12 3.844E+01 1.269E-03  (  -8)   2.411E-02   6.946E-02  <  1377-    8|  10> [ 200 - 200]
+    12 3.861E+01 1.094E-03           1.543E-01                               [   200]
+    12 3.878E+01 5.606E-04           3.753E-02                               [   200]
+    12 3.949E+01 1.133E-03  (  -9)   1.981E-02   1.851E-02  <  1377-    8|   9> [ 200 - 200]
+    12 4.021E+01 8.943E-04  ( -10)   1.698E-02   3.788E-02  <  1760-    7|  10> [ 200 - 200]
+    12 4.038E+01 3.964E-04           1.181E-02                               [   200]
+    12 4.055E+01 9.221E-02           3.278E-03                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      12 6.804E+02 5.000E-04
+Number of fields to write in restart files: 7
+Bypassing subcommunicator
+time to write restart (seconds) 0.015744
+
+The 4/7 th field to be written is 'pressure projection vectors'
+
+The 5/7 th field to be written is 'projection vectors'
+ call saveLesRestart for projection andpressure projection vectors   1.0483980178833008E-002
+
+The 6/7 th field to be written is 'errors'
+ Time to write the error fields to the disks   9.7079277038574219E-003
+
+The 7/7 th field to be written is 'dwal'
+Last field 7 ! 
+Last field 'dwal' finished! 
+
+ Time to write dwal to the disks =    3.3594846725463867E-002
+ stopjob,lstep,istep          -1          12          12
+    13 4.128E+01 2.086E-03  (  -6)   1.765E-02   1.553E-02  <  1703-    7|  10> [ 159 - 200]
+    13 4.197E+01 1.471E-03  (  -8)   1.653E-02   1.787E-02  <  1733-    7|  10> [ 200 - 200]
+    13 4.215E+01 1.209E-03           1.186E-01                               [   200]
+    13 4.233E+01 5.456E-04           2.449E-02                               [   200]
+    13 4.297E+01 1.213E-03  (  -8)   1.532E-02   1.950E-02  <  1728-    7|  10> [ 200 - 200]
+    13 4.379E+01 9.239E-04  ( -10)   1.341E-02   1.175E-02  <  1693-    7|  10> [ 200 - 200]
+    13 4.398E+01 3.171E-04           8.167E-03                               [   200]
+    13 4.416E+01 8.129E-02           2.431E-03                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      13 5.444E+02 5.000E-04
+ stopjob,lstep,istep          -1          13          13
+    14 4.496E+01 2.040E-03  (  -6)   1.691E-02   1.284E-02  <  1693-    7|   9> [ 160 - 200]
+    14 4.577E+01 1.423E-03  (  -8)   1.664E-02   1.433E-02  <  1693-    7|  11> [ 200 - 200]
+    14 4.595E+01 1.276E-03           9.282E-02                               [   200]
+    14 4.611E+01 5.310E-04           1.546E-02                               [   200]
+    14 4.692E+01 1.162E-03  (  -9)   1.216E-02   1.288E-02  <  1693-    7|   9> [ 200 - 200]
+    14 4.773E+01 9.303E-04  ( -10)   1.030E-02   1.275E-02  <  1301-    8|   9> [ 200 - 200]
+    14 4.791E+01 2.321E-04           6.668E-03                               [   200]
+    14 4.808E+01 6.546E-02           4.936E-03                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      14 6.219E+02 5.000E-04
+Number of fields to write in restart files: 7
+Bypassing subcommunicator
+time to write restart (seconds) 0.014459
+
+The 4/7 th field to be written is 'pressure projection vectors'
+
+The 5/7 th field to be written is 'projection vectors'
+ call saveLesRestart for projection andpressure projection vectors   8.9809894561767578E-003
+
+The 6/7 th field to be written is 'errors'
+ Time to write the error fields to the disks   8.2569122314453125E-003
+
+The 7/7 th field to be written is 'dwal'
+Last field 7 ! 
+Last field 'dwal' finished! 
+
+ Time to write dwal to the disks =    2.5785207748413086E-002
+ stopjob,lstep,istep          -1          14          14
+    15 4.878E+01 1.862E-03  (  -7)   1.247E-02   1.130E-02  <  1693-    7|   8> [ 169 - 200]
+    15 4.937E+01 1.484E-03  (  -8)   1.323E-02   1.413E-02  <  1522-    7|   9> [ 200 - 200]
+    15 4.955E+01 1.308E-03           7.378E-02                               [   200]
+    15 4.972E+01 3.393E-04           9.416E-03                               [   200]
+    15 5.029E+01 1.180E-03  (  -9)   1.380E-02   1.040E-02  <  1734-    7|  10> [ 200 - 200]
+    15 5.086E+01 9.891E-04  (  -9)   1.152E-02   1.724E-02  <  1734-    7|  11> [ 200 - 200]
+    15 5.103E+01 1.293E-04           5.033E-03                               [   200]
+    15 5.121E+01 5.649E-02           2.549E-03                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      15 5.808E+02 5.000E-04
+ stopjob,lstep,istep          -1          15          15
+    16 5.177E+01 1.753E-03  (  -7)   1.234E-02   2.065E-02  <  1734-    7|  10> [ 200 - 200]
+    16 5.234E+01 1.528E-03  (  -7)   1.086E-02   3.331E-02  <  1734-    7|  11> [ 200 - 200]
+    16 5.251E+01 1.281E-03           6.469E-02                               [   200]
+    16 5.268E+01 2.155E-04           6.853E-03                               [   200]
+    16 5.325E+01 1.295E-03  (  -8)   1.114E-02   4.188E-02  <  1703-    7|  11> [ 200 - 200]
+    16 5.381E+01 1.177E-03  (  -9)   8.967E-03   1.399E-02  <  1703-    7|  11> [ 200 - 200]
+    16 5.398E+01 1.137E-04           4.626E-03                               [   200]
+    16 5.416E+01 4.382E-02           3.080E-03                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      16 5.631E+02 5.000E-04
+Number of fields to write in restart files: 7
+Bypassing subcommunicator
+time to write restart (seconds) 0.016875
+
+The 4/7 th field to be written is 'pressure projection vectors'
+
+The 5/7 th field to be written is 'projection vectors'
+ call saveLesRestart for projection andpressure projection vectors   8.8479518890380859E-003
+
+The 6/7 th field to be written is 'errors'
+ Time to write the error fields to the disks   7.7888965606689453E-003
+
+The 7/7 th field to be written is 'dwal'
+Last field 7 ! 
+Last field 'dwal' finished! 
+
+ Time to write dwal to the disks =    2.3695945739746094E-002
+ stopjob,lstep,istep          -1          16          16
+    17 5.487E+01 1.770E-03  (  -7)   8.578E-03   2.174E-02  <  1703-    7|  11> [ 138 - 200]
+    17 5.564E+01 1.592E-03  (  -7)   8.854E-03   1.957E-02  <  1703-    7|  11> [ 200 - 200]
+    17 5.581E+01 1.245E-03           6.167E-02                               [   200]
+    17 5.598E+01 1.864E-04           5.320E-03                               [   200]
+    17 5.671E+01 1.299E-03  (  -8)   7.799E-03   1.716E-02  <  1703-    7|  11> [ 200 - 200]
+    17 5.741E+01 1.123E-03  (  -9)   6.719E-03   1.029E-01  <  1703-    7|  11> [ 200 - 200]
+    17 5.757E+01 1.007E-04           2.827E-03                               [   200]
+    17 5.775E+01 3.465E-02           1.983E-03                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      17 5.491E+02 5.000E-04
+ stopjob,lstep,istep          -1          17          17
+    18 5.845E+01 1.720E-03  (  -7)   9.987E-03   8.601E-02  <  1703-    7|  11> [ 200 - 200]
+    18 5.916E+01 1.543E-03  (  -7)   9.969E-03   6.619E-02  <  1703-    7|  11> [ 200 - 200]
+    18 5.933E+01 1.165E-03           5.597E-02                               [   200]
+    18 5.949E+01 1.663E-04           3.907E-03                               [   200]
+    18 6.019E+01 1.270E-03  (  -8)   9.912E-03   6.851E-03  <  1703-    7|  11> [ 174 - 200]
+    18 6.088E+01 1.072E-03  (  -9)   7.398E-03   4.118E-03  <  1703-    7|  11> [ 174 - 200]
+    18 6.105E+01 9.534E-05           2.213E-03                               [   200]
+    18 6.122E+01 3.326E-02           1.759E-03                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      18 5.664E+02 5.000E-04
+Number of fields to write in restart files: 7
+Bypassing subcommunicator
+time to write restart (seconds) 0.013890
+
+The 4/7 th field to be written is 'pressure projection vectors'
+
+The 5/7 th field to be written is 'projection vectors'
+ call saveLesRestart for projection andpressure projection vectors   8.0449581146240234E-003
+
+The 6/7 th field to be written is 'errors'
+ Time to write the error fields to the disks   7.7359676361083984E-003
+
+The 7/7 th field to be written is 'dwal'
+Last field 7 ! 
+Last field 'dwal' finished! 
+
+ Time to write dwal to the disks =    2.3330926895141602E-002
+ stopjob,lstep,istep          -1          18          18
+    19 6.195E+01 1.611E-03  (  -7)   7.570E-03   7.158E-03  <  1703-    7|  10> [ 129 - 200]
+    19 6.281E+01 1.448E-03  (  -8)   7.753E-03   1.154E-02  <  1703-    7|  11> [ 200 - 200]
+    19 6.299E+01 1.058E-03           4.845E-02                               [   200]
+    19 6.316E+01 1.532E-04           3.211E-03                               [   200]
+    19 6.397E+01 1.160E-03  (  -9)   7.689E-03   5.375E-03  <  1583-    7|  10> [ 200 - 200]
+    19 6.479E+01 9.950E-04  (  -9)   5.264E-03   4.686E-03  <  1583-    7|  11> [ 200 - 200]
+    19 6.496E+01 8.483E-05           1.800E-03                               [   200]
+    19 6.513E+01 2.814E-02           2.022E-03                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      19 5.874E+02 5.000E-04
+ stopjob,lstep,istep          -1          19          19
+    20 6.591E+01 1.492E-03  (  -8)   6.040E-03   7.502E-03  <  1583-    7|  10> [ 127 - 200]
+    20 6.671E+01 1.294E-03  (  -8)   5.754E-03   6.275E-03  <  1583-    7|  10> [ 200 - 200]
+    20 6.688E+01 9.256E-04           4.016E-02                               [   200]
+    20 6.705E+01 1.346E-04           2.532E-03                               [   200]
+    20 6.785E+01 1.063E-03  (  -9)   5.455E-03   3.903E-03  <  1547-    7|  10> [ 200 - 200]
+    20 6.865E+01 9.099E-04  ( -10)   4.177E-03   3.113E-03  <  1433-    7|  10> [ 200 - 200]
+    20 6.882E+01 7.076E-05           1.293E-03                               [   200]
+    20 6.899E+01 2.579E-02           2.444E-03                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      20 5.557E+02 5.000E-04
+Number of fields to write in restart files: 7
+Bypassing subcommunicator
+time to write restart (seconds) 0.015833
+
+The 4/7 th field to be written is 'pressure projection vectors'
+
+The 5/7 th field to be written is 'projection vectors'
+ call saveLesRestart for projection andpressure projection vectors   9.8218917846679688E-003
+
+The 6/7 th field to be written is 'errors'
+ Time to write the error fields to the disks   8.1629753112792969E-003
+
+The 7/7 th field to be written is 'dwal'
+Last field 7 ! 
+Last field 'dwal' finished! 
+
+ Time to write dwal to the disks =    2.6492834091186523E-002
+ stopjob,lstep,istep          -1          20          20
+    21 6.970E+01 1.360E-03  (  -8)   4.688E-03   4.518E-03  <  1547-    7|  10> [  92 - 200]
+    21 7.032E+01 1.169E-03  (  -9)   4.664E-03   5.707E-03  <  1547-    7|  10> [ 193 - 200]
+    21 7.051E+01 7.790E-04           3.206E-02                               [   200]
+    21 7.069E+01 1.182E-04           2.176E-03                               [   200]
+    21 7.127E+01 9.418E-04  ( -10)   4.564E-03   4.893E-03  <  1433-    7|  10> [ 200 - 200]
+    21 7.185E+01 7.962E-04  ( -10)   4.341E-03   8.194E-03  <  1431-    7|   9> [ 200 - 200]
+    21 7.203E+01 5.773E-05           1.026E-03                               [   200]
+    21 7.226E+01 2.245E-02           1.511E-03                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      21 5.770E+02 5.000E-04
+ stopjob,lstep,istep          -1          21          21
+    22 7.299E+01 1.219E-03  (  -8)   5.789E-03   5.183E-03  <  1395-    7|   9> [ 200 - 200]
+    22 7.370E+01 1.036E-03  (  -9)   4.865E-03   6.284E-03  <  1395-    7|  10> [ 200 - 200]
+    22 7.386E+01 6.306E-04           2.531E-02                               [   200]
+    22 7.403E+01 1.010E-04           1.741E-03                               [   200]
+    22 7.473E+01 8.403E-04  ( -10)   4.362E-03   1.819E-02  <  1395-    7|  10> [ 200 - 200]
+    22 7.544E+01 7.280E-04  ( -11)   3.916E-03   6.021E-02  <  1067-    7|  10> [ 200 - 200]
+    22 7.561E+01 4.158E-05           6.713E-04                               [   200]
+    22 7.578E+01 1.741E-02           1.258E-03                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      22 5.758E+02 5.000E-04
+Number of fields to write in restart files: 7
+Bypassing subcommunicator
+time to write restart (seconds) 0.013240
+
+The 4/7 th field to be written is 'pressure projection vectors'
+
+The 5/7 th field to be written is 'projection vectors'
+ call saveLesRestart for projection andpressure projection vectors   8.4159374237060547E-003
+
+The 6/7 th field to be written is 'errors'
+ Time to write the error fields to the disks   6.8991184234619141E-003
+
+The 7/7 th field to be written is 'dwal'
+Last field 7 ! 
+Last field 'dwal' finished! 
+
+ Time to write dwal to the disks =    2.4111986160278320E-002
+ stopjob,lstep,istep          -1          22          22
+    23 7.651E+01 1.100E-03  (  -9)   4.919E-03   2.834E-02  <  1395-    7|   9> [ 147 - 200]
+    23 7.716E+01 9.166E-04  ( -10)   4.257E-03   3.042E-02  <  1395-    7|   9> [ 200 - 200]
+    23 7.733E+01 4.933E-04           1.944E-02                               [   200]
+    23 7.750E+01 7.387E-05           1.393E-03                               [   200]
+    23 7.813E+01 7.742E-04  ( -10)   4.299E-03   3.809E-03  <   946-    7|   9> [ 200 - 200]
+    23 7.875E+01 6.433E-04  ( -11)   3.322E-03   8.730E-03  <  1001-    7|  10> [ 200 - 200]
+    23 7.892E+01 3.163E-05           6.095E-04                               [   200]
+    23 7.910E+01 1.584E-02           1.085E-03                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      23 5.903E+02 5.000E-04
+ stopjob,lstep,istep          -1          23          23
+    24 7.972E+01 9.670E-04  (  -9)   3.942E-03   3.740E-03  <  1001-    7|   9> [ 200 - 200]
+    24 8.035E+01 8.182E-04  ( -10)   3.748E-03   1.904E-02  <  1001-    7|  10> [ 200 - 200]
+    24 8.052E+01 3.904E-04           1.578E-02                               [   200]
+    24 8.070E+01 6.236E-05           1.358E-03                               [   200]
+    24 8.132E+01 6.316E-04  ( -11)   3.750E-03   2.238E-03  <  1001-    7|  10> [ 179 - 200]
+    24 8.194E+01 5.273E-04  ( -12)   2.974E-03   3.787E-03  <  1001-    7|  10> [ 200 - 200]
+    24 8.211E+01 3.154E-05           5.970E-04                               [   200]
+    24 8.229E+01 1.439E-02           1.032E-03                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      24 5.858E+02 5.000E-04
+Number of fields to write in restart files: 7
+Bypassing subcommunicator
+time to write restart (seconds) 0.014481
+
+The 4/7 th field to be written is 'pressure projection vectors'
+
+The 5/7 th field to be written is 'projection vectors'
+ call saveLesRestart for projection andpressure projection vectors   8.8269710540771484E-003
+
+The 6/7 th field to be written is 'errors'
+ Time to write the error fields to the disks   7.5938701629638672E-003
+
+The 7/7 th field to be written is 'dwal'
+Last field 7 ! 
+Last field 'dwal' finished! 
+
+ Time to write dwal to the disks =    2.4794101715087891E-002
+ stopjob,lstep,istep          -1          24          24
+    25 8.308E+01 8.393E-04  ( -10)   3.757E-03   8.811E-03  <  1001-    7|  10> [ 200 - 200]
+    25 8.395E+01 6.509E-04  ( -11)   2.977E-03   1.594E-02  <  1001-    7|  10> [ 200 - 200]
+    25 8.413E+01 3.270E-04           1.386E-02                               [   200]
+    25 8.430E+01 5.701E-05           1.212E-03                               [   200]
+    25 8.515E+01 5.183E-04  ( -12)   3.401E-03   7.600E-03  <  1001-    7|   9> [ 200 - 200]
+    25 8.596E+01 4.330E-04  ( -13)   2.417E-03   1.345E-02  <  1001-    7|   9> [ 200 - 200]
+    25 8.613E+01 2.630E-05           4.779E-04                               [   200]
+    25 8.630E+01 1.238E-02           1.065E-03                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      25 5.856E+02 5.000E-04
+ stopjob,lstep,istep          -1          25          25
+    26 8.712E+01 7.084E-04  ( -11)   2.846E-03   5.022E-02  <   999-    7|   9> [ 200 - 200]
+    26 8.792E+01 5.941E-04  ( -12)   3.243E-03   4.761E-02  <   773-    7|   9> [ 175 - 200]
+    26 8.809E+01 2.966E-04           1.327E-02                               [   200]
+    26 8.825E+01 4.575E-05           1.082E-03                               [   200]
+    26 8.905E+01 4.345E-04  ( -13)   3.529E-03   4.285E-03  <   492-    7|   9> [ 137 - 200]
+    26 8.984E+01 3.533E-04  ( -14)   2.663E-03   1.389E-03  <   492-    7|   9> [ 149 - 200]
+    26 9.001E+01 2.229E-05           4.069E-04                               [   200]
+    26 9.019E+01 1.062E-02           9.990E-04                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      26 5.841E+02 5.000E-04
+Number of fields to write in restart files: 7
+Bypassing subcommunicator
+time to write restart (seconds) 0.015850
+
+The 4/7 th field to be written is 'pressure projection vectors'
+
+The 5/7 th field to be written is 'projection vectors'
+ call saveLesRestart for projection andpressure projection vectors   9.3481540679931641E-003
+
+The 6/7 th field to be written is 'errors'
+ Time to write the error fields to the disks   8.8720321655273438E-003
+
+The 7/7 th field to be written is 'dwal'
+Last field 7 ! 
+Last field 'dwal' finished! 
+
+ Time to write dwal to the disks =    2.6540040969848633E-002
+ stopjob,lstep,istep          -1          26          26
+    27 9.108E+01 5.985E-04  ( -12)   3.481E-03   3.011E-03  <   492-    7|   9> [ 163 - 200]
+    27 9.190E+01 4.714E-04  ( -13)   3.274E-03   1.242E-03  <   492-    7|   9> [ 200 - 200]
+    27 9.207E+01 2.862E-04           1.389E-02                               [   200]
+    27 9.223E+01 3.585E-05           8.743E-04                               [   200]
+    27 9.304E+01 3.723E-04  ( -14)   2.951E-03   2.480E-03  <   195-    7|   9> [ 200 - 200]
+    27 9.383E+01 3.064E-04  ( -14)   1.972E-03   1.206E-03  <   195-    7|   9> [ 147 - 200]
+    27 9.400E+01 1.758E-05           3.664E-04                               [   200]
+    27 9.417E+01 9.286E-03           9.526E-04                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      27 5.691E+02 5.000E-04
+ stopjob,lstep,istep          -1          27          27
+    28 9.501E+01 5.117E-04  ( -12)   2.581E-03   1.319E-03  <   195-    7|   9> [ 159 - 200]
+    28 9.584E+01 4.021E-04  ( -13)   2.242E-03   1.356E-03  <   195-    7|  10> [ 200 - 200]
+    28 9.601E+01 2.805E-04           1.369E-02                               [   200]
+    28 9.618E+01 2.698E-05           7.278E-04                               [   200]
+    28 9.698E+01 3.099E-04  ( -14)   2.206E-03   1.040E-03  <   159-    7|   9> [ 177 - 200]
+    28 9.778E+01 2.514E-04  ( -15)   1.668E-03   1.393E-03  <   159-    7|  10> [ 151 - 200]
+    28 9.794E+01 1.362E-05           2.953E-04                               [   200]
+    28 9.811E+01 8.512E-03           1.036E-03                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      28 5.739E+02 5.000E-04
+Number of fields to write in restart files: 7
+Bypassing subcommunicator
+time to write restart (seconds) 0.013677
+
+The 4/7 th field to be written is 'pressure projection vectors'
+
+The 5/7 th field to be written is 'projection vectors'
+ call saveLesRestart for projection andpressure projection vectors   8.6240768432617188E-003
+
+The 6/7 th field to be written is 'errors'
+ Time to write the error fields to the disks   7.8070163726806641E-003
+
+The 7/7 th field to be written is 'dwal'
+Last field 7 ! 
+Last field 'dwal' finished! 
+
+ Time to write dwal to the disks =    2.6619195938110352E-002
+ stopjob,lstep,istep          -1          28          28
+    29 9.885E+01 4.235E-04  ( -13)   2.309E-03   1.236E-03  <   126-    7|   9> [ 200 - 200]
+    29 9.968E+01 3.173E-04  ( -14)   1.993E-03   1.684E-03  <   126-    7|  10> [ 160 - 200]
+    29 9.987E+01 2.693E-04           1.270E-02                               [   200]
+    29 1.000E+02 2.349E-05           6.450E-04                               [   200]
+    29 1.008E+02 2.446E-04  ( -15)   1.798E-03   7.950E-04  <   126-    7|  10> [ 179 - 200]
+    29 1.017E+02 1.972E-04  ( -16)   1.358E-03   2.026E-03  <   126-    7|  11> [ 200 - 200]
+    29 1.018E+02 1.299E-05           2.509E-04                               [   200]
+    29 1.020E+02 7.725E-03           1.097E-03                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      29 5.878E+02 5.000E-04
+ stopjob,lstep,istep          -1          29          29
+    30 1.028E+02 3.325E-04  ( -14)   1.838E-03   2.780E-03  <   126-    7|  10> [ 200 - 200]
+    30 1.036E+02 2.490E-04  ( -15)   1.481E-03   2.648E-03  <   126-    7|  10> [ 200 - 200]
+    30 1.038E+02 2.484E-04           1.107E-02                               [   200]
+    30 1.039E+02 1.946E-05           5.350E-04                               [   200]
+    30 1.047E+02 1.961E-04  ( -16)   1.470E-03   6.403E-04  <   126-    7|  10> [ 129 - 200]
+    30 1.055E+02 1.522E-04  ( -17)   9.548E-04   3.333E-03  <    64-    7|  10> [ 200 - 200]
+    30 1.057E+02 1.192E-05           2.119E-04                               [   200]
+    30 1.058E+02 7.273E-03           1.038E-03                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      30 5.782E+02 5.000E-04
+Number of fields to write in restart files: 7
+Bypassing subcommunicator
+time to write restart (seconds) 0.013056
+
+The 4/7 th field to be written is 'pressure projection vectors'
+
+The 5/7 th field to be written is 'projection vectors'
+ call saveLesRestart for projection andpressure projection vectors   1.1325120925903320E-002
+
+The 6/7 th field to be written is 'errors'
+ Time to write the error fields to the disks   9.6909999847412109E-003
+
+The 7/7 th field to be written is 'dwal'
+Last field 7 ! 
+Last field 'dwal' finished! 
+
+ Time to write dwal to the disks =    3.1697034835815430E-002
+ stopjob,lstep,istep          -1          30          30
+    31 1.066E+02 2.484E-04  ( -15)   1.257E-03   3.588E-03  <    64-    7|  10> [ 136 - 200]
+    31 1.073E+02 1.890E-04  ( -17)   1.320E-03   1.822E-03  <    64-    7|  10> [ 200 - 200]
+    31 1.074E+02 2.197E-04           9.171E-03                               [   200]
+    31 1.076E+02 1.559E-05           4.340E-04                               [   200]
+    31 1.085E+02 1.397E-04  ( -18)   1.064E-03   2.394E-03  <    64-    7|  10> [ 200 - 200]
+    31 1.093E+02 1.103E-04  ( -19)   7.023E-04   1.738E-03  <    64-    7|  10> [ 156 - 200]
+    31 1.094E+02 8.449E-06           1.671E-04                               [   200]
+    31 1.096E+02 6.468E-03           9.461E-04                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      31 5.747E+02 5.000E-04
+ stopjob,lstep,istep          -1          31          31
+    32 1.104E+02 1.807E-04  ( -17)   8.536E-04   1.130E-03  <   247-    7|   9> [ 198 - 200]
+    32 1.112E+02 1.339E-04  ( -18)   7.552E-04   1.431E-03  <    28-    7|  10> [ 173 - 200]
+    32 1.114E+02 1.856E-04           7.344E-03                               [   200]
+    32 1.115E+02 1.370E-05           3.463E-04                               [   200]
+    32 1.123E+02 8.719E-05  ( -20)   6.701E-04   3.798E-04  <    28-    7|   9> [ 140 - 200]
+    32 1.131E+02 6.608E-05  ( -21)   4.535E-04   8.538E-04  <   429-    7|  10> [ 200 - 200]
+    32 1.133E+02 6.622E-06           1.107E-04                               [   200]
+    32 1.135E+02 5.662E-03           9.707E-04                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      32 5.750E+02 5.000E-04
+Number of fields to write in restart files: 7
+Bypassing subcommunicator
+time to write restart (seconds) 0.016625
+
+The 4/7 th field to be written is 'pressure projection vectors'
+
+The 5/7 th field to be written is 'projection vectors'
+ call saveLesRestart for projection andpressure projection vectors   8.9068412780761719E-003
+
+The 6/7 th field to be written is 'errors'
+ Time to write the error fields to the disks   7.6968669891357422E-003
+
+The 7/7 th field to be written is 'dwal'
+Last field 7 ! 
+Last field 'dwal' finished! 
+
+ Time to write dwal to the disks =    2.7531862258911133E-002
+ stopjob,lstep,istep          -1          32          32
+    33 1.142E+02 1.262E-04  ( -18)   5.803E-04   2.081E-03  <   171-    7|   9> [ 171 - 200]
+    33 1.149E+02 8.664E-05  ( -20)   4.996E-04   4.274E-04  <   121-    7|  10> [ 194 - 200]
+    33 1.151E+02 1.500E-04           5.664E-03                               [   200]
+    33 1.153E+02 1.076E-05           2.938E-04                               [   200]
+    33 1.160E+02 6.263E-05  ( -21)   4.799E-04   2.132E-03  <   153-    7|  10> [ 200 - 200]
+    33 1.167E+02 4.898E-05  ( -22)   2.832E-04   2.910E-04  <   121-    7|  10> [ 139 - 200]
+    33 1.168E+02 4.759E-06           7.688E-05                               [   200]
+    33 1.170E+02 4.980E-03           1.196E-03                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      33 5.717E+02 5.000E-04
+ stopjob,lstep,istep          -1          33          33
+    34 1.177E+02 8.997E-05  ( -20)   4.219E-04   3.814E-04  <   121-    7|  10> [ 130 - 200]
+    34 1.184E+02 6.645E-05  ( -21)   3.439E-04   6.690E-04  <   121-    7|  10> [ 169 - 200]
+    34 1.185E+02 1.162E-04           4.231E-03                               [   200]
+    34 1.187E+02 8.815E-06           2.259E-04                               [   200]
+    34 1.194E+02 4.979E-05  ( -22)   3.646E-04   3.052E-04  <   153-    7|  10> [ 187 - 200]
+    34 1.201E+02 3.868E-05  ( -23)   2.277E-04   1.436E-03  <    64-    7|  10> [ 140 - 200]
+    34 1.203E+02 4.385E-06           6.947E-05                               [   200]
+    34 1.204E+02 4.804E-03           1.201E-03                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      34 5.726E+02 5.000E-04
+Number of fields to write in restart files: 7
+Bypassing subcommunicator
+time to write restart (seconds) 0.015668
+
+The 4/7 th field to be written is 'pressure projection vectors'
+
+The 5/7 th field to be written is 'projection vectors'
+ call saveLesRestart for projection andpressure projection vectors   1.0296106338500977E-002
+
+The 6/7 th field to be written is 'errors'
+ Time to write the error fields to the disks   8.9828968048095703E-003
+
+The 7/7 th field to be written is 'dwal'
+Last field 7 ! 
+Last field 'dwal' finished! 
+
+ Time to write dwal to the disks =    2.7539968490600586E-002
+ stopjob,lstep,istep          -1          34          34
+    35 1.212E+02 6.691E-05  ( -21)   3.708E-04   1.100E-03  <   351-    7|  10> [ 120 - 200]
+    35 1.219E+02 5.109E-05  ( -22)   3.096E-04   4.861E-04  <    64-    7|  10> [ 148 - 200]
+    35 1.221E+02 8.701E-05           3.128E-03                               [   200]
+    35 1.223E+02 7.408E-06           2.057E-04                               [   200]
+    35 1.230E+02 3.801E-05  ( -24)   2.746E-04   4.089E-04  <   351-    7|  10> [ 134 - 200]
+    35 1.237E+02 3.045E-05  ( -24)   1.464E-04   3.327E-04  <    64-    7|  10> [ 200 - 200]
+    35 1.239E+02 3.540E-06           5.467E-05                               [   200]
+    35 1.240E+02 4.584E-03           9.540E-04                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      35 5.738E+02 5.000E-04
+ stopjob,lstep,istep          -1          35          35
+    36 1.247E+02 5.126E-05  ( -22)   2.538E-04   1.073E-03  <   351-    7|  10> [ 116 - 200]
+    36 1.254E+02 3.773E-05  ( -24)   2.317E-04   1.222E-03  <    64-    7|  10> [ 172 - 200]
+    36 1.256E+02 6.348E-05           2.299E-03                               [   200]
+    36 1.258E+02 5.600E-06           1.328E-04                               [   200]
+    36 1.265E+02 2.848E-05  ( -25)   1.998E-04   2.167E-04  <   351-    7|  10> [ 192 - 200]
+    36 1.272E+02 2.189E-05  ( -26)   1.164E-04   7.121E-04  <    64-    7|  10> [ 128 - 200]
+    36 1.273E+02 3.465E-06           3.673E-05                               [   200]
+    36 1.275E+02 3.989E-03           7.715E-04                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      36 5.733E+02 5.000E-04
+Number of fields to write in restart files: 7
+Bypassing subcommunicator
+time to write restart (seconds) 0.017759
+
+The 4/7 th field to be written is 'pressure projection vectors'
+
+The 5/7 th field to be written is 'projection vectors'
+ call saveLesRestart for projection andpressure projection vectors   1.0112047195434570E-002
+
+The 6/7 th field to be written is 'errors'
+ Time to write the error fields to the disks   8.5768699645996094E-003
+
+The 7/7 th field to be written is 'dwal'
+Last field 7 ! 
+Last field 'dwal' finished! 
+
+ Time to write dwal to the disks =    2.9765129089355469E-002
+ stopjob,lstep,istep          -1          36          36
+    37 1.282E+02 3.874E-05  ( -23)   1.719E-04   5.902E-04  <   351-    7|  10> [ 117 - 200]
+    37 1.289E+02 2.694E-05  ( -25)   1.485E-04   3.520E-04  <    64-    7|  10> [ 109 - 200]
+    37 1.290E+02 4.572E-05           1.701E-03                               [   200]
+    37 1.292E+02 5.257E-06           9.353E-05                               [   200]
+    37 1.298E+02 2.058E-05  ( -26)   1.228E-04   4.326E-04  <    64-    7|   9> [ 120 - 200]
+    37 1.304E+02 1.635E-05  ( -27)   8.348E-05   5.188E-05  <   351-    7|   9> [ 127 - 200]
+    37 1.306E+02 3.164E-06           3.261E-05                               [   200]
+    37 1.308E+02 3.195E-03           7.197E-04                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      37 5.728E+02 5.000E-04
+ stopjob,lstep,istep          -1          37          37
+    38 1.314E+02 2.974E-05  ( -25)   1.089E-04   3.581E-04  <   351-    7|   9> [  91 - 200]
+    38 1.319E+02 2.359E-05  ( -26)   8.111E-05   3.422E-04  <    64-    7|   9> [ 117 - 200]
+    38 1.321E+02 3.296E-05           1.261E-03                               [   200]
+    38 1.323E+02 4.452E-06           7.413E-05                               [   200]
+    38 1.329E+02 1.882E-05  ( -27)   7.175E-05   3.044E-04  <   247-    7|   9> [ 129 - 200]
+    38 1.335E+02 1.539E-05  ( -27)   5.562E-05   4.503E-04  <    64-    7|   9> [ 109 - 200]
+    38 1.337E+02 4.801E-06           2.802E-05                               [   200]
+    38 1.338E+02 2.806E-03           3.446E-04                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      38 5.734E+02 5.000E-04
+Number of fields to write in restart files: 7
+Bypassing subcommunicator
+time to write restart (seconds) 0.013309
+
+The 4/7 th field to be written is 'pressure projection vectors'
+
+The 5/7 th field to be written is 'projection vectors'
+ call saveLesRestart for projection andpressure projection vectors   8.8760852813720703E-003
+
+The 6/7 th field to be written is 'errors'
+ Time to write the error fields to the disks   7.8670978546142578E-003
+
+The 7/7 th field to be written is 'dwal'
+Last field 7 ! 
+Last field 'dwal' finished! 
+
+ Time to write dwal to the disks =    2.7137994766235352E-002
+ stopjob,lstep,istep          -1          38          38
+    39 1.345E+02 2.477E-05  ( -25)   9.273E-05   3.132E-04  <   126-    7|   9> [  94 - 200]
+    39 1.352E+02 1.838E-05  ( -27)   6.795E-05   8.490E-05  <    64-    7|   9> [ 115 - 200]
+    39 1.354E+02 2.417E-05           9.528E-04                               [   200]
+    39 1.356E+02 7.062E-06           6.048E-05                               [   200]
+    39 1.363E+02 1.508E-05  ( -28)   6.969E-05   7.030E-05  <   126-    7|   9> [ 130 - 200]
+    39 1.370E+02 1.217E-05  ( -28)   5.411E-05   1.922E-04  <    49-    7|   9> [ 129 - 200]
+    39 1.372E+02 6.100E-06           2.451E-05                               [   200]
+    39 1.373E+02 2.367E-03           2.614E-04                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      39 5.735E+02 5.000E-04
+ stopjob,lstep,istep          -1          39          39
+    40 1.380E+02 2.182E-05  ( -26)   8.715E-05   4.332E-04  <   126-    7|   9> [  93 - 200]
+    40 1.387E+02 1.752E-05  ( -27)   5.684E-05   2.918E-04  <   126-    7|   9> [ 117 - 200]
+    40 1.388E+02 1.974E-05           7.293E-04                               [   200]
+    40 1.390E+02 9.131E-06           4.851E-05                               [   200]
+    40 1.397E+02 1.410E-05  ( -28)   5.897E-05   1.098E-04  <   126-    7|   9> [ 151 - 200]
+    40 1.404E+02 1.134E-05  ( -29)   4.852E-05   1.098E-04  <   126-    7|   9> [ 128 - 200]
+    40 1.406E+02 1.273E-05           2.182E-05                               [   200]
+    40 1.407E+02 2.030E-03           4.325E-04                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      40 5.731E+02 5.000E-04
+Number of fields to write in restart files: 7
+Bypassing subcommunicator
+time to write restart (seconds) 0.017455
+
+The 4/7 th field to be written is 'pressure projection vectors'
+
+The 5/7 th field to be written is 'projection vectors'
+ call saveLesRestart for projection andpressure projection vectors   1.0114908218383789E-002
+
+The 6/7 th field to be written is 'errors'
+ Time to write the error fields to the disks   8.8319778442382812E-003
+
+The 7/7 th field to be written is 'dwal'
+Last field 7 ! 
+Last field 'dwal' finished! 
+
+ Time to write dwal to the disks =    2.9573917388916016E-002
+ stopjob,lstep,istep          -1          40          40
+    41 1.414E+02 2.014E-05  ( -26)   1.118E-04   1.318E-04  <   126-    7|   9> [  94 - 200]
+    41 1.422E+02 1.431E-05  ( -28)   1.024E-04   1.483E-04  <   126-    7|   9> [ 163 - 200]
+    41 1.424E+02 1.928E-05           5.769E-04                               [   200]
+    41 1.426E+02 1.876E-05           4.640E-05                               [   200]
+    41 1.433E+02 1.154E-05  ( -29)   7.513E-05   4.391E-05  <   126-    7|   9> [ 130 - 200]
+    41 1.440E+02 9.443E-06  ( -30)   4.231E-05   7.749E-05  <   126-    7|   9> [ 150 - 200]
+    41 1.441E+02 2.037E-05           2.040E-05                               [   200]
+    41 1.443E+02 1.928E-03           4.540E-04                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      41 5.733E+02 5.000E-04
+ stopjob,lstep,istep          -1          41          41
+    42 1.450E+02 1.847E-05  ( -27)   7.158E-05   1.660E-04  <   126-    7|   9> [ 106 - 200]
+    42 1.457E+02 1.432E-05  ( -28)   4.585E-05   4.022E-04  <   375-    7|   8> [ 166 - 200]
+    42 1.459E+02 2.774E-05           4.666E-04                               [   200]
+    42 1.460E+02 2.622E-05           4.323E-05                               [   200]
+    42 1.467E+02 1.174E-05  ( -29)   4.136E-05   2.054E-04  <   126-    7|   9> [ 161 - 200]
+    42 1.474E+02 9.322E-06  ( -30)   3.915E-05   1.929E-04  <   126-    7|   9> [ 152 - 200]
+    42 1.476E+02 3.154E-05           2.557E-05                               [   200]
+    42 1.478E+02 1.912E-03           6.539E-04                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      42 5.731E+02 5.000E-04
+Number of fields to write in restart files: 7
+Bypassing subcommunicator
+time to write restart (seconds) 0.015332
+
+The 4/7 th field to be written is 'pressure projection vectors'
+
+The 5/7 th field to be written is 'projection vectors'
+ call saveLesRestart for projection andpressure projection vectors   1.0046005249023438E-002
+
+The 6/7 th field to be written is 'errors'
+ Time to write the error fields to the disks   8.7637901306152344E-003
+
+The 7/7 th field to be written is 'dwal'
+Last field 7 ! 
+Last field 'dwal' finished! 
+
+ Time to write dwal to the disks =    2.9558181762695312E-002
+ stopjob,lstep,istep          -1          42          42
+    43 1.485E+02 1.697E-05  ( -27)   7.205E-05   4.010E-04  <   126-    7|   9> [ 128 - 200]
+    43 1.492E+02 1.235E-05  ( -28)   5.664E-05   2.254E-04  <    49-    7|   8> [ 131 - 200]
+    43 1.494E+02 2.955E-05           3.856E-04                               [   200]
+    43 1.496E+02 3.243E-05           3.880E-05                               [   200]
+    43 1.503E+02 9.450E-06  ( -30)   5.292E-05   2.240E-05  <   126-    7|   8> [ 130 - 200]
+    43 1.510E+02 7.617E-06  ( -30)   4.522E-05   7.053E-05  <   126-    7|   9> [ 148 - 200]
+    43 1.511E+02 2.990E-05           2.385E-05                               [   200]
+    43 1.513E+02 2.096E-03           7.112E-04                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      43 5.731E+02 5.000E-04
+ stopjob,lstep,istep          -1          43          43
+    44 1.520E+02 1.562E-05  ( -27)   6.262E-05   2.061E-04  <   126-    7|   9> [  92 - 200]
+    44 1.527E+02 1.232E-05  ( -28)   4.057E-05   2.262E-04  <    49-    7|   8> [ 162 - 200]
+    44 1.529E+02 3.248E-05           3.132E-04                               [   200]
+    44 1.530E+02 2.749E-05           3.463E-05                               [   200]
+    44 1.537E+02 9.947E-06  ( -29)   3.629E-05   5.830E-05  <   126-    7|   8> [ 143 - 200]
+    44 1.544E+02 8.118E-06  ( -30)   3.190E-05   1.090E-04  <   946-    7|   8> [ 164 - 200]
+    44 1.546E+02 3.060E-05           2.200E-05                               [   200]
+    44 1.548E+02 2.220E-03           5.143E-04                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      44 5.733E+02 5.000E-04
+Number of fields to write in restart files: 7
+Bypassing subcommunicator
+time to write restart (seconds) 0.016978
+
+The 4/7 th field to be written is 'pressure projection vectors'
+
+The 5/7 th field to be written is 'projection vectors'
+ call saveLesRestart for projection andpressure projection vectors   9.2148780822753906E-003
+
+The 6/7 th field to be written is 'errors'
+ Time to write the error fields to the disks   8.1899166107177734E-003
+
+The 7/7 th field to be written is 'dwal'
+Last field 7 ! 
+Last field 'dwal' finished! 
+
+ Time to write dwal to the disks =    2.6859998703002930E-002
+ stopjob,lstep,istep          -1          44          44
+    45 1.555E+02 1.454E-05  ( -28)   6.385E-05   3.302E-04  <   126-    7|   9> [ 128 - 200]
+    45 1.564E+02 1.135E-05  ( -29)   4.016E-05   3.057E-04  <   375-    7|   8> [ 139 - 200]
+    45 1.565E+02 2.612E-05           2.617E-04                               [   200]
+    45 1.567E+02 2.901E-05           3.139E-05                               [   200]
+    45 1.575E+02 9.158E-06  ( -30)   3.278E-05   4.259E-05  <   126-    7|   8> [ 139 - 200]
+    45 1.583E+02 7.548E-06  ( -31)   3.081E-05   9.635E-05  <    49-    7|   8> [ 162 - 200]
+    45 1.585E+02 2.734E-05           2.172E-05                               [   200]
+    45 1.586E+02 1.940E-03           3.996E-04                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      45 5.731E+02 5.000E-04
+ stopjob,lstep,istep          -1          45          45
+    46 1.593E+02 1.360E-05  ( -28)   5.951E-05   4.930E-05  <  1001-    7|   8> [ 122 - 200]
+    46 1.599E+02 1.077E-05  ( -29)   4.021E-05   1.219E-04  <   871-    7|   8> [ 148 - 200]
+    46 1.601E+02 2.916E-05           2.227E-04                               [   200]
+    46 1.602E+02 2.501E-05           2.948E-05                               [   200]
+    46 1.608E+02 8.626E-06  ( -30)   3.363E-05   4.500E-05  <  1001-    7|   8> [ 129 - 200]
+    46 1.614E+02 7.110E-06  ( -31)   2.279E-05   3.144E-05  <   871-    7|   8> [ 130 - 200]
+    46 1.616E+02 2.764E-05           1.884E-05                               [   200]
+    46 1.618E+02 1.661E-03           3.813E-04                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      46 5.733E+02 5.000E-04
+Number of fields to write in restart files: 7
+Bypassing subcommunicator
+time to write restart (seconds) 0.015016
+
+The 4/7 th field to be written is 'pressure projection vectors'
+
+The 5/7 th field to be written is 'projection vectors'
+ call saveLesRestart for projection andpressure projection vectors   9.1390609741210938E-003
+
+The 6/7 th field to be written is 'errors'
+ Time to write the error fields to the disks   9.0260505676269531E-003
+
+The 7/7 th field to be written is 'dwal'
+Last field 7 ! 
+Last field 'dwal' finished! 
+
+ Time to write dwal to the disks =    2.6473045349121094E-002
+ stopjob,lstep,istep          -1          46          46
+    47 1.625E+02 1.289E-05  ( -28)   5.097E-05   3.065E-05  <   126-    7|   8> [ 128 - 200]
+    47 1.633E+02 1.034E-05  ( -29)   3.338E-05   3.692E-05  <   871-    7|   8> [ 155 - 200]
+    47 1.635E+02 2.374E-05           1.939E-04                               [   200]
+    47 1.637E+02 2.632E-05           2.677E-05                               [   200]
+    47 1.645E+02 7.779E-06  ( -30)   4.067E-05   5.121E-05  <   126-    7|   9> [ 153 - 200]
+    47 1.653E+02 6.030E-06  ( -32)   2.940E-05   4.895E-05  <   126-    7|   8> [ 155 - 200]
+    47 1.654E+02 2.521E-05           1.967E-05                               [   200]
+    47 1.656E+02 1.539E-03           3.881E-04                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      47 5.733E+02 5.000E-04
+ stopjob,lstep,istep          -1          47          47
+    48 1.664E+02 1.215E-05  ( -28)   5.434E-05   1.175E-04  <   126-    7|   8> [  77 - 200]
+    48 1.672E+02 9.327E-06  ( -30)   3.115E-05   1.195E-04  <   126-    7|   9> [ 145 - 200]
+    48 1.673E+02 2.657E-05           1.710E-04                               [   200]
+    48 1.675E+02 2.290E-05           2.505E-05                               [   200]
+    48 1.683E+02 7.555E-06  ( -31)   2.964E-05   1.090E-04  <   126-    7|   9> [ 138 - 200]
+    48 1.691E+02 6.079E-06  ( -31)   1.839E-05   2.089E-04  <   126-    7|   8> [ 172 - 200]
+    48 1.693E+02 2.513E-05           1.722E-05                               [   200]
+    48 1.694E+02 1.533E-03           3.048E-04                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      48 5.732E+02 5.000E-04
+Number of fields to write in restart files: 7
+Bypassing subcommunicator
+time to write restart (seconds) 0.017398
+
+The 4/7 th field to be written is 'pressure projection vectors'
+
+The 5/7 th field to be written is 'projection vectors'
+ call saveLesRestart for projection andpressure projection vectors   9.8710060119628906E-003
+
+The 6/7 th field to be written is 'errors'
+ Time to write the error fields to the disks   8.9931488037109375E-003
+
+The 7/7 th field to be written is 'dwal'
+Last field 7 ! 
+Last field 'dwal' finished! 
+
+ Time to write dwal to the disks =    2.8532981872558594E-002
+ stopjob,lstep,istep          -1          48          48
+    49 1.702E+02 1.154E-05  ( -29)   4.262E-05   1.869E-04  <   126-    7|   9> [ 115 - 200]
+    49 1.708E+02 9.156E-06  ( -30)   2.711E-05   9.916E-05  <   429-    7|   9> [ 144 - 200]
+    49 1.710E+02 2.163E-05           1.485E-04                               [   200]
+    49 1.711E+02 2.386E-05           2.248E-05                               [   200]
+    49 1.718E+02 7.137E-06  ( -31)   2.579E-05   2.162E-04  <   126-    7|   9> [ 130 - 200]
+    49 1.724E+02 5.821E-06  ( -32)   1.879E-05   9.558E-05  <   429-    7|   9> [ 168 - 200]
+    49 1.725E+02 2.301E-05           1.716E-05                               [   200]
+    49 1.727E+02 1.418E-03           2.894E-04                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      49 5.733E+02 5.000E-04
+ stopjob,lstep,istep          -1          49          49
+    50 1.733E+02 1.092E-05  ( -29)   5.368E-05   1.851E-05  <   126-    7|   9> [ 123 - 200]
+    50 1.739E+02 8.186E-06  ( -30)   3.559E-05   6.416E-05  <    64-    7|   8> [ 162 - 200]
+    50 1.741E+02 2.405E-05           1.339E-04                               [   200]
+    50 1.743E+02 2.080E-05           2.251E-05                               [   200]
+    50 1.749E+02 6.584E-06  ( -31)   2.591E-05   1.821E-05  <   126-    7|   9> [ 138 - 200]
+    50 1.755E+02 5.420E-06  ( -32)   2.109E-05   2.335E-05  <    64-    7|   8> [ 157 - 200]
+    50 1.756E+02 2.268E-05           1.601E-05                               [   200]
+    50 1.758E+02 1.244E-03           3.081E-04                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      50 5.733E+02 5.000E-04
+Number of fields to write in restart files: 7
+Bypassing subcommunicator
+time to write restart (seconds) 0.016826
+
+The 4/7 th field to be written is 'pressure projection vectors'
+
+The 5/7 th field to be written is 'projection vectors'
+ call saveLesRestart for projection andpressure projection vectors   9.6819400787353516E-003
+
+The 6/7 th field to be written is 'errors'
+ Time to write the error fields to the disks   9.0610980987548828E-003
+
+The 7/7 th field to be written is 'dwal'
+Last field 7 ! 
+Last field 'dwal' finished! 
+
+ Time to write dwal to the disks =    2.9323101043701172E-002
+ stopjob,lstep,istep          -1          50          50
+    51 1.765E+02 1.024E-05  ( -29)   4.959E-05   9.322E-05  <   126-    7|   8> [ 112 - 200]
+    51 1.771E+02 7.463E-06  ( -31)   3.319E-05   1.254E-04  <   126-    7|   8> [ 153 - 200]
+    51 1.773E+02 1.969E-05           1.242E-04                               [   200]
+    51 1.774E+02 2.154E-05           2.112E-05                               [   200]
+    51 1.780E+02 6.080E-06  ( -31)   2.650E-05   1.511E-05  <   126-    7|   9> [ 125 - 200]
+    51 1.785E+02 4.956E-06  ( -32)   2.230E-05   9.902E-05  <   123-    7|   8> [ 156 - 200]
+    51 1.787E+02 2.098E-05           1.616E-05                               [   200]
+    51 1.789E+02 1.165E-03           3.495E-04                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      51 5.733E+02 5.000E-04
+ stopjob,lstep,istep          -1          51          51
+    52 1.794E+02 9.561E-06  ( -30)   4.600E-05   1.089E-04  <   126-    7|   9> [ 119 - 200]
+    52 1.799E+02 7.413E-06  ( -31)   2.674E-05   7.296E-05  <    64-    7|   8> [ 138 - 200]
+    52 1.802E+02 2.179E-05           1.129E-04                               [   200]
+    52 1.803E+02 1.902E-05           1.934E-05                               [   200]
+    52 1.810E+02 5.820E-06  ( -32)   2.422E-05   2.288E-05  <   126-    7|   9> [ 128 - 200]
+    52 1.817E+02 4.768E-06  ( -33)   1.592E-05   1.746E-05  <    64-    7|   9> [ 139 - 200]
+    52 1.819E+02 2.060E-05           1.387E-05                               [   200]
+    52 1.821E+02 1.142E-03           3.521E-04                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      52 5.733E+02 5.000E-04
+Number of fields to write in restart files: 7
+Bypassing subcommunicator
+time to write restart (seconds) 0.016249
+
+The 4/7 th field to be written is 'pressure projection vectors'
+
+The 5/7 th field to be written is 'projection vectors'
+ call saveLesRestart for projection andpressure projection vectors   9.0751647949218750E-003
+
+The 6/7 th field to be written is 'errors'
+ Time to write the error fields to the disks   8.5680484771728516E-003
+
+The 7/7 th field to be written is 'dwal'
+Last field 7 ! 
+Last field 'dwal' finished! 
+
+ Time to write dwal to the disks =    2.9190063476562500E-002
+ stopjob,lstep,istep          -1          52          52
+    53 1.828E+02 8.955E-06  ( -30)   4.052E-05   2.012E-05  <   126-    7|   9> [ 122 - 200]
+    53 1.834E+02 6.986E-06  ( -31)   2.869E-05   2.408E-05  <   429-    7|   9> [ 157 - 200]
+    53 1.836E+02 1.796E-05           1.042E-04                               [   200]
+    53 1.838E+02 1.947E-05           1.851E-05                               [   200]
+    53 1.844E+02 5.311E-06  ( -32)   2.897E-05   8.873E-05  <   126-    7|   9> [ 121 - 200]
+    53 1.851E+02 4.096E-06  ( -33)   1.788E-05   8.038E-05  <    64-    7|   8> [ 147 - 200]
+    53 1.853E+02 1.902E-05           1.480E-05                               [   200]
+    53 1.855E+02 1.195E-03           2.940E-04                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      53 5.733E+02 5.000E-04
+ stopjob,lstep,istep          -1          53          53
+    54 1.863E+02 8.363E-06  ( -30)   3.588E-05   8.269E-05  <   126-    7|   8> [  87 - 200]
+    54 1.871E+02 6.595E-06  ( -31)   2.281E-05   5.628E-05  <    64-    7|   8> [ 153 - 200]
+    54 1.872E+02 1.967E-05           1.001E-04                               [   200]
+    54 1.874E+02 1.723E-05           1.917E-05                               [   200]
+    54 1.882E+02 5.087E-06  ( -32)   2.323E-05   1.547E-05  <   126-    7|   9> [ 127 - 200]
+    54 1.890E+02 4.002E-06  ( -33)   2.180E-05   2.950E-05  <   126-    7|   8> [ 156 - 200]
+    54 1.892E+02 1.853E-05           1.395E-05                               [   200]
+    54 1.893E+02 1.210E-03           2.776E-04                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      54 5.733E+02 5.000E-04
+Number of fields to write in restart files: 7
+Bypassing subcommunicator
+time to write restart (seconds) 0.017752
+
+The 4/7 th field to be written is 'pressure projection vectors'
+
+The 5/7 th field to be written is 'projection vectors'
+ call saveLesRestart for projection andpressure projection vectors   9.2160701751708984E-003
+
+The 6/7 th field to be written is 'errors'
+ Time to write the error fields to the disks   8.1129074096679688E-003
+
+The 7/7 th field to be written is 'dwal'
+Last field 7 ! 
+Last field 'dwal' finished! 
+
+ Time to write dwal to the disks =    2.7956008911132812E-002
+ stopjob,lstep,istep          -1          54          54
+    55 1.901E+02 7.882E-06  ( -30)   3.347E-05   2.590E-05  <   126-    7|   8> [  86 - 200]
+    55 1.907E+02 6.185E-06  ( -31)   1.777E-05   5.015E-05  <    64-    7|   8> [ 139 - 200]
+    55 1.909E+02 1.627E-05           9.551E-05                               [   200]
+    55 1.911E+02 1.746E-05           1.725E-05                               [   200]
+    55 1.917E+02 5.027E-06  ( -32)   1.831E-05   6.922E-05  <   195-    7|   8> [ 131 - 200]
+    55 1.923E+02 4.140E-06  ( -33)   1.285E-05   2.553E-05  <    64-    7|   8> [ 159 - 200]
+    55 1.925E+02 1.714E-05           1.324E-05                               [   200]
+    55 1.927E+02 1.188E-03           2.782E-04                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      55 5.733E+02 5.000E-04
+ stopjob,lstep,istep          -1          55          55
+    56 1.933E+02 7.485E-06  ( -31)   3.153E-05   6.729E-05  <   126-    7|   8> [ 106 - 200]
+    56 1.939E+02 5.906E-06  ( -32)   1.536E-05   1.193E-04  <   429-    7|   8> [ 147 - 200]
+    56 1.940E+02 1.764E-05           8.842E-05                               [   200]
+    56 1.942E+02 1.551E-05           1.605E-05                               [   200]
+    56 1.948E+02 4.700E-06  ( -33)   1.455E-05   5.221E-05  <   126-    7|   9> [ 145 - 200]
+    56 1.954E+02 3.852E-06  ( -33)   1.180E-05   1.558E-05  <   429-    7|   8> [ 155 - 200]
+    56 1.956E+02 1.656E-05           1.163E-05                               [   200]
+    56 1.957E+02 1.167E-03           2.433E-04                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      56 5.733E+02 5.000E-04
+Number of fields to write in restart files: 7
+Bypassing subcommunicator
+time to write restart (seconds) 0.015084
+
+The 4/7 th field to be written is 'pressure projection vectors'
+
+The 5/7 th field to be written is 'projection vectors'
+ call saveLesRestart for projection andpressure projection vectors   9.6650123596191406E-003
+
+The 6/7 th field to be written is 'errors'
+ Time to write the error fields to the disks   8.3551406860351562E-003
+
+The 7/7 th field to be written is 'dwal'
+Last field 7 ! 
+Last field 'dwal' finished! 
+
+ Time to write dwal to the disks =    2.7731180191040039E-002
+ stopjob,lstep,istep          -1          56          56
+    57 1.965E+02 7.077E-06  ( -31)   3.394E-05   7.512E-05  <   126-    7|   8> [ 119 - 200]
+    57 1.973E+02 5.251E-06  ( -32)   2.275E-05   1.141E-04  <   126-    7|   8> [ 167 - 200]
+    57 1.974E+02 1.454E-05           8.272E-05                               [   200]
+    57 1.976E+02 1.543E-05           1.515E-05                               [   200]
+    57 1.983E+02 4.293E-06  ( -33)   1.665E-05   8.687E-05  <   126-    7|   9> [ 140 - 200]
+    57 1.990E+02 3.509E-06  ( -34)   1.218E-05   1.006E-04  <   429-    7|   8> [ 176 - 200]
+    57 1.992E+02 1.507E-05           1.169E-05                               [   200]
+    57 1.993E+02 1.162E-03           2.086E-04                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      57 5.734E+02 5.000E-04
+ stopjob,lstep,istep          -1          57          57
+    58 2.000E+02 6.797E-06  ( -31)   3.157E-05   7.297E-05  <   126-    7|   8> [  94 - 200]
+    58 2.007E+02 5.353E-06  ( -32)   1.742E-05   1.909E-05  <   429-    7|   8> [ 159 - 200]
+    58 2.009E+02 1.546E-05           7.800E-05                               [   200]
+    58 2.010E+02 1.365E-05           1.501E-05                               [   200]
+    58 2.017E+02 4.262E-06  ( -33)   1.417E-05   1.299E-05  <   126-    7|   9> [ 128 - 200]
+    58 2.024E+02 3.490E-06  ( -34)   9.738E-06   7.255E-05  <   429-    7|   8> [ 154 - 200]
+    58 2.026E+02 1.447E-05           1.048E-05                               [   200]
+    58 2.028E+02 1.014E-03           2.067E-04                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      58 5.734E+02 5.000E-04
+Number of fields to write in restart files: 7
+Bypassing subcommunicator
+time to write restart (seconds) 0.015859
+
+The 4/7 th field to be written is 'pressure projection vectors'
+
+The 5/7 th field to be written is 'projection vectors'
+ call saveLesRestart for projection andpressure projection vectors   8.3699226379394531E-003
+
+The 6/7 th field to be written is 'errors'
+ Time to write the error fields to the disks   7.5929164886474609E-003
+
+The 7/7 th field to be written is 'dwal'
+Last field 7 ! 
+Last field 'dwal' finished! 
+
+ Time to write dwal to the disks =    2.5180816650390625E-002
+ stopjob,lstep,istep          -1          58          58
+    59 2.035E+02 6.508E-06  ( -31)   2.675E-05   1.290E-04  <   126-    7|   8> [ 103 - 200]
+    59 2.042E+02 5.119E-06  ( -32)   1.700E-05   5.802E-05  <   429-    7|   8> [ 143 - 200]
+    59 2.044E+02 1.286E-05           7.442E-05                               [   200]
+    59 2.046E+02 1.344E-05           1.350E-05                               [   200]
+    59 2.053E+02 3.845E-06  ( -33)   2.218E-05   8.616E-05  <   126-    7|   9> [ 131 - 200]
+    59 2.060E+02 2.985E-06  ( -35)   1.377E-05   9.055E-05  <   123-    7|   8> [ 150 - 200]
+    59 2.061E+02 1.323E-05           1.038E-05                               [   200]
+    59 2.063E+02 8.863E-04           1.435E-04                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      59 5.734E+02 5.000E-04
+ stopjob,lstep,istep          -1          59          59
+    60 2.070E+02 6.129E-06  ( -31)   2.888E-05   4.941E-05  <   126-    7|   8> [  91 - 200]
+    60 2.077E+02 4.765E-06  ( -33)   1.489E-05   2.376E-05  <   946-    7|   8> [ 157 - 200]
+    60 2.078E+02 1.353E-05           6.871E-05                               [   200]
+    60 2.080E+02 1.208E-05           1.249E-05                               [   200]
+    60 2.087E+02 3.847E-06  ( -33)   1.304E-05   3.281E-05  <   153-    7|   8> [ 132 - 200]
+    60 2.094E+02 3.105E-06  ( -34)   1.204E-05   7.979E-05  <   946-    7|   8> [ 175 - 200]
+    60 2.095E+02 1.275E-05           9.548E-06                               [   200]
+    60 2.097E+02 7.398E-04           1.385E-04                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      60 5.734E+02 5.000E-04
+Number of fields to write in restart files: 7
+Bypassing subcommunicator
+time to write restart (seconds) 0.067544
+
+The 4/7 th field to be written is 'pressure projection vectors'
+
+The 5/7 th field to be written is 'projection vectors'
+ call saveLesRestart for projection andpressure projection vectors   1.0775804519653320E-002
+
+The 6/7 th field to be written is 'errors'
+ Time to write the error fields to the disks   1.0676860809326172E-002
+
+The 7/7 th field to be written is 'dwal'
+Last field 7 ! 
+Last field 'dwal' finished! 
+
+ Time to write dwal to the disks =    3.2492876052856445E-002
+ stopjob,lstep,istep          -1          60          60
+    61 2.104E+02 5.811E-06  ( -32)   2.822E-05   1.070E-04  <   126-    7|   8> [ 123 - 200]
+    61 2.112E+02 4.516E-06  ( -33)   1.920E-05   1.991E-05  <   871-    7|   8> [ 149 - 200]
+    61 2.114E+02 1.136E-05           6.362E-05                               [   200]
+    61 2.116E+02 1.173E-05           1.161E-05                               [   200]
+    61 2.124E+02 3.501E-06  ( -34)   1.768E-05   5.413E-05  <   153-    7|   8> [ 108 - 200]
+    61 2.132E+02 2.837E-06  ( -35)   8.863E-06   6.288E-06  <    64-    7|   8> [ 144 - 200]
+    61 2.134E+02 1.148E-05           8.754E-06                               [   200]
+    61 2.135E+02 6.765E-04           1.661E-04                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      61 5.734E+02 5.000E-04
+ stopjob,lstep,istep          -1          61          61
+    62 2.143E+02 5.552E-06  ( -32)   2.734E-05   1.150E-05  <   126-    7|   8> [  75 - 200]
+    62 2.151E+02 4.244E-06  ( -33)   1.346E-05   2.448E-05  <   946-    7|   8> [ 162 - 200]
+    62 2.154E+02 1.165E-05           5.995E-05                               [   200]
+    62 2.157E+02 1.044E-05           1.155E-05                               [   200]
+    62 2.166E+02 3.383E-06  ( -34)   1.283E-05   8.272E-06  <   153-    7|   8> [ 119 - 200]
+    62 2.174E+02 2.731E-06  ( -35)   1.033E-05   1.374E-05  <    64-    7|   8> [ 149 - 200]
+    62 2.177E+02 1.093E-05           8.337E-06                               [   200]
+    62 2.180E+02 6.772E-04           1.568E-04                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      62 5.734E+02 5.000E-04
+Number of fields to write in restart files: 7
+Bypassing subcommunicator
+time to write restart (seconds) 0.024944
+
+The 4/7 th field to be written is 'pressure projection vectors'
+
+The 5/7 th field to be written is 'projection vectors'
+ call saveLesRestart for projection andpressure projection vectors   9.8659992218017578E-003
+
+The 6/7 th field to be written is 'errors'
+ Time to write the error fields to the disks   8.5680484771728516E-003
+
+The 7/7 th field to be written is 'dwal'
+Last field 7 ! 
+Last field 'dwal' finished! 
+
+ Time to write dwal to the disks =    2.5701045989990234E-002
+ stopjob,lstep,istep          -1          62          62
+    63 2.187E+02 5.256E-06  ( -32)   3.205E-05   2.701E-05  <   126-    7|   8> [ 120 - 200]
+    63 2.196E+02 3.524E-06  ( -34)   2.398E-05   3.035E-05  <   195-    7|   8> [ 157 - 200]
+    63 2.198E+02 9.828E-06           5.790E-05                               [   200]
+    63 2.199E+02 1.002E-05           1.072E-05                               [   200]
+    63 2.207E+02 2.725E-06  ( -35)   2.174E-05   1.052E-05  <   153-    7|   8> [ 110 - 200]
+    63 2.215E+02 2.168E-06  ( -36)   1.485E-05   6.305E-06  <   753-    7|   8> [ 147 - 200]
+    63 2.217E+02 9.812E-06           7.793E-06                               [   200]
+    63 2.218E+02 6.928E-04           1.330E-04                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      63 5.734E+02 5.000E-04
+ stopjob,lstep,istep          -1          63          63
+    64 2.226E+02 4.919E-06  ( -32)   3.047E-05   1.590E-05  <   126-    7|   8> [  98 - 200]
+    64 2.234E+02 3.709E-06  ( -34)   2.049E-05   2.052E-05  <   126-    7|   9> [ 161 - 200]
+    64 2.236E+02 9.897E-06           5.379E-05                               [   200]
+    64 2.237E+02 8.889E-06           1.029E-05                               [   200]
+    64 2.245E+02 2.990E-06  ( -35)   1.724E-05   1.604E-05  <   492-    7|   8> [ 150 - 200]
+    64 2.253E+02 2.436E-06  ( -35)   1.147E-05   9.290E-06  <   123-    7|   8> [ 129 - 200]
+    64 2.255E+02 9.253E-06           7.532E-06                               [   200]
+    64 2.256E+02 7.019E-04           1.203E-04                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      64 5.734E+02 5.000E-04
+Number of fields to write in restart files: 7
+Bypassing subcommunicator
+time to write restart (seconds) 0.055949
+
+The 4/7 th field to be written is 'pressure projection vectors'
+
+The 5/7 th field to be written is 'projection vectors'
+ call saveLesRestart for projection andpressure projection vectors   9.7980499267578125E-003
+
+The 6/7 th field to be written is 'errors'
+ Time to write the error fields to the disks   8.6271762847900391E-003
+
+The 7/7 th field to be written is 'dwal'
+Last field 7 ! 
+Last field 'dwal' finished! 
+
+ Time to write dwal to the disks =    2.8315067291259766E-002
+ stopjob,lstep,istep          -1          64          64
+    65 2.264E+02 4.680E-06  ( -33)   2.726E-05   1.989E-05  <   126-    7|   8> [ 112 - 200]
+    65 2.270E+02 3.630E-06  ( -34)   1.468E-05   4.181E-05  <    64-    7|   8> [ 150 - 200]
+    65 2.272E+02 8.320E-06           5.113E-05                               [   200]
+    65 2.274E+02 8.387E-06           9.502E-06                               [   200]
+    65 2.280E+02 2.917E-06  ( -35)   1.315E-05   2.271E-05  <   153-    7|   9> [ 117 - 200]
+    65 2.286E+02 2.392E-06  ( -36)   8.634E-06   1.662E-05  <    64-    7|   8> [ 128 - 200]
+    65 2.288E+02 8.165E-06           6.980E-06                               [   200]
+    65 2.289E+02 6.979E-04           1.382E-04                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      65 5.734E+02 5.000E-04
+ stopjob,lstep,istep          -1          65          65
+    66 2.295E+02 4.441E-06  ( -33)   2.519E-05   3.472E-05  <   126-    7|   8> [ 100 - 200]
+    66 2.301E+02 3.373E-06  ( -34)   1.148E-05   4.041E-05  <    64-    7|   8> [ 127 - 200]
+    66 2.303E+02 8.172E-06           4.884E-05                               [   200]
+    66 2.305E+02 7.327E-06           9.174E-06                               [   200]
+    66 2.311E+02 2.745E-06  ( -35)   9.523E-06   7.705E-06  <   153-    7|   9> [ 120 - 200]
+    66 2.317E+02 2.244E-06  ( -36)   8.150E-06   3.151E-05  <    64-    7|   8> [ 151 - 200]
+    66 2.318E+02 7.564E-06           6.139E-06                               [   200]
+    66 2.320E+02 7.367E-04           1.325E-04                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      66 5.734E+02 5.000E-04
+Number of fields to write in restart files: 7
+Bypassing subcommunicator
+time to write restart (seconds) 0.056113
+
+The 4/7 th field to be written is 'pressure projection vectors'
+
+The 5/7 th field to be written is 'projection vectors'
+ call saveLesRestart for projection andpressure projection vectors   9.5148086547851562E-003
+
+The 6/7 th field to be written is 'errors'
+ Time to write the error fields to the disks   8.4810256958007812E-003
+
+The 7/7 th field to be written is 'dwal'
+Last field 7 ! 
+Last field 'dwal' finished! 
+
+ Time to write dwal to the disks =    2.6329040527343750E-002
+ stopjob,lstep,istep          -1          66          66
+    67 2.327E+02 4.191E-06  ( -33)   1.862E-05   3.759E-05  <   126-    7|   8> [  96 - 200]
+    67 2.335E+02 3.378E-06  ( -34)   1.073E-05   1.790E-05  <   123-    7|   9> [ 148 - 200]
+    67 2.337E+02 6.808E-06           4.551E-05                               [   200]
+    67 2.338E+02 6.761E-06           8.241E-06                               [   200]
+    67 2.345E+02 2.590E-06  ( -35)   1.146E-05   1.326E-05  <   123-    7|   8> [ 116 - 200]
+    67 2.352E+02 2.103E-06  ( -36)   6.226E-06   8.851E-06  <   123-    7|   9> [ 147 - 200]
+    67 2.354E+02 6.513E-06           5.912E-06                               [   200]
+    67 2.355E+02 7.730E-04           1.152E-04                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      67 5.734E+02 5.000E-04
+ stopjob,lstep,istep          -1          67          67
+    68 2.362E+02 3.963E-06  ( -33)   1.896E-05   1.429E-05  <   126-    7|   8> [  74 - 200]
+    68 2.369E+02 3.080E-06  ( -34)   8.093E-06   1.666E-05  <   123-    7|   8> [ 149 - 200]
+    68 2.371E+02 6.475E-06           4.271E-05                               [   200]
+    68 2.372E+02 5.736E-06           7.878E-06                               [   200]
+    68 2.379E+02 2.491E-06  ( -35)   7.946E-06   6.964E-06  <   153-    7|   8> [ 130 - 200]
+    68 2.386E+02 2.012E-06  ( -36)   7.806E-06   1.062E-05  <   123-    7|   8> [ 146 - 200]
+    68 2.388E+02 5.860E-06           5.393E-06                               [   200]
+    68 2.389E+02 7.504E-04           7.864E-05                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      68 5.734E+02 5.000E-04
+Number of fields to write in restart files: 7
+Bypassing subcommunicator
+time to write restart (seconds) 0.017974
+
+The 4/7 th field to be written is 'pressure projection vectors'
+
+The 5/7 th field to be written is 'projection vectors'
+ call saveLesRestart for projection andpressure projection vectors   1.0575056076049805E-002
+
+The 6/7 th field to be written is 'errors'
+ Time to write the error fields to the disks   9.3472003936767578E-003
+
+The 7/7 th field to be written is 'dwal'
+Last field 7 ! 
+Last field 'dwal' finished! 
+
+ Time to write dwal to the disks =    2.9108047485351562E-002
+ stopjob,lstep,istep          -1          68          68
+    69 2.397E+02 3.719E-06  ( -34)   2.214E-05   6.204E-06  <   126-    7|   8> [ 109 - 200]
+    69 2.405E+02 2.663E-06  ( -35)   1.779E-05   9.485E-06  <   123-    7|   9> [ 159 - 200]
+    69 2.407E+02 5.277E-06           4.048E-05                               [   200]
+    69 2.408E+02 5.130E-06           7.334E-06                               [   200]
+    69 2.416E+02 2.069E-06  ( -36)   1.534E-05   1.276E-05  <   123-    7|   9> [ 106 - 200]
+    69 2.424E+02 1.692E-06  ( -37)   7.602E-06   9.362E-06  <   123-    7|   8> [ 142 - 200]
+    69 2.426E+02 4.881E-06           4.593E-06                               [   200]
+    69 2.427E+02 6.056E-04           9.170E-05                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      69 5.734E+02 5.000E-04
+ stopjob,lstep,istep          -1          69          69
+    70 2.435E+02 3.507E-06  ( -34)   1.752E-05   1.989E-05  <   126-    7|   8> [  74 - 200]
+    70 2.443E+02 2.789E-06  ( -35)   1.171E-05   1.648E-05  <    64-    7|   8> [ 150 - 200]
+    70 2.445E+02 4.814E-06           3.810E-05                               [   200]
+    70 2.446E+02 4.208E-06           7.107E-06                               [   200]
+    70 2.456E+02 2.020E-06  ( -36)   8.986E-06   6.225E-06  <  1195-    7|   8> [ 116 - 200]
+    70 2.466E+02 1.625E-06  ( -37)   6.699E-06   7.092E-06  <   123-    7|   8> [ 152 - 200]
+    70 2.468E+02 4.239E-06           4.052E-06                               [   200]
+    70 2.470E+02 4.409E-04           9.369E-05                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      70 5.734E+02 5.000E-04
+Number of fields to write in restart files: 7
+Bypassing subcommunicator
+time to write restart (seconds) 0.013680
+
+The 4/7 th field to be written is 'pressure projection vectors'
+
+The 5/7 th field to be written is 'projection vectors'
+ call saveLesRestart for projection andpressure projection vectors   1.0203123092651367E-002
+
+The 6/7 th field to be written is 'errors'
+ Time to write the error fields to the disks   8.8150501251220703E-003
+
+The 7/7 th field to be written is 'dwal'
+Last field 7 ! 
+Last field 'dwal' finished! 
+
+ Time to write dwal to the disks =    3.0680894851684570E-002
+ stopjob,lstep,istep          -1          70          70
+    71 2.477E+02 3.300E-06  ( -34)   1.694E-05   5.859E-06  <   123-    7|   8> [  78 - 200]
+    71 2.485E+02 2.524E-06  ( -35)   8.264E-06   8.877E-06  <   946-    7|   8> [ 148 - 200]
+    71 2.487E+02 3.822E-06           3.583E-05                               [   200]
+    71 2.489E+02 3.623E-06           6.496E-06                               [   200]
+    71 2.496E+02 2.040E-06  ( -36)   9.176E-06   1.082E-05  <   153-    7|   8> [ 119 - 200]
+    71 2.504E+02 1.649E-06  ( -37)   7.614E-06   1.957E-05  <   123-    7|   8> [ 150 - 200]
+    71 2.506E+02 3.407E-06           4.245E-06                               [   200]
+    71 2.508E+02 3.886E-04           4.974E-05                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      71 5.735E+02 5.000E-04
+ stopjob,lstep,istep          -1          71          71
+    72 2.515E+02 3.102E-06  ( -34)   2.032E-05   1.571E-05  <   126-    7|   8> [  99 - 200]
+    72 2.523E+02 2.298E-06  ( -36)   1.419E-05   2.440E-05  <   123-    7|   8> [ 159 - 200]
+    72 2.525E+02 3.349E-06           3.411E-05                               [   200]
+    72 2.527E+02 2.866E-06           6.370E-06                               [   200]
+    72 2.534E+02 1.837E-06  ( -37)   9.783E-06   2.253E-05  <   153-    7|   8> [ 120 - 200]
+    72 2.542E+02 1.509E-06  ( -38)   5.909E-06   1.183E-05  <   123-    7|   8> [ 150 - 200]
+    72 2.544E+02 2.855E-06           3.358E-06                               [   200]
+    72 2.546E+02 3.187E-04           3.410E-05                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      72 5.735E+02 5.000E-04
+Number of fields to write in restart files: 7
+Bypassing subcommunicator
+time to write restart (seconds) 0.016874
+
+The 4/7 th field to be written is 'pressure projection vectors'
+
+The 5/7 th field to be written is 'projection vectors'
+ call saveLesRestart for projection andpressure projection vectors   8.5279941558837891E-003
+
+The 6/7 th field to be written is 'errors'
+ Time to write the error fields to the disks   7.3959827423095703E-003
+
+The 7/7 th field to be written is 'dwal'
+Last field 7 ! 
+Last field 'dwal' finished! 
+
+ Time to write dwal to the disks =    2.7756929397583008E-002
+ stopjob,lstep,istep          -1          72          72
+    73 2.552E+02 2.947E-06  ( -35)   1.410E-05   1.251E-05  <   126-    7|   8> [  87 - 200]
+    73 2.560E+02 2.353E-06  ( -36)   9.233E-06   6.066E-06  <   429-    7|   8> [ 147 - 200]
+    73 2.562E+02 2.590E-06           3.195E-05                               [   200]
+    73 2.563E+02 2.383E-06           5.837E-06                               [   200]
+    73 2.570E+02 1.685E-06  ( -37)   9.148E-06   1.100E-05  <   123-    7|   8> [ 108 - 200]
+    73 2.577E+02 1.352E-06  ( -38)   5.673E-06   7.560E-06  <   123-    7|   8> [ 128 - 200]
+    73 2.579E+02 2.174E-06           3.241E-06                               [   200]
+    73 2.580E+02 2.793E-04           2.880E-05                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      73 5.735E+02 5.000E-04
+ stopjob,lstep,istep          -1          73          73
+    74 2.587E+02 2.779E-06  ( -35)   1.503E-05   1.460E-05  <   126-    7|   7> [  63 - 200]
+    74 2.594E+02 2.216E-06  ( -36)   7.421E-06   1.998E-05  <   946-    7|   8> [ 143 - 200]
+    74 2.596E+02 2.179E-06           2.937E-05                               [   200]
+    74 2.597E+02 1.770E-06           5.359E-06                               [   200]
+    74 2.604E+02 1.763E-06  ( -37)   8.210E-06   7.295E-06  <  1003-    7|   8> [ 123 - 200]
+    74 2.611E+02 1.436E-06  ( -38)   4.482E-06   1.372E-05  <    64-    7|   8> [ 145 - 200]
+    74 2.613E+02 1.738E-06           2.795E-06                               [   200]
+    74 2.614E+02 2.612E-04           3.430E-05                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      74 5.735E+02 5.000E-04
+Number of fields to write in restart files: 7
+Bypassing subcommunicator
+time to write restart (seconds) 0.015214
+
+The 4/7 th field to be written is 'pressure projection vectors'
+
+The 5/7 th field to be written is 'projection vectors'
+ call saveLesRestart for projection andpressure projection vectors   1.0092020034790039E-002
+
+The 6/7 th field to be written is 'errors'
+ Time to write the error fields to the disks   9.8588466644287109E-003
+
+The 7/7 th field to be written is 'dwal'
+Last field 7 ! 
+Last field 'dwal' finished! 
+
+ Time to write dwal to the disks =    3.0303001403808594E-002
+ stopjob,lstep,istep          -1          74          74
+    75 2.621E+02 2.654E-06  ( -35)   1.239E-05   5.814E-06  <   126-    7|   8> [  69 - 200]
+    75 2.627E+02 2.124E-06  ( -36)   7.177E-06   5.879E-06  <   871-    7|   8> [ 155 - 200]
+    75 2.629E+02 1.626E-06           2.765E-05                               [   200]
+    75 2.631E+02 1.418E-06           5.036E-06                               [   200]
+    75 2.636E+02 1.648E-06  ( -37)   7.517E-06   8.764E-06  <  1001-    7|   8> [ 110 - 200]
+    75 2.642E+02 1.335E-06  ( -38)   4.158E-06   6.126E-06  <   123-    7|   8> [ 117 - 200]
+    75 2.644E+02 1.243E-06           2.832E-06                               [   200]
+    75 2.645E+02 2.552E-04           3.509E-05                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      75 5.735E+02 5.000E-04
+ stopjob,lstep,istep          -1          75          75
+    76 2.650E+02 2.524E-06  ( -35)   1.461E-05   1.610E-05  <   126-    7|   8> [  60 - 200]
+    76 2.656E+02 1.929E-06  ( -36)   5.985E-06   1.975E-05  <   123-    7|   8> [ 129 - 200]
+    76 2.658E+02 1.342E-06           2.605E-05                               [   200]
+    76 2.659E+02 9.958E-07           4.668E-06                               [   200]
+    76 2.665E+02 1.569E-06  ( -37)   5.325E-06   5.117E-06  <   195-    7|   8> [ 129 - 200]
+    76 2.670E+02 1.265E-06  ( -38)   4.999E-06   6.223E-06  <   123-    7|   8> [ 148 - 200]
+    76 2.672E+02 9.560E-07           2.700E-06                               [   200]
+    76 2.673E+02 2.403E-04           3.192E-05                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      76 5.735E+02 5.000E-04
+Number of fields to write in restart files: 7
+Bypassing subcommunicator
+time to write restart (seconds) 0.014511
+
+The 4/7 th field to be written is 'pressure projection vectors'
+
+The 5/7 th field to be written is 'projection vectors'
+ call saveLesRestart for projection andpressure projection vectors   9.6909999847412109E-003
+
+The 6/7 th field to be written is 'errors'
+ Time to write the error fields to the disks   8.8100433349609375E-003
+
+The 7/7 th field to be written is 'dwal'
+Last field 7 ! 
+Last field 'dwal' finished! 
+
+ Time to write dwal to the disks =    3.0105829238891602E-002
+ stopjob,lstep,istep          -1          76          76
+    77 2.681E+02 2.380E-06  ( -36)   1.480E-05   7.774E-06  <   126-    7|   8> [  93 - 200]
+    77 2.688E+02 1.721E-06  ( -37)   9.128E-06   1.168E-05  <   123-    7|   8> [ 155 - 200]
+    77 2.690E+02 1.011E-06           2.433E-05                               [   200]
+    77 2.692E+02 7.879E-07           4.297E-06                               [   200]
+    77 2.699E+02 1.371E-06  ( -38)   8.332E-06   2.963E-06  <   153-    7|   9> [ 107 - 200]
+    77 2.705E+02 1.107E-06  ( -39)   4.890E-06   6.794E-06  <   429-    7|   8> [ 164 - 200]
+    77 2.707E+02 6.320E-07           2.394E-06                               [   200]
+    77 2.709E+02 2.239E-04           2.470E-05                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      77 5.735E+02 5.000E-04
+ stopjob,lstep,istep          -1          77          77
+    78 2.715E+02 2.244E-06  ( -36)   1.334E-05   1.855E-05  <   126-    7|   8> [  63 - 200]
+    78 2.722E+02 1.759E-06  ( -37)   7.791E-06   1.598E-05  <   123-    7|   9> [ 153 - 200]
+    78 2.724E+02 8.555E-07           2.309E-05                               [   200]
+    78 2.726E+02 5.315E-07           4.144E-06                               [   200]
+    78 2.732E+02 1.323E-06  ( -38)   5.483E-06   3.935E-06  <   123-    7|   8> [ 107 - 200]
+    78 2.739E+02 1.088E-06  ( -39)   3.546E-06   3.882E-06  <   123-    7|   9> [ 140 - 200]
+    78 2.741E+02 4.875E-07           2.134E-06                               [   200]
+    78 2.742E+02 1.974E-04           3.217E-05                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      78 5.735E+02 5.000E-04
+Number of fields to write in restart files: 7
+Bypassing subcommunicator
+time to write restart (seconds) 0.015299
+
+The 4/7 th field to be written is 'pressure projection vectors'
+
+The 5/7 th field to be written is 'projection vectors'
+ call saveLesRestart for projection andpressure projection vectors   1.0416030883789062E-002
+
+The 6/7 th field to be written is 'errors'
+ Time to write the error fields to the disks   8.1470012664794922E-003
+
+The 7/7 th field to be written is 'dwal'
+Last field 7 ! 
+Last field 'dwal' finished! 
+
+ Time to write dwal to the disks =    2.7124881744384766E-002
+ stopjob,lstep,istep          -1          78          78
+    79 2.749E+02 2.115E-06  ( -36)   1.241E-05   7.347E-06  <   126-    7|   8> [  70 - 200]
+    79 2.755E+02 1.532E-06  ( -37)   7.377E-06   7.314E-06  <    64-    7|   8> [ 152 - 200]
+    79 2.757E+02 6.923E-07           2.235E-05                               [   200]
+    79 2.759E+02 4.518E-07           4.087E-06                               [   200]
+    79 2.766E+02 1.219E-06  ( -38)   7.327E-06   7.888E-06  <   123-    7|   8> [ 108 - 200]
+    79 2.773E+02 9.903E-07  ( -39)   5.097E-06   7.430E-06  <    64-    7|   8> [ 150 - 200]
+    79 2.775E+02 3.159E-07           2.352E-06                               [   200]
+    79 2.776E+02 1.734E-04           3.292E-05                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      79 5.735E+02 5.000E-04
+ stopjob,lstep,istep          -1          79          79
+    80 2.783E+02 1.974E-06  ( -36)   1.396E-05   6.200E-06  <   126-    7|   8> [  68 - 200]
+    80 2.790E+02 1.535E-06  ( -37)   7.221E-06   5.307E-06  <    64-    7|   8> [ 141 - 200]
+    80 2.791E+02 6.223E-07           2.083E-05                               [   200]
+    80 2.793E+02 3.246E-07           3.752E-06                               [   200]
+    80 2.800E+02 1.227E-06  ( -38)   5.469E-06   7.438E-06  <   153-    7|   9> [ 120 - 200]
+    80 2.807E+02 1.011E-06  ( -39)   3.314E-06   2.846E-06  <    64-    7|   8> [ 160 - 200]
+    80 2.809E+02 2.607E-07           1.942E-06                               [   200]
+    80 2.810E+02 1.588E-04           2.317E-05                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      80 5.735E+02 5.000E-04
+Number of fields to write in restart files: 7
+Bypassing subcommunicator
+time to write restart (seconds) 0.013140
+
+The 4/7 th field to be written is 'pressure projection vectors'
+
+The 5/7 th field to be written is 'projection vectors'
+ call saveLesRestart for projection andpressure projection vectors   9.3250274658203125E-003
+
+The 6/7 th field to be written is 'errors'
+ Time to write the error fields to the disks   8.6247920989990234E-003
+
+The 7/7 th field to be written is 'dwal'
+Last field 7 ! 
+Last field 'dwal' finished! 
+
+ Time to write dwal to the disks =    2.7731895446777344E-002
+ stopjob,lstep,istep          -1          80          80
+    81 2.818E+02 1.867E-06  ( -37)   1.048E-05   7.620E-06  <   126-    7|   8> [  78 - 200]
+    81 2.824E+02 1.482E-06  ( -38)   5.716E-06   1.020E-05  <   429-    7|   8> [ 151 - 200]
+    81 2.826E+02 5.500E-07           1.984E-05                               [   200]
+    81 2.828E+02 3.104E-07           3.589E-06                               [   200]
+    81 2.834E+02 1.139E-06  ( -39)   6.050E-06   5.966E-06  <   153-    7|   9> [  99 - 200]
+    81 2.840E+02 9.207E-07  ( -40)   2.987E-06   5.821E-06  <    64-    7|   8> [ 147 - 200]
+    81 2.842E+02 1.848E-07           2.031E-06                               [   200]
+    81 2.843E+02 1.423E-04           1.907E-05                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      81 5.735E+02 5.000E-04
+ stopjob,lstep,istep          -1          81          81
+    82 2.851E+02 1.763E-06  ( -37)   1.114E-05   1.240E-05  <   126-    7|   8> [  44 - 200]
+    82 2.859E+02 1.411E-06  ( -38)   4.834E-06   1.885E-05  <    64-    7|   8> [ 143 - 200]
+    82 2.861E+02 5.282E-07           1.882E-05                               [   200]
+    82 2.863E+02 2.603E-07           3.380E-06                               [   200]
+    82 2.870E+02 1.116E-06  ( -39)   3.876E-06   7.990E-06  <   153-    7|   8> [ 113 - 200]
+    82 2.878E+02 9.174E-07  ( -40)   2.420E-06   2.454E-06  <    64-    7|   8> [ 153 - 200]
+    82 2.880E+02 1.721E-07           1.740E-06                               [   200]
+    82 2.882E+02 1.271E-04           1.886E-05                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      82 5.735E+02 5.000E-04
+Number of fields to write in restart files: 7
+Bypassing subcommunicator
+time to write restart (seconds) 0.014293
+
+The 4/7 th field to be written is 'pressure projection vectors'
+
+The 5/7 th field to be written is 'projection vectors'
+ call saveLesRestart for projection andpressure projection vectors   1.0946989059448242E-002
+
+The 6/7 th field to be written is 'errors'
+ Time to write the error fields to the disks   9.1168880462646484E-003
+
+The 7/7 th field to be written is 'dwal'
+Last field 7 ! 
+Last field 'dwal' finished! 
+
+ Time to write dwal to the disks =    2.7957916259765625E-002
+ stopjob,lstep,istep          -1          82          82
+    83 2.888E+02 1.675E-06  ( -37)   9.108E-06   3.917E-06  <   126-    7|   8> [  71 - 200]
+    83 2.896E+02 1.361E-06  ( -38)   5.677E-06   8.920E-06  <    64-    7|   8> [ 148 - 200]
+    83 2.898E+02 4.997E-07           1.774E-05                               [   200]
+    83 2.899E+02 2.509E-07           3.145E-06                               [   200]
+    83 2.906E+02 9.263E-07  ( -40)   6.588E-06   9.673E-06  <   153-    7|   8> [ 101 - 200]
+    83 2.913E+02 7.371E-07  ( -41)   4.595E-06   6.745E-06  <   153-    7|   8> [ 145 - 200]
+    83 2.915E+02 1.329E-07           1.757E-06                               [   200]
+    83 2.917E+02 1.164E-04           1.803E-05                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      83 5.735E+02 5.000E-04
+ stopjob,lstep,istep          -1          83          83
+    84 2.923E+02 1.566E-06  ( -37)   1.184E-05   1.010E-05  <   126-    7|   8> [  38 - 200]
+    84 2.930E+02 1.201E-06  ( -39)   6.052E-06   1.036E-05  <   123-    7|   8> [ 141 - 200]
+    84 2.932E+02 4.679E-07           1.602E-05                               [   200]
+    84 2.933E+02 2.118E-07           2.789E-06                               [   200]
+    84 2.940E+02 9.643E-07  ( -39)   4.539E-06   1.172E-05  <   153-    7|   8> [ 109 - 200]
+    84 2.947E+02 7.913E-07  ( -40)   2.261E-06   7.729E-06  <   429-    7|   8> [ 153 - 200]
+    84 2.949E+02 1.237E-07           1.448E-06                               [   200]
+    84 2.951E+02 1.097E-04           1.500E-05                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      84 5.735E+02 5.000E-04
+Number of fields to write in restart files: 7
+Bypassing subcommunicator
+time to write restart (seconds) 0.015690
+
+The 4/7 th field to be written is 'pressure projection vectors'
+
+The 5/7 th field to be written is 'projection vectors'
+ call saveLesRestart for projection andpressure projection vectors   1.0874032974243164E-002
+
+The 6/7 th field to be written is 'errors'
+ Time to write the error fields to the disks   1.0205984115600586E-002
+
+The 7/7 th field to be written is 'dwal'
+Last field 7 ! 
+Last field 'dwal' finished! 
+
+ Time to write dwal to the disks =    3.1188964843750000E-002
+ stopjob,lstep,istep          -1          84          84
+    85 2.957E+02 1.494E-06  ( -38)   8.442E-06   9.858E-06  <   126-    7|   8> [  65 - 200]
+    85 2.965E+02 1.209E-06  ( -38)   4.640E-06   5.764E-06  <   429-    7|   8> [ 154 - 200]
+    85 2.967E+02 4.291E-07           1.503E-05                               [   200]
+    85 2.968E+02 2.040E-07           2.717E-06                               [   200]
+    85 2.975E+02 9.073E-07  ( -40)   5.473E-06   2.384E-06  <   153-    7|   9> [  93 - 200]
+    85 2.982E+02 7.290E-07  ( -41)   2.859E-06   8.416E-06  <   123-    7|   8> [ 147 - 200]
+    85 2.984E+02 1.203E-07           1.633E-06                               [   200]
+    85 2.986E+02 9.807E-05           1.634E-05                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      85 5.735E+02 5.000E-04
+ stopjob,lstep,istep          -1          85          85
+    86 2.992E+02 1.411E-06  ( -38)   1.030E-05   1.683E-05  <   126-    7|   8> [  41 - 200]
+    86 2.999E+02 1.103E-06  ( -39)   4.601E-06   1.258E-05  <   429-    7|   8> [ 144 - 200]
+    86 3.001E+02 4.043E-07           1.458E-05                               [   200]
+    86 3.002E+02 1.928E-07           2.658E-06                               [   200]
+    86 3.009E+02 8.729E-07  ( -40)   3.356E-06   6.073E-06  <   123-    7|   8> [ 115 - 200]
+    86 3.016E+02 7.143E-07  ( -41)   2.010E-06   3.629E-06  <    64-    7|   8> [ 153 - 200]
+    86 3.018E+02 1.195E-07           1.403E-06                               [   200]
+    86 3.019E+02 9.300E-05           1.476E-05                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      86 5.735E+02 5.000E-04
+Number of fields to write in restart files: 7
+Bypassing subcommunicator
+time to write restart (seconds) 0.016299
+
+The 4/7 th field to be written is 'pressure projection vectors'
+
+The 5/7 th field to be written is 'projection vectors'
+ call saveLesRestart for projection andpressure projection vectors   1.0570049285888672E-002
+
+The 6/7 th field to be written is 'errors'
+ Time to write the error fields to the disks   9.4459056854248047E-003
+
+The 7/7 th field to be written is 'dwal'
+Last field 7 ! 
+Last field 'dwal' finished! 
+
+ Time to write dwal to the disks =    3.3498048782348633E-002
+ stopjob,lstep,istep          -1          86          86
+    87 3.026E+02 1.337E-06  ( -38)   8.259E-06   2.383E-06  <   126-    7|   8> [  65 - 200]
+    87 3.033E+02 1.070E-06  ( -39)   3.418E-06   6.295E-06  <    64-    7|   8> [ 143 - 200]
+    87 3.035E+02 3.670E-07           1.358E-05                               [   200]
+    87 3.037E+02 1.803E-07           2.493E-06                               [   200]
+    87 3.044E+02 8.444E-07  ( -40)   4.441E-06   4.135E-06  <   153-    7|   8> [  92 - 200]
+    87 3.051E+02 6.925E-07  ( -41)   1.794E-06   6.078E-06  <    64-    7|   8> [ 156 - 200]
+    87 3.052E+02 1.092E-07           1.468E-06                               [   200]
+    87 3.054E+02 8.709E-05           1.479E-05                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      87 5.735E+02 5.000E-04
+ stopjob,lstep,istep          -1          87          87
+    88 3.061E+02 1.265E-06  ( -38)   9.111E-06   9.587E-06  <   126-    7|   8> [  31 - 200]
+    88 3.068E+02 1.017E-06  ( -39)   3.808E-06   8.922E-06  <    64-    7|   8> [ 166 - 200]
+    88 3.069E+02 3.474E-07           1.280E-05                               [   200]
+    88 3.071E+02 1.703E-07           2.302E-06                               [   200]
+    88 3.078E+02 7.990E-07  ( -40)   2.869E-06   6.022E-06  <  1003-    7|   8> [ 104 - 200]
+    88 3.085E+02 6.582E-07  ( -41)   1.565E-06   3.517E-06  <   946-    7|   8> [ 155 - 200]
+    88 3.086E+02 1.085E-07           1.265E-06                               [   200]
+    88 3.088E+02 8.158E-05           1.351E-05                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      88 5.735E+02 5.000E-04
+Number of fields to write in restart files: 7
+Bypassing subcommunicator
+time to write restart (seconds) 0.016510
+
+The 4/7 th field to be written is 'pressure projection vectors'
+
+The 5/7 th field to be written is 'projection vectors'
+ call saveLesRestart for projection andpressure projection vectors   1.0039806365966797E-002
+
+The 6/7 th field to be written is 'errors'
+ Time to write the error fields to the disks   8.9838504791259766E-003
+
+The 7/7 th field to be written is 'dwal'
+Last field 7 ! 
+Last field 'dwal' finished! 
+
+ Time to write dwal to the disks =    2.7882814407348633E-002
+ stopjob,lstep,istep          -1          88          88
+    89 3.095E+02 1.197E-06  ( -39)   7.702E-06   3.282E-06  <   123-    7|   8> [  52 - 200]
+    89 3.101E+02 9.568E-07  ( -39)   3.161E-06   1.074E-05  <   946-    7|   8> [ 149 - 200]
+    89 3.103E+02 3.256E-07           1.172E-05                               [   200]
+    89 3.104E+02 1.607E-07           2.143E-06                               [   200]
+    89 3.110E+02 7.564E-07  ( -41)   4.135E-06   5.516E-06  <   492-    7|   8> [  81 - 200]
+    89 3.115E+02 6.223E-07  ( -41)   1.586E-06   2.587E-06  <   123-    7|   8> [ 161 - 200]
+    89 3.117E+02 9.407E-08           1.259E-06                               [   200]
+    89 3.119E+02 7.175E-05           1.231E-05                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      89 5.735E+02 5.000E-04
+ stopjob,lstep,istep          -1          89          89
+    90 3.124E+02 1.136E-06  ( -39)   8.638E-06   8.761E-06  <   126-    7|   8> [  37 - 200]
+    90 3.129E+02 9.220E-07  ( -40)   3.705E-06   1.248E-05  <   429-    7|   8> [ 156 - 200]
+    90 3.131E+02 3.115E-07           1.093E-05                               [   200]
+    90 3.133E+02 1.474E-07           1.977E-06                               [   200]
+    90 3.138E+02 6.866E-07  ( -41)   3.608E-06   7.770E-06  <   492-    7|   8> [ 106 - 200]
+    90 3.143E+02 5.297E-07  ( -42)   2.144E-06   5.543E-06  <   123-    7|   8> [ 151 - 200]
+    90 3.145E+02 9.441E-08           1.155E-06                               [   200]
+    90 3.147E+02 6.507E-05           1.182E-05                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      90 5.735E+02 5.000E-04
+Number of fields to write in restart files: 7
+Bypassing subcommunicator
+time to write restart (seconds) 0.014175
+
+The 4/7 th field to be written is 'pressure projection vectors'
+
+The 5/7 th field to be written is 'projection vectors'
+ call saveLesRestart for projection andpressure projection vectors   8.7518692016601562E-003
+
+The 6/7 th field to be written is 'errors'
+ Time to write the error fields to the disks   8.5279941558837891E-003
+
+The 7/7 th field to be written is 'dwal'
+Last field 7 ! 
+Last field 'dwal' finished! 
+
+ Time to write dwal to the disks =    2.5110960006713867E-002
+ stopjob,lstep,istep          -1          90          90
+    91 3.154E+02 1.068E-06  ( -39)   7.603E-06   1.459E-05  <   126-    7|   8> [  39 - 200]
+    91 3.162E+02 8.535E-07  ( -40)   4.292E-06   1.387E-05  <   429-    7|   8> [ 154 - 200]
+    91 3.164E+02 2.934E-07           1.035E-05                               [   200]
+    91 3.166E+02 1.447E-07           1.986E-06                               [   200]
+    91 3.173E+02 6.082E-07  ( -41)   5.017E-06   2.783E-06  <   123-    7|   9> [  79 - 200]
+    91 3.181E+02 4.822E-07  ( -42)   2.526E-06   1.915E-06  <   123-    7|   9> [ 153 - 200]
+    91 3.183E+02 8.942E-08           1.202E-06                               [   200]
+    91 3.185E+02 6.138E-05           1.137E-05                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      91 5.735E+02 5.000E-04
+ stopjob,lstep,istep          -1          91          91
+    92 3.193E+02 9.996E-07  ( -39)   8.600E-06   2.155E-06  <   126-    7|   8> [  31 - 200]
+    92 3.200E+02 8.143E-07  ( -40)   3.492E-06   3.916E-06  <   123-    7|   8> [ 155 - 200]
+    92 3.202E+02 2.732E-07           9.902E-06                               [   200]
+    92 3.204E+02 1.353E-07           1.893E-06                               [   200]
+    92 3.211E+02 6.327E-07  ( -41)   2.913E-06   3.285E-06  <   126-    7|   9> [  94 - 200]
+    92 3.219E+02 5.186E-07  ( -42)   1.460E-06   2.344E-06  <    64-    7|   8> [ 155 - 200]
+    92 3.221E+02 9.485E-08           1.106E-06                               [   200]
+    92 3.223E+02 5.737E-05           1.144E-05                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      92 5.735E+02 5.000E-04
+Number of fields to write in restart files: 7
+Bypassing subcommunicator
+time to write restart (seconds) 0.016711
+
+The 4/7 th field to be written is 'pressure projection vectors'
+
+The 5/7 th field to be written is 'projection vectors'
+ call saveLesRestart for projection andpressure projection vectors   8.8410377502441406E-003
+
+The 6/7 th field to be written is 'errors'
+ Time to write the error fields to the disks   9.3920230865478516E-003
+
+The 7/7 th field to be written is 'dwal'
+Last field 7 ! 
+Last field 'dwal' finished! 
+
+ Time to write dwal to the disks =    2.8297185897827148E-002
+ stopjob,lstep,istep          -1          92          92
+    93 3.230E+02 9.444E-07  ( -40)   7.159E-06   2.002E-06  <   126-    7|   8> [  39 - 200]
+    93 3.236E+02 7.545E-07  ( -41)   2.974E-06   5.025E-06  <    64-    7|   8> [ 148 - 200]
+    93 3.238E+02 2.542E-07           9.557E-06                               [   200]
+    93 3.240E+02 1.366E-07           1.884E-06                               [   200]
+    93 3.246E+02 5.952E-07  ( -42)   3.836E-06   3.653E-06  <   153-    7|   8> [  86 - 200]
+    93 3.252E+02 4.913E-07  ( -42)   1.511E-06   1.370E-06  <    64-    7|   8> [ 166 - 200]
+    93 3.254E+02 8.857E-08           1.168E-06                               [   200]
+    93 3.256E+02 5.411E-05           1.041E-05                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      93 5.735E+02 5.000E-04
+ stopjob,lstep,istep          -1          93          93
+    94 3.261E+02 8.852E-07  ( -40)   8.321E-06   6.345E-06  <   126-    7|   8> [  16 - 200]
+    94 3.267E+02 6.939E-07  ( -41)   3.403E-06   6.595E-06  <    64-    7|   8> [ 148 - 200]
+    94 3.269E+02 2.472E-07           9.092E-06                               [   200]
+    94 3.271E+02 1.278E-07           1.732E-06                               [   200]
+    94 3.277E+02 5.315E-07  ( -42)   2.532E-06   1.146E-06  <   153-    7|   8> [  82 - 200]
+    94 3.285E+02 4.360E-07  ( -43)   1.120E-06   2.296E-06  <    64-    7|   9> [ 155 - 200]
+    94 3.287E+02 8.777E-08           9.903E-07                               [   200]
+    94 3.288E+02 5.020E-05           9.258E-06                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      94 5.735E+02 5.000E-04
+Number of fields to write in restart files: 7
+Bypassing subcommunicator
+time to write restart (seconds) 0.016703
+
+The 4/7 th field to be written is 'pressure projection vectors'
+
+The 5/7 th field to be written is 'projection vectors'
+ call saveLesRestart for projection andpressure projection vectors   8.8469982147216797E-003
+
+The 6/7 th field to be written is 'errors'
+ Time to write the error fields to the disks   7.2350502014160156E-003
+
+The 7/7 th field to be written is 'dwal'
+Last field 7 ! 
+Last field 'dwal' finished! 
+
+ Time to write dwal to the disks =    2.5096178054809570E-002
+ stopjob,lstep,istep          -1          94          94
+    95 3.295E+02 8.287E-07  ( -40)   6.365E-06   2.170E-06  <   126-    7|   8> [  29 - 200]
+    95 3.302E+02 6.654E-07  ( -41)   3.580E-06   3.004E-06  <    64-    7|   8> [ 155 - 200]
+    95 3.303E+02 2.381E-07           8.564E-06                               [   200]
+    95 3.305E+02 1.275E-07           1.716E-06                               [   200]
+    95 3.311E+02 4.556E-07  ( -43)   4.390E-06   1.525E-06  <    64-    7|   8> [  85 - 200]
+    95 3.317E+02 3.650E-07  ( -44)   2.076E-06   1.750E-06  <   123-    7|   8> [ 157 - 200]
+    95 3.319E+02 8.061E-08           1.080E-06                               [   200]
+    95 3.321E+02 4.774E-05           8.772E-06                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      95 5.735E+02 5.000E-04
+ stopjob,lstep,istep          -1          95          95
+    96 3.326E+02 7.704E-07  ( -40)   8.001E-06   2.917E-06  <   126-    7|   8> [  17 - 200]
+    96 3.335E+02 6.174E-07  ( -41)   3.135E-06   1.993E-06  <    64-    7|   8> [ 162 - 200]
+    96 3.336E+02 2.283E-07           8.173E-06                               [   200]
+    96 3.338E+02 1.201E-07           1.679E-06                               [   200]
+    96 3.346E+02 4.959E-07  ( -42)   2.395E-06   1.591E-06  <  1001-    7|   8> [  92 - 200]
+    96 3.355E+02 4.084E-07  ( -43)   1.176E-06   1.628E-06  <    64-    7|   8> [ 174 - 200]
+    96 3.357E+02 8.918E-08           1.007E-06                               [   200]
+    96 3.358E+02 4.589E-05           7.862E-06                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      96 5.735E+02 5.000E-04
+Number of fields to write in restart files: 7
+Bypassing subcommunicator
+time to write restart (seconds) 0.017505
+
+The 4/7 th field to be written is 'pressure projection vectors'
+
+The 5/7 th field to be written is 'projection vectors'
+ call saveLesRestart for projection andpressure projection vectors   9.0849399566650391E-003
+
+The 6/7 th field to be written is 'errors'
+ Time to write the error fields to the disks   8.4640979766845703E-003
+
+The 7/7 th field to be written is 'dwal'
+Last field 7 ! 
+Last field 'dwal' finished! 
+
+ Time to write dwal to the disks =    2.7892112731933594E-002
+ stopjob,lstep,istep          -1          96          96
+    97 3.365E+02 7.371E-07  ( -41)   6.474E-06   3.030E-06  <   126-    7|   8> [  28 - 200]
+    97 3.372E+02 5.951E-07  ( -42)   2.498E-06   1.606E-06  <    64-    7|   8> [ 158 - 200]
+    97 3.374E+02 2.193E-07           8.083E-06                               [   200]
+    97 3.376E+02 1.247E-07           1.705E-06                               [   200]
+    97 3.381E+02 4.652E-07  ( -43)   3.452E-06   3.196E-06  <  1001-    7|   8> [  57 - 200]
+    97 3.387E+02 3.793E-07  ( -44)   1.202E-06   2.533E-06  <   123-    7|   8> [ 163 - 200]
+    97 3.389E+02 8.177E-08           1.072E-06                               [   200]
+    97 3.391E+02 4.185E-05           7.445E-06                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      97 5.735E+02 5.000E-04
+ stopjob,lstep,istep          -1          97          97
+    98 3.398E+02 6.958E-07  ( -41)   7.803E-06   1.627E-06  <   126-    7|   8> [  12 - 200]
+    98 3.406E+02 5.544E-07  ( -42)   3.302E-06   3.471E-06  <   123-    7|   8> [ 154 - 200]
+    98 3.408E+02 2.167E-07           7.854E-06                               [   200]
+    98 3.410E+02 1.159E-07           1.566E-06                               [   200]
+    98 3.417E+02 4.049E-07  ( -43)   2.852E-06   3.910E-06  <   123-    7|   9> [  88 - 200]
+    98 3.425E+02 3.253E-07  ( -44)   1.401E-06   4.083E-06  <   153-    7|   9> [ 151 - 200]
+    98 3.427E+02 8.328E-08           9.285E-07                               [   200]
+    98 3.429E+02 3.760E-05           6.423E-06                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      98 5.735E+02 5.000E-04
+Number of fields to write in restart files: 7
+Bypassing subcommunicator
+time to write restart (seconds) 0.013638
+
+The 4/7 th field to be written is 'pressure projection vectors'
+
+The 5/7 th field to be written is 'projection vectors'
+ call saveLesRestart for projection andpressure projection vectors   8.7270736694335938E-003
+
+The 6/7 th field to be written is 'errors'
+ Time to write the error fields to the disks   7.8189373016357422E-003
+
+The 7/7 th field to be written is 'dwal'
+Last field 7 ! 
+Last field 'dwal' finished! 
+
+ Time to write dwal to the disks =    2.7740955352783203E-002
+ stopjob,lstep,istep          -1          98          98
+    99 3.435E+02 6.540E-07  ( -41)   6.327E-06   7.591E-06  <   123-    7|   8> [  16 - 200]
+    99 3.442E+02 5.281E-07  ( -42)   2.499E-06   6.635E-06  <   153-    7|   8> [ 156 - 200]
+    99 3.444E+02 2.009E-07           7.195E-06                               [   200]
+    99 3.446E+02 1.110E-07           1.470E-06                               [   200]
+    99 3.452E+02 4.167E-07  ( -43)   3.319E-06   9.974E-07  <    64-    7|   8> [  54 - 200]
+    99 3.459E+02 3.422E-07  ( -44)   1.148E-06   9.181E-07  <   153-    7|   8> [ 170 - 200]
+    99 3.461E+02 7.322E-08           9.503E-07                               [   200]
+    99 3.463E+02 3.463E-05           6.034E-06                               [   200]
+             CFL Flow  Step  CFLfl_max  dt      99 5.735E+02 5.000E-04
+ stopjob,lstep,istep          -1          99          99
+   100 3.469E+02 6.240E-07  ( -41)   7.365E-06   1.776E-06  <   123-    7|   8> [  12 - 200]
+   100 3.476E+02 4.989E-07  ( -42)   3.089E-06   2.002E-06  <   123-    7|   8> [ 161 - 200]
+   100 3.477E+02 2.018E-07           7.052E-06                               [   200]
+   100 3.479E+02 1.069E-07           1.448E-06                               [   200]
+   100 3.486E+02 3.547E-07  ( -44)   2.967E-06   3.733E-06  <   153-    7|   8> [  89 - 200]
+   100 3.493E+02 2.777E-07  ( -45)   1.668E-06   2.071E-06  <   153-    7|   8> [ 148 - 200]
+   100 3.494E+02 7.982E-08           8.785E-07                               [   200]
+   100 3.496E+02 3.291E-05           5.386E-06                               [   200]
+             CFL Flow  Step  CFLfl_max  dt     100 5.735E+02 5.000E-04
+Number of fields to write in restart files: 7
+Bypassing subcommunicator
+time to write restart (seconds) 0.016834
+
+The 4/7 th field to be written is 'pressure projection vectors'
+
+The 5/7 th field to be written is 'projection vectors'
+ call saveLesRestart for projection andpressure projection vectors   1.0139942169189453E-002
+
+The 6/7 th field to be written is 'errors'
+ Time to write the error fields to the disks   9.8650455474853516E-003
+
+The 7/7 th field to be written is 'dwal'
+Last field 7 ! 
+Last field 'dwal' finished! 
+
+ Time to write dwal to the disks =    2.9361963272094727E-002
+ T(core) cpu =    349.46038699150085     
+ (Elm. form.   14.712517261505127      ,Lin. alg. sol.   262.30090928077698      )
+ (Elm. form. Scal.   6.6676106452941895      ,Lin. alg. sol. Scal.   60.984710454940796      )
+ 
+Elm. form. : min [0,14.71252], max[6,14.74363] and avg[.,14.72871] (rms=0.00834)
+Lin. alg. sol : min [6,262.29603], max[2,262.30636] and avg[.,262.29927] (rms=0.00357)
+Elm. form. Scal. : min [0,6.66761], max[6,6.69568] and avg[.,6.68496] (rms=0.00819)
+Lin. alg. sol Scal. : min [6,60.97930], max[7,60.98489] and avg[.,60.98355] (rms=0.00171)
+
+nshg    : min [7,1775], max[2,1806] and avg[.,1791] (rms=9)
+numel   : min [6,4944], max[7,5019] and avg[.,4981] (rms=24)
+numelb  : min [5,0], max[2,64] and avg[.,38] (rms=23)
+nnz_tot : min [6,18827], max[3,18960] and avg[.,18915] (rms=38)
+
+iISend : min [6,367485], max[5,1837425] and avg[.,1195626] (rms=440746)
+iIRecv : min [6,368285], max[5,1841425] and avg[.,1195626] (rms=441413)
+iWtAll : min [0,735770], max[0,735770] and avg[.,735770] (rms=0)
+iAllR  : min [0,434814], max[0,434814] and avg[.,434814] (rms=0)
+rISend : min [6,0.99989], max[5,5.51146] and avg[.,3.49300] (rms=1.30343)
+rIRecv : min [6,0.11801], max[1,0.50445] and avg[.,0.37160] (rms=0.11180)
+rWtAll : min [2,2.64145], max[7,6.65729] and avg[.,3.98808] (rms=1.23645)
+rCommu : min [6,3.85806], max[4,7.73637] and avg[.,5.67146] (rms=1.34714)
+rspmvphasta : min [2,20.44008], max[7,27.38810] and avg[.,25.25224] (rms=2.20507)
+rspmvmkl : min [0,0.00000], max[0,0.00000] and avg[.,0.00000] (rms=0.00000)
+rblasphasta : min [2,51.54905], max[3,72.72222] and avg[.,67.47782] (rms=7.13699)
+rblasmkl : min [0,0.00000], max[0,0.00000] and avg[.,0.00000] (rms=0.00000)
+rspmvKG : min [2,20.47629], max[7,27.41851] and avg[.,25.28484] (rms=2.20398)
+rspmvD : min [7,0.13380], max[2,0.14315] and avg[.,0.13687] (rms=0.00331)
+rspmvG : min [3,9.56510], max[2,10.88667] and avg[.,10.26660] (rms=0.49491)
+rspmvNGt : min [3,0.02433], max[2,0.02808] and avg[.,0.02609] (rms=0.00116)
+rspmvNGtC : min [0,13.94902], max[7,15.26032] and avg[.,14.51203] (rms=0.40502)
+rspmvFull : min [5,0.08160], max[2,0.08741] and avg[.,0.08379] (rms=0.00181)
+ispmvphasta  : min [0,1], max[0,1] and avg[.,1] (rms=0)
+ispmvmkl  : min [0,0], max[0,0] and avg[.,0] (rms=0)
+iblasphasta  : min [0,18957263], max[0,18957263] and avg[.,18957263] (rms=0)
+iblasmkl  : min [0,0], max[0,0] and avg[.,0] (rms=0)
+ispmvKG  : min [0,79659], max[0,79659] and avg[.,79659] (rms=0)
+ispmvD  : min [0,400], max[0,400] and avg[.,400] (rms=0)
+ispmvG  : min [0,143313], max[0,143313] and avg[.,143313] (rms=0)
+ispmvNGt  : min [0,400], max[0,400] and avg[.,400] (rms=0)
+ispmvNGtC  : min [0,142913], max[0,142913] and avg[.,142913] (rms=0)
+ispmvFull  : min [0,400], max[0,400] and avg[.,400] (rms=0)
+iblasmaxpy  : min [0,18883738], max[0,18883738] and avg[.,18883738] (rms=0)
+rblasmaxpy : min [2,43.95516], max[7,58.19145] and avg[.,54.81875] (rms=4.72732)
+rassembly : min [1,3.81740], max[0,4.02997] and avg[.,3.89736] (rms=0.06644)
+rAllR  : min [7,1.85926], max[2,2.04108] and avg[.,1.94870] (rms=0.06534)
+
+iISendScal : min [6,83795], max[5,418975] and avg[.,273633] (rms=100617)
+iIRecvScal : min [6,84595], max[5,422975] and avg[.,273633] (rms=101284)
+iWtAllScal : min [0,168390], max[0,168390] and avg[.,168390] (rms=0)
+iAllRScal : min [0,419058], max[0,419058] and avg[.,419058] (rms=0)
+rISendScal : min [6,0.08194], max[5,0.55813] and avg[.,0.36240] (rms=0.13873)
+rIRecvScal : min [6,0.02036], max[1,0.08940] and avg[.,0.06181] (rms=0.01962)
+rWtAllScal : min [0,0.34567], max[7,0.67220] and avg[.,0.45724] (rms=0.10069)
+rCommuScal : min [0,0.46137], max[4,0.86718] and avg[.,0.63988] (rms=0.13680)
+rAllRScal  : min [7,1.13999], max[0,1.27248] and avg[.,1.21261] (rms=0.04803)
+ itrdrv - done with aerodynamic forces
+ itrdrv - done with MAXSURF
+ itrdrv - done - BACK TO process.f
+ process - before closing iecho
+ process - after closing iecho
+phasta.cc - last call before finalize!
+Mon Sep 17 16:17:45 MDT 2018

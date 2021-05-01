@@ -1,0 +1,20 @@
+Default Ensa Case                                                     03/03/21 
+
+ M a i n   C o n t r o l   P a r a m e t e r s        
+
+ number of processing elements . . . . . . . (numpe )=         8
+
+ number of mesh nodes  . . . . . . . . . . . (numnp )=      1783
+
+ number of elements  . . . . . . . . . . . . (numel )=      5008
+
+ number of boundary elements . . . . . . . . (numelb)=        47
+
+ number of element nodes . . . . . . . . . . (nen   )=         4
+
+ number of element faces . . . . . . . . . . (nfaces)=         0
+
+ number of space dimensions  . . . . . . . . (nsd   )=         3
+
+ number of boundary flux nodes . . . . . . . (numflx)=         0
+
