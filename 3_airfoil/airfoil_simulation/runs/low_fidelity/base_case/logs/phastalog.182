@@ -1,0 +1,98 @@
+Thu Apr 23 17:46:28 MDT 2020
+
+ Complete Filename: /users/fnewberry/phasta/buildI-NACA-R/input.config 
+
+ Local Config: solver.inp 
+
+Sequence size must be between 2 and 100 
+Sequence size must be between 2 and 100 
+Number of geombc-dat and restart-dat files to read: 0
+since zero assuming you planned to run posix 1PPF 
+ time to read geombc (seconds)   2.8111934661865234E-003
+ time to read restart (seconds)   5.1093101501464844E-004
+ Element block size =           64
+ input.f computes Rgas to be   288.29438280166437     
+ Domain size (x,y,z):   998.9986037998 998.0000000000   2.0000000000
+Total number of modes = 3274
+ Number of global nonzeros        35878
+ ERROR: mesh deformation not performed because PETSc doesn't exist
+ ERROR: mesh deformation not performed because PETSc doesn't exist
+ Navier is set to            1
+ entering initTurb
+d2wall field found in restart.182.
+time to read d2wall (seconds) 0.000325
+
+ leaving initTurb
+environment variable LES_LICENSE_SERVER not defined 
+using wesley as default 
+ Number of global nonzeros        35878
+ stopjob,lstep,istep,istop          -1         182           0           0
+   sforce            0 if any handled by rank           1  on node           1
+   sforce            1 if any handled by rank           0  on node           0
+Number of fields to write in restart files: 10
+time to write restart (seconds) 0.000550
+
+The 4/10 th field to be written is 'vorticity'
+
+The 5/10 th field to be written is 'wss'
+
+The 6/10 th field to be written is 'errors'
+ Time to write the error fields to the disks   7.9154968261718750E-005
+
+The 7/10 th field to be written is 'ybar'
+
+The 8/10 th field to be written is 'wssbar'
+
+The 9/10 th field to be written is 'dwal'
+ Time to write dwal to the disks =    2.2172927856445312E-005
+ T(core) cpu =    4.0982007980346680E-002
+ (Elm. form.   0.0000000000000000      ,Lin. alg. sol.   0.0000000000000000      )
+ (Elm. form. Scal.   0.0000000000000000      ,Lin. alg. sol. Scal.   0.0000000000000000      )
+ 
+Elm. form. : min [0,0.00000], max[0,0.00000] and avg[.,0.00000] (rms=0.00000)
+Lin. alg. sol : min [0,0.00000], max[0,0.00000] and avg[.,0.00000] (rms=0.00000)
+Elm. form. Scal. : min [0,0.00000], max[0,0.00000] and avg[.,0.00000] (rms=0.00000)
+Lin. alg. sol Scal. : min [0,0.00000], max[0,0.00000] and avg[.,0.00000] (rms=0.00000)
+
+nshg    : min [0,1687], max[1,1693] and avg[.,1690] (rms=3)
+numel   : min [0,4721], max[1,4771] and avg[.,4746] (rms=25)
+numelb  : min [0,3270], max[1,3278] and avg[.,3274] (rms=4)
+nnz_tot : min [0,17877], max[1,18001] and avg[.,17939] (rms=62)
+
+iISend : min [0,0], max[0,0] and avg[.,0] (rms=0)
+iIRecv : min [0,0], max[0,0] and avg[.,0] (rms=0)
+iWtAll : min [0,0], max[0,0] and avg[.,0] (rms=0)
+iAllR  : min [0,0], max[0,0] and avg[.,0] (rms=0)
+rISend : min [0,0.00000], max[0,0.00000] and avg[.,0.00000] (rms=0.00000)
+rIRecv : min [0,0.00000], max[0,0.00000] and avg[.,0.00000] (rms=0.00000)
+rWtAll : min [0,0.00000], max[0,0.00000] and avg[.,0.00000] (rms=0.00000)
+rCommu : min [0,0.00000], max[0,0.00000] and avg[.,0.00000] (rms=0.00000)
+rAllR  : min [0,0.00000], max[0,0.00000] and avg[.,0.00000] (rms=0.00000)
+
+iISendScal : min [0,0], max[0,0] and avg[.,0] (rms=0)
+iIRecvScal : min [0,0], max[0,0] and avg[.,0] (rms=0)
+iWtAllScal : min [0,0], max[0,0] and avg[.,0] (rms=0)
+iAllRScal : min [0,0], max[0,0] and avg[.,0] (rms=0)
+rISendScal : min [0,0.00000], max[0,0.00000] and avg[.,0.00000] (rms=0.00000)
+rIRecvScal : min [0,0.00000], max[0,0.00000] and avg[.,0.00000] (rms=0.00000)
+rWtAllScal : min [0,0.00000], max[0,0.00000] and avg[.,0.00000] (rms=0.00000)
+rCommuScal : min [0,0.00000], max[0,0.00000] and avg[.,0.00000] (rms=0.00000)
+rAllRScal  : min [0,0.00000], max[0,0.00000] and avg[.,0.00000] (rms=0.00000)
+ itrdrv - done with aerodynamic forces
+ itrdrv - done with MAXSURF
+At line 846 of file /users/fnewberry/phasta/git-phasta/phSolver/incompressible/itrdrv.f
+Fortran runtime error: Attempt to DEALLOCATE unallocated 'aperm'
+At line 846 of file /users/fnewberry/phasta/git-phasta/phSolver/incompressible/itrdrv.f
+Fortran runtime error: Attempt to DEALLOCATE unallocated 'aperm'
+-------------------------------------------------------
+Primary job  terminated normally, but 1 process returned
+a non-zero exit code.. Per user-direction, the job has been aborted.
+-------------------------------------------------------
+--------------------------------------------------------------------------
+mpirun detected that one or more processes exited with non-zero status, thus causing
+the job to be terminated. The first process to do so was:
+
+  Process name: [[60874,1],0]
+  Exit code:    2
+--------------------------------------------------------------------------
+Thu Apr 23 17:46:28 MDT 2020

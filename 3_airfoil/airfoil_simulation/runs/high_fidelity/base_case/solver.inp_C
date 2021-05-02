@@ -1,0 +1,109 @@
+# ibksiz flmpl flmpr itwmod wmodts dmodts fwr taucfct
+# PHASTA Version 1.5 Input File
+#
+#  Basic format is
+#
+#    Key Phrase  :  Acceptable Value (integer, double, logical, or phrase
+#                                     list of integers, list of doubles )
+#
+#
+#SOLUTION CONTROL 
+#{                
+     Equation of State: Incompressible
+     Number of Timesteps: 1
+     Time Step Size: 1e-6  # Delt(1)
+     Turbulence Model: RANS  #No-Model  # No-Model iturb=0, RANS =-1  LES=1 #}
+
+
+#}
+
+#MATERIAL PROPERTIES
+#{
+     Viscosity: 4e-5      # fills datmat (2 values REQUIRED if iLset=1)
+     Density: 1.0              # ditto
+     Body Force Option: None # ibody=0 => matflag(5,n)
+     Body Force: 0.0 0.0 0.0    # (datmat(i,5,n),i=1,nsd)
+     Thermal Conductivity: 27.6e-1  # ditto
+     Scalar Diffusivity: 27.6e-1    # fills scdiff(1:nsclrS)
+#}
+
+OUTPUT CONTROL
+{
+     #Number of Timesteps between Restarts: 100000   #replaces nout/ntout
+     Number of Timesteps between Restarts: 10   #replaces nout/ntout
+     Number of SyncIO Files: 16
+     Print Error Indicators: True
+     Number of Error Smoothing Iterations: 0 # ierrsmooth
+     Print ybar: True
+     Print vorticity: True
+     Print Wall Fluxes: True
+     Number of Force Surfaces: 1
+     Surface ID's for Force Calculation: 44
+#     Ranks per core: 4 # for varts only
+#     Cores per node: 2 # for varts only
+}
+
+#LINEAR SOLVER
+#
+     Solver Type: PETSc
+     #Solver Type: GMRES sparse
+     #Solver Type: ACUSIM with P Projection
+     Number of GMRES Sweeps per Solve: 1      # replaces nGMRES
+     Number of Krylov Vectors per GMRES Sweep: 200           # replaces Kspace
+     Scalar 1 Solver Tolerance : 1.0e-4
+     Tolerance on Momentum Equations: 0.05                   # epstol(1)
+     Tolerance on ACUSIM Pressure Projection: 0.05           # prestol 
+     Number of Solves per Left-hand-side Formation: 1  #nupdat/LHSupd(1)
+     ACUSIM Verbosity Level               : 0   #iverbose
+     Minimum Number of ACUSIM Iterations per Nonlinear Iteration: 10  # minIters
+     Maximum Number of ACUSIM Iterations per Nonlinear Iteration: 200 # maxIter
+#     Number of Pressure Projection Vectors: 30  #nPresPrjs
+#}
+
+#DISCRETIZATION CONTROL
+#{
+     Time Integration Rule: First Order      # 1st Order sets rinf(1) -1
+#     Time Integration Rule: Second Order    # Second Order sets rinf next
+#     Time Integration Rho Infinity: 0.0     # rinf(1) Only used for 2nd order
+
+#    Tau Matrix: Matrix-Mallet               #itau=1
+     Tau Matrix: Diagonal-Shakib               #itau=1
+     Tau Time Constant: 1.                      #dtsfct
+     Include Viscous Correction in Stabilization: True    # if p=1 idiff=1
+                                                           # if p=2 idiff=2  
+     Lumped Mass Fraction on Left-hand-side: 0.0           # flmpl
+     Lumped Mass Fraction on Right-hand-side: 0.0          # flmpr
+     Tau C Scale Factor: 1.0                    # taucfct  best value depends
+     Number of Elements Per Block: 64       #ibksiz
+#}
+
+TURBULENCE MODELING PARAMETERS  
+{ 
+	Turbulence Wall Model Type: None  #itwmod=0 RANSorLES
+}
+
+#STEP SEQUENCE 
+#{
+      Step Construction  :  
+      #Step Construction  :  0 1    
+      #Step Construction  :  0 1 10 11   
+      #Step Construction  :  0 1 0 1 10 11 10 11
+      #Step Construction  :  0 1 0 1 10 11 10 11 0 1 0 1 10 11 10 11 
+#}
+
+# Solver stopping parameters
+Velocity Delta Ratio : 5e-3
+Pressure Delta Ratio : 1.5e-4
+
+# NACA MESH DEFORMATION PARAMETERS
+{
+    Turn On NACA Mesh Deformation  : 1
+    Read NACA Coords From Restart  : 0
+    NACA Surface ID Wing           : 44
+    NACA Surface ID Fixed Boundary : 45
+    NACA Max Camber                : 0.04
+    NACA Max Camber Location       : 0.4
+    NACA Max Thickness             : 0.12
+    NACA Chord Length              : 1.0
+    NACA Attack Angle              : 0.0
+}
